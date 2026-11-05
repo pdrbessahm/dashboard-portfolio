@@ -65,10 +65,6 @@ def carregar_projetos():
 
 # ---------------------------------------------------------------- gráficos
 
-def numero_br(n):
-    return f"{n:,}".replace(",", ".")
-
-
 def decimal_br(x):
     return f"{x:.1f}".replace(".", ",")
 
@@ -89,33 +85,6 @@ def layout_base(**extra):
         showlegend=False,
     )
     return {**base, **extra}
-
-
-def grafico_funil_coleta(dados):
-    etapas = dados["funil_coleta"]
-    base = etapas[0]["vagas"]
-    nomes = [e["etapa"] for e in etapas]
-    valores = [e["vagas"] for e in etapas]
-    rotulos = [numero_br(v) if i == 0 else f"{numero_br(v)} ({percentual_br(100 * v / base)})"
-               for i, v in enumerate(valores)]
-    fig = go.Figure(go.Bar(
-        x=valores,
-        y=nomes,
-        orientation="h",
-        marker=dict(color=[COR_SERIE] * (len(valores) - 1) + [COR_DESTAQUE], cornerradius=4),
-        text=rotulos,
-        textposition="outside",
-        textfont=dict(color=TINTA),
-        cliponaxis=False,
-        customdata=[percentual_br(100 * v / base) for v in valores],
-        hovertemplate="%{y}<br>%{x:,} vagas (%{customdata} das brutas)<extra></extra>",
-    ))
-    fig.update_layout(**layout_base(height=240, bargap=0.45))
-    fig.update_yaxes(autorange="reversed", automargin=True, tickfont=dict(color=TINTA_SECUNDARIA), ticksuffix="  ")
-    fig.update_xaxes(showgrid=True, gridcolor=GRADE, zeroline=False, automargin=True, separatethousands=True,
-                     tickfont=dict(color=TINTA_SECUNDARIA), range=[0, base * 1.18])
-    tabela = [(n, r) for n, r in zip(nomes, rotulos)]
-    return fig, tabela
 
 
 def sinal_br(x):
@@ -337,7 +306,6 @@ def grafico_semana_pagamento(dados, estreito=False):
 
 
 GRAFICOS = {
-    "funil-coleta": grafico_funil_coleta,
     "evolucao": grafico_evolucao,
     "funil": grafico_funil_lojas,
     "variacao": grafico_variacao,
