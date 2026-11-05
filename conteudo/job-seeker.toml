@@ -7,9 +7,9 @@ ordem = 2
 titulo = "Job Seeker"
 subtitulo = "Descoberta e triagem de vagas em nove fontes públicas, com regras de filtro e de prioridade."
 
-# Pendente (PLANO.md, secao 4): botao "ver codigo" no cartao. Fica vazio ate o Pedro decidir.
+# Sem "ver codigo" (decidido em 04/11/2026): o codigo do portfolio fica so no case das lojas.
 repositorio = ""
-repositorio_pendente = "Botão \"ver código\": aguardando decisão do Pedro."
+repositorio_nota = "O foco deste case é a regra de filtro e de prioridade; o código não é publicado."
 
 [cartao]
 problema = "Vagas espalhadas em muitas fontes, repetidas e quase sempre fora do perfil, e nenhum jeito rápido de saber em qual vale a pena aplicar."

@@ -14,9 +14,9 @@ email = "bessapedro500@gmail.com"
 linkedin = "https://www.linkedin.com/in/pedro-henrique-bessa-maia/"
 github = "https://github.com/pdrbessahm"
 
-# Pendente (PLANO.md, secao 4): qual CV em PDF vai no site.
-# Quando o Pedro decidir, copie o PDF para static/cv.pdf e preencha com "/cv.pdf".
-cv = ""
+# CV de Dados e BI (decidido em 04/11/2026), em versao para a web: sem telefone, como o resto do site.
+# Gerado do .docx do job-seeker trocando so a linha de contato; o original nao muda.
+cv = "/static/CV_Pedro-Bessa.pdf"
 
 local = "Natal, RN · remoto"
 

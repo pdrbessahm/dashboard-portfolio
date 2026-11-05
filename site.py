@@ -13,6 +13,7 @@ import json
 import os
 import re
 import shutil
+import subprocess
 import sys
 import tomllib
 import unicodedata
@@ -438,12 +439,22 @@ def carregar_termos():
 
 
 def arquivos_para_verificar():
-    for pasta in (DADOS, DIST, CONTEUDO):
+    for pasta in (DADOS, DIST, CONTEUDO, STATIC):
         if not pasta.exists():
             continue
         for arq in pasta.rglob("*"):
-            if arq.is_file() and arq.suffix in EXTENSOES_TEXTO and "vendor" not in arq.parts:
+            if arq.is_file() and arq.suffix in EXTENSOES_TEXTO | {".pdf"} and "vendor" not in arq.parts:
                 yield arq
+
+
+def ler_texto(arq):
+    """Texto do arquivo; PDF (o CV) passa pelo pdftotext. None se não der para ler."""
+    if arq.suffix != ".pdf":
+        return arq.read_text(encoding="utf-8", errors="ignore")
+    try:
+        return subprocess.run(["pdftotext", str(arq), "-"], capture_output=True, text=True, check=True).stdout
+    except (FileNotFoundError, subprocess.CalledProcessError):
+        return None
 
 
 def verificar_sensiveis(estrito):
@@ -460,8 +471,11 @@ def verificar_sensiveis(estrito):
         termos = []
 
     for arq in arquivos_para_verificar():
-        texto = arq.read_text(encoding="utf-8", errors="ignore")
+        texto = ler_texto(arq)
         rel = arq.relative_to(RAIZ)
+        if texto is None:
+            problemas.append(f"{rel}: não consegui ler o texto do PDF (precisa do pdftotext, do poppler-utils)")
+            continue
         for nome, padrao in PADROES.items():
             for achado in padrao.findall(texto):
                 if nome == "e-mail" and achado.lower() == EMAIL_PERMITIDO:
