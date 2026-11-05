@@ -1,0 +1,19 @@
+dist/
+.venv/
+__pycache__/
+.env
+*.env
+
+# dado bruto nunca entra no repositório; dados/ só tem JSON anonimizado
+*.csv
+*.xlsx
+*.xls
+*.db
+*.sqlite
+*.parquet
+*.tmp
+
+# planejamento e gabarito ficam na pasta privada (fora deste repositório)
+PLANO.md
+GUIA-RECRIAR.md
+_repos/

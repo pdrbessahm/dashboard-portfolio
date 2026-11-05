@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+{% macro visual(v) %}
+{% set maior = v.barras | map(attribute="valor") | max %}
+<figure class="mini">
+  <figcaption class="mini-titulo">{{ v.titulo }}</figcaption>
+  <ul class="mini-barras">
+    {% for b in v.barras %}
+    <li>
+      <span class="mini-rotulo">{{ b.rotulo }}</span>
+      <span class="mini-trilho"><span class="mini-barra{% if loop.last %} mini-barra-final{% endif %}" style="--v: {{ '%.4f' | format(b.valor / maior) }}"></span></span>
+      <span class="mini-valor">{{ b.texto }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+</figure>
+{% endmacro %}
+{% block conteudo %}
+    <section class="heroi">
+      <div class="largura heroi-grade">
+        <div class="heroi-texto">
+          <p class="rotulo rotulo-claro">{{ perfil.cargo }} · {{ perfil.local }}</p>
+          <h1>{{ perfil.nome }}</h1>
+          <div class="resumo">
+            {% for frase in perfil.resumo %}
+            <p>{{ frase }}</p>
+            {% endfor %}
+          </div>
+          <ul class="links">
+            {% if perfil.cv %}
+            <li><a class="botao botao-acento" href="{{ perfil.cv }}">Baixar CV em PDF</a></li>
+            {% else %}
+            <li><span class="pendente pendente-escuro">Pendente: CV em PDF</span></li>
+            {% endif %}
+            <li><a class="botao botao-escuro" href="#projetos">Ver projetos</a></li>
+            <li><a class="botao botao-escuro" href="{{ perfil.linkedin }}" rel="noopener">LinkedIn</a></li>
+          </ul>
+        </div>
+        <dl class="numeros">
+          {% for n in perfil.numeros %}
+          <div class="numero">
+            <dt>{{ n.rotulo }}</dt>
+            <dd>{{ n.valor }}</dd>
+          </div>
+          {% endfor %}
+        </dl>
+      </div>
+    </section>
+
+    <section id="projetos" class="largura secao">
+      <header class="secao-topo">
+        <p class="rotulo">01 · Projetos</p>
+        <h2>Problemas reais de negócio, lidos com dados</h2>
+      </header>
+      <div class="projetos">
+        {% for p in projetos %}
+        <article class="projeto">
+          <a class="projeto-visual" href="/projetos/{{ p.slug }}/" tabindex="-1" aria-hidden="true">
+            <p class="projeto-numero">{{ p.cartao.resultado_numero }}</p>
+            {% if p.cartao.visual is defined %}{{ visual(p.cartao.visual) }}{% endif %}
+          </a>
+          <div class="projeto-corpo">
+            <p class="projeto-indice">{{ "%02d" | format(loop.index) }}</p>
+            <h3><a href="/projetos/{{ p.slug }}/">{{ p.titulo }}</a></h3>
+            <p class="resultado">{{ p.cartao.resultado }}</p>
+            <dl class="projeto-dl">
+              <div>
+                <dt>Problema</dt>
+                <dd>{{ p.cartao.problema }}</dd>
+              </div>
+              <div>
+                <dt>O que eu fiz</dt>
+                <dd>{{ p.cartao.fiz }}</dd>
+              </div>
+            </dl>
+            <ul class="etiquetas" aria-label="Ferramentas">
+              {% for f in p.cartao.ferramentas %}
+              <li>{{ f }}</li>
+              {% endfor %}
+            </ul>
+            <div class="acoes">
+              <a class="botao botao-cheio" href="/projetos/{{ p.slug }}/">Ver estudo de caso <span aria-hidden="true">→</span></a>
+              {% if p.repositorio %}
+              <a class="botao" href="{{ p.repositorio }}" rel="noopener">Ver código</a>
+              {% elif p.repositorio_pendente is defined %}
+              <span class="pendente">Pendente: {{ p.repositorio_pendente }}</span>
+              {% endif %}
+            </div>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section id="experiencia" class="largura secao">
+      <header class="secao-topo">
+        <p class="rotulo">02 · Experiência</p>
+        <h2>Onde isso foi aplicado</h2>
+      </header>
+      {% set e = perfil.experiencia %}
+      <article class="experiencia">
+        <p class="periodo">{{ e.periodo }}</p>
+        <div>
+          <h3>{{ e.cargo }} <span class="empresa">· {{ e.empresa }}</span></h3>
+          <p class="contexto">{{ e.contexto }}</p>
+          <ul class="lista">
+            {% for item in e.itens %}
+            <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <section class="largura secao">
+      <header class="secao-topo">
+        <p class="rotulo">03 · Competências</p>
+        <h2>Ferramentas do dia a dia</h2>
+      </header>
+      <ul class="competencias">
+        {% for c in perfil.competencias %}
+        <li>{{ c }}</li>
+        {% endfor %}
+      </ul>
+    </section>
+{% endblock %}

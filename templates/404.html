@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block titulo %}Página não encontrada - {{ perfil.nome }}{% endblock %}
+{% block conteudo %}
+    <section class="heroi heroi-projeto">
+      <div class="largura">
+        <p class="rotulo rotulo-claro">Erro 404</p>
+        <h1>Página não encontrada</h1>
+        <p class="subtitulo">O endereço não existe ou mudou de lugar.</p>
+        <ul class="links">
+          <li><a class="botao botao-acento" href="/">Voltar para o início</a></li>
+        </ul>
+      </div>
+    </section>
+{% endblock %}

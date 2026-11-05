@@ -1,0 +1,140 @@
+# Analise de lojas em marketplace de delivery (iFood). Projeto principal.
+# Texto do PLANO.md, secao 3.1. Mostra o trabalho de analise e de regra de negocio;
+# o codigo de coleta e relatorio nao e apresentado como autoria do Pedro.
+# Nenhum valor em reais nem contagem absoluta das lojas aparece aqui.
+
+slug = "lojas-delivery"
+ordem = 1
+titulo = "Análise de lojas em marketplace de delivery (iFood)"
+subtitulo = "Acompanhamento mensal de lojas de restaurante, com regras de negócio, KPIs e plano de ação."
+
+# Repositorio do projeto: privado, tem dado de cliente (curriculo.yaml). Sem link.
+repositorio = ""
+repositorio_nota = "Repositório privado: o projeto contém dado de cliente."
+
+[cartao]
+problema = "Donos de restaurante com loja no iFood sem uma leitura clara do que mudou de um período para o outro e do que fazer a seguir."
+fiz = "Defini as regras de negócio e os KPIs do acompanhamento e transformei os números de cada loja em relatório com plano de ação."
+ferramentas = ["Painel do iFood", "KPIs", "Relatório", "Python", "pandas", "Plotly"]
+resultado_numero = "+27,2%"
+resultado = "Loja B (marmitaria): +27,2% de faturamento em set contra ago, num mês sem anúncio, depois da reordenação da vitrine."
+
+# Mini grafico do cartao (indice, ago = 100): o mesmo numero do resultado, sem valor absoluto.
+[cartao.visual]
+titulo = "Loja B · faturamento (índice, ago = 100)"
+barras = [
+  { rotulo = "ago", valor = 100.0, texto = "100" },
+  { rotulo = "set", valor = 127.2, texto = "127,2" },
+]
+
+[[secoes]]
+titulo = "Problema"
+paragrafos = [
+  "Desde dez de 2024, em atuação paralela, acompanho lojas de restaurante em plataformas de delivery.",
+  "O dono vê muitos números soltos no painel da plataforma e precisa de uma leitura objetiva: o que melhorou, o que piorou e por quê.",
+]
+
+[[secoes]]
+titulo = "Dados"
+paragrafos = [
+  "Indicadores mensais das lojas: faturamento, pedidos, ticket médio, clientes novos, conversão, funil (visitas, viram item, carrinho, checkout, pedidos), vendas por dia da semana, formas de pagamento, disponibilidade da loja e itens mais vendidos.",
+  "As lojas aparecem como Loja A, Loja B e assim por diante, com o segmento ao lado.",
+  "Nenhum valor absoluto que identifique a loja aparece: tudo é variação percentual, participação ou índice (primeiro mês da loja = 100).",
+  "A ordem das letras não segue nome nem tamanho da loja.",
+  "As Lojas A e B dividem a mesma cozinha.",
+]
+itens = [
+  "Loja A (restaurante e açaí): jun a out de 2026. Anúncio ampliado a partir de set.",
+  "Loja B (marmitaria): jun a out de 2026. Sem anúncio em set.",
+  "Loja C (marmitaria): jun a out de 2026. Anúncio ampliado em set, em resposta à queda de visitas.",
+  "Loja D (hamburgueria): jun a out de 2026. Anúncio ampliado em set; em out ficou aberta 79% do horário cadastrado.",
+  "Loja E (lanches): jun a out de 2026. Em set a própria loja mudou a agenda (domingo fechado).",
+  "Loja F (hamburgueria): jun e jul de 2026.",
+  "Loja G (hamburgueria): jun e jul de 2026, só como apoio: em jun teve menos de 50 pedidos, então aparece nos gráficos mas não sustenta conclusão.",
+  "Loja H (hamburgueria): jul e ago de 2026.",
+]
+nota = "As Lojas A a E formam a série longa (jun a out de 2026). F, G e H entram num recorte de dois meses, sempre com o período ao lado do nome. Lojas com menos de 50 pedidos por mês ou com meses sem operação ficaram fora."
+
+[[secoes]]
+titulo = "O que eu fiz e decidi"
+paragrafos = [
+  "Defini as regras de negócio e acompanho os KPIs de vendas e conversão das lojas.",
+]
+itens = [
+  "Ciclo dos relatórios: mensal no dia 01, sobre o mês anterior, e quinzenal no dia 15, sobre o mês corrente.",
+  "Todo relatório compara com o período anterior e termina num plano de ação ligado aos concorrentes da região.",
+  "Regra de qualidade: dado não capturado não conta como zero vendas, então nenhum relatório sai sem a captura do período completa.",
+  "O relatório vai para o dono em linguagem de negócio, sem termo técnico.",
+]
+
+[[secoes]]
+titulo = "Resultado"
+destaque = "Loja B (marmitaria): faturamento 27,2% maior em set do que em ago, num mês sem nenhum anúncio."
+paragrafos = [
+  "Pedidos subiram 24,7% e visitas 27,4%, com a conversão estável (17,0% para 16,9%).",
+  "A loja ficou aberta praticamente o mesmo tempo e fechou o mesmo número de dias nos dois meses, então não é efeito de calendário.",
+  "A mudança que explica o salto é a reordenação da vitrine de 05/09, que pôs no topo as categorias e os pratos que mais vendiam.",
+]
+
+[[secoes]]
+titulo = "Por que a reordenação de 05/09"
+itens = [
+  "Nos 9 dias seguintes à reordenação, os pedidos por dia aberto foram mais que o dobro do ritmo das semanas anteriores.",
+  "Essa janela sozinha rendeu, acima do ritmo anterior, mais pedidos do que o ganho do mês inteiro.",
+  "A mudança anterior, de 06/08, já valia em 26 dos 31 dias de ago: ela está dentro da base da comparação e, depois dela, os pedidos por dia não subiram.",
+  "A Loja A, que divide a cozinha e também foi reordenada em 05/09, subiu bem menos nos mesmos dias (+21% em pedidos por dia), então o salto da Loja B não foi movimento geral da cozinha.",
+  "A reordenação mexe no que o relatório de set mede: a visita que abre um prato foi de 53,5% para 61,5%.",
+]
+
+[[secoes]]
+titulo = "Ressalvas"
+itens = [
+  "O efeito apareceu concentrado nos 9 dias seguintes à reordenação e a segunda quinzena voltou ao ritmo de ago. O mês fechou acima por causa dessa janela.",
+  "A série diária é de pedidos, não de faturamento; como o ticket subiu só 2,0%, o faturamento acompanha os pedidos.",
+  "É leitura de antes e depois, não experimento controlado.",
+]
+
+[[secoes]]
+titulo = "Mesma cozinha, com e sem anúncio"
+paragrafos = [
+  "As Lojas A e B dividem a cozinha e ficaram abertas as mesmas horas.",
+  "Em set contra ago, a Loja A cresceu 66,7% com anúncio (R$ 3,70 em vendas para cada R$ 1 investido) e a Loja B cresceu 27,2% sem anúncio.",
+]
+
+# Os graficos dependem da etapa 2 (amostra do dado anonimizado aprovada pelo Pedro).
+# Ate la, cada um aparece como placeholder com o que vai mostrar.
+[[graficos]]
+id = "evolucao"
+titulo = "Evolução mensal de faturamento e pedidos por loja"
+descricao = "Em índice: o primeiro mês de cada loja vale 100. A a E de jun a out; F, G e H só nos seus dois meses."
+dados = "lojas.json"
+
+[[graficos]]
+id = "funil"
+titulo = "Funil de conversão por loja"
+descricao = "Cada etapa em porcentagem das visitas. Escolha a loja e o mês no seletor."
+dados = "lojas.json"
+
+[[graficos]]
+id = "variacao"
+titulo = "Variação contra o mês anterior"
+descricao = "Cada mês contra o mês anterior, calculado mês cheio contra mês cheio. Conversão em pontos percentuais. A escala de cor para em ±40% (±10 p.p. na conversão)."
+dados = "lojas.json"
+
+[[graficos]]
+id = "caso-loja-b"
+titulo = "Loja B: pedidos por dia aberto em ago e set"
+descricao = "Pedidos de cada dia aberto em índice (média de ago por dia aberto = 100), com as duas mudanças de vitrine marcadas. Dia sem barra é dia fechado. Em verde, os 9 dias depois da reordenação."
+dados = "lojas.json"
+
+[[graficos]]
+id = "a-contra-b"
+titulo = "Lojas A e B, mesma cozinha, em set"
+descricao = "Set contra ago. A Loja A teve anúncio ampliado no mês; a Loja B ficou sem anúncio."
+dados = "lojas.json"
+
+[[graficos]]
+id = "semana-pagamento"
+titulo = "Vendas por dia da semana e formas de pagamento"
+descricao = "Participação percentual no último mês de cada loja. Escolha a loja no seletor."
+dados = "lojas.json"

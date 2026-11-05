@@ -1,0 +1,2061 @@
+{
+ "fonte": "fechamentos mensais do painel da plataforma, jun a out de 2026",
+ "lojas": [
+  {
+   "loja": "Loja A",
+   "segmento": "restaurante e açaí",
+   "meses": [
+    {
+     "mes": "jun",
+     "indice": {
+      "faturamento": 100.0,
+      "pedidos": 100.0,
+      "ticket": 100.0
+     },
+     "conversao": 20.5,
+     "funil": [
+      {
+       "etapa": "Visitas",
+       "pct": 100.0
+      },
+      {
+       "etapa": "Viram item",
+       "pct": 94.6
+      },
+      {
+       "etapa": "Carrinho",
+       "pct": 41.7
+      },
+      {
+       "etapa": "Checkout",
+       "pct": 38.5
+      },
+      {
+       "etapa": "Pedidos",
+       "pct": 20.5
+      }
+     ],
+     "disponibilidade": 91.9,
+     "dias": {
+      "seg": 0.0,
+      "ter": 18.1,
+      "qua": 14.4,
+      "qui": 17.3,
+      "sex": 16.9,
+      "sáb": 19.8,
+      "dom": 13.6
+     },
+     "pagamento": {
+      "Pix": 40.0,
+      "Crédito": 16.3,
+      "Outros": 15.1,
+      "Carteira digital": 11.8,
+      "Débito": 10.2,
+      "Dinheiro": 3.7,
+      "Vale-refeição": 2.9
+     }
+    },
+    {
+     "mes": "jul",
+     "indice": {
+      "faturamento": 100.3,
+      "pedidos": 91.8,
+      "ticket": 109.3
+     },
+     "conversao": 15.1,
+     "funil": [
+      {
+       "etapa": "Visitas",
+       "pct": 100.0
+      },
+      {
+       "etapa": "Viram item",
+       "pct": 92.0
+      },
+      {
+       "etapa": "Carrinho",
+       "pct": 38.9
+      },
+      {
+       "etapa": "Checkout",
+       "pct": 34.9
+      },
+      {
+       "etapa": "Pedidos",
+       "pct": 15.1
+      }
+     ],
+     "disponibilidade": 93.2,
+     "dias": {
+      "seg": 0.0,
+      "ter": 12.6,
+      "qua": 17.9,
+      "qui": 19.7,
+      "sex": 18.8,
+      "sáb": 16.1,
+      "dom": 14.8
+     },
+     "pagamento": {
+      "Pix": 38.9,
+      "Outros": 19.0,
+      "Crédito": 15.5,
+      "Carteira digital": 9.7,
+      "Débito": 8.8,
+      "Dinheiro": 3.5,
+      "Vale-refeição": 4.4
+     },
+     "variacao": {
+      "faturamento": 0.3,
+      "pedidos": -8.2,
+      "ticket": 9.3,
+      "conversao_pp": -5.4
+     }
+    },
+    {
+     "mes": "ago",
+     "indice": {
+      "faturamento": 122.7,
+      "pedidos": 105.8,
+      "ticket": 116.0
+     },
+     "conversao": 21.1,
+     "funil": [
+      {
+       "etapa": "Visitas",
+       "pct": 100.0
+      },
+      {
+       "etapa": "Viram item",
+       "pct": 89.6
+      },
+      {
+       "etapa": "Carrinho",
+       "pct": 44.6
+      },
+      {
+       "etapa": "Checkout",
+       "pct": 41.9
+      },
+      {
+       "etapa": "Pedidos",
+       "pct": 21.1
+      }
+     ],
+     "disponibilidade": 92.7,
+     "dias": {
+      "seg": 0.0,
+      "ter": 9.7,
+      "qua": 15.6,
+      "qui": 13.6,
+      "sex": 21.8,
+      "sáb": 23.7,
+      "dom": 15.6
+     },
+     "pagamento": {
+      "Pix": 33.0,
+      "Crédito": 21.5,
+      "Outros": 18.0,
+      "Débito": 10.3,
+      "Carteira digital": 8.4,
+      "Dinheiro": 3.1,
+      "Vale-refeição": 5.7
+     },
+     "variacao": {
+      "faturamento": 22.3,
+      "pedidos": 15.2,
+      "ticket": 6.1,
+      "conversao_pp": 6.0
+     }
+    },
+    {
+     "mes": "set",
+     "indice": {
+      "faturamento": 204.5,
+      "pedidos": 181.1,
+      "ticket": 113.0
+     },
+     "conversao": 18.1,
+     "funil": [
+      {
+       "etapa": "Visitas",
+       "pct": 100.0
+      },
+      {
+       "etapa": "Viram item",
+       "pct": 88.8
+      },
+      {
+       "etapa": "Carrinho",
+       "pct": 39.0
+      },
+      {
+       "etapa": "Checkout",
+       "pct": 36.3
+      },
+      {
+       "etapa": "Pedidos",
+       "pct": 18.1
+      }
+     ],
+     "disponibilidade": 88.5,
+     "dias": {
+      "seg": 0.0,
+      "ter": 21.1,
+      "qua": 12.5,
+      "qui": 15.7,
+      "sex": 13.9,
+      "sáb": 20.9,
+      "dom": 15.9
+     },
+     "pagamento": {
+      "Pix": 42.6,
+      "Crédito": 18.9,
+      "Carteira digital": 14.4,
+      "Outros": 11.9,
+      "Débito": 5.6,
+      "Dinheiro": 2.7,
+      "Vale-refeição": 3.8
+     },
+     "variacao": {
+      "faturamento": 66.7,
+      "pedidos": 71.2,
+      "ticket": -2.6,
+      "conversao_pp": -3.0
+     }
+    },
+    {
+     "mes": "out",
+     "indice": {
+      "faturamento": 192.4,
+      "pedidos": 173.7,
+      "ticket": 110.8
+     },
+     "conversao": 17.3,
+     "funil": [
+      {
+       "etapa": "Visitas",
+       "pct": 100.0
+      },
+      {
+       "etapa": "Viram item",
+       "pct": 78.3
+      },
+      {
+       "etapa": "Carrinho",
+       "pct": 38.8
+      },
+      {
+       "etapa": "Checkout",
+       "pct": 35.5
+      },
+      {
+       "etapa": "Pedidos",
+       "pct": 17.3
+      }
+     ],
+     "disponibilidade": 91.8,
+     "dias": {
+      "seg": 0.0,
+      "ter": 12.1,
+      "qua": 12.8,
+      "qui": 18.5,
+      "sex": 17.5,
+      "sáb": 24.2,
+      "dom": 14.9
+     },
+     "pagamento": {
+      "Pix": 44.5,
+      "Crédito": 18.5,
+      "Carteira digital": 10.3,
+      "Débito": 8.9,
+      "Outros": 8.7,
+      "Vale-refeição": 6.3,
+      "Dinheiro": 2.8
+     },
+     "variacao": {
+      "faturamento": -5.9,
+      "pedidos": -4.1,
+      "ticket": -1.9,
+      "conversao_pp": -0.8
+     }
+    }
+   ]
+  },
+  {
+   "loja": "Loja B",
+   "segmento": "marmitaria",
+   "meses": [
+    {
+     "mes": "jun",
+     "indice": {
+      "faturamento": 100.0,
+      "pedidos": 100.0,
+      "ticket": 100.0
+     },
+     "conversao": 16.2,
+     "funil": [
+      {
+       "etapa": "Visitas",
+       "pct": 100.0
+      },
+      {
+       "etapa": "Viram item",
+       "pct": 54.5
+      },
+      {
+       "etapa": "Carrinho",
+       "pct": 32.6
+      },
+      {
+       "etapa": "Checkout",
+       "pct": 31.6
+      },
+      {
+       "etapa": "Pedidos",
+       "pct": 16.2
+      }
+     ],
+     "disponibilidade": 91.9,
+     "dias": {
+      "seg": 0.0,
+      "ter": 12.9,
+      "qua": 12.1,
+      "qui": 18.5,
+      "sex": 15.3,
+      "sáb": 25.4,
+      "dom": 15.7
+     },
+     "pagamento": {
+      "Pix": 36.1,
+      "Crédito": 20.1,
+      "Outros": 16.5,
+      "Carteira digital": 14.9,
+      "Débito": 8.0,
+      "Vale-refeição": 3.2,
+      "Dinheiro": 1.2
+     }
+    },
+    {
+     "mes": "jul",
+     "indice": {
+      "faturamento": 89.6,
+      "pedidos": 102.0,
+      "ticket": 87.8
+     },
+     "conversao": 18.9,
+     "funil": [
+      {
+       "etapa": "Visitas",
+       "pct": 100.0
+      },
+      {
+       "etapa": "Viram item",
+       "pct": 69.9
+      },
+      {
+       "etapa": "Carrinho",
+       "pct": 39.5
+      },
+      {
+       "etapa": "Checkout",
+       "pct": 37.7
+      },
+      {
+       "etapa": "Pedidos",
+       "pct": 18.9
+      }
+     ],
+     "disponibilidade": 93.2,
+     "dias": {
+      "seg": 0.0,
+      "ter": 11.1,
+      "qua": 15.4,
+      "qui": 13.8,
+      "sex": 15.8,
+      "sáb": 21.3,
+      "dom": 22.5
+     },
+     "pagamento": {
+      "Pix": 39.8,
+      "Crédito": 20.1,
+      "Outros": 12.6,
+      "Carteira digital": 10.6,
+      "Débito": 8.7,
+      "Vale-refeição": 5.9,
+      "Dinheiro": 2.4
+     },
+     "variacao": {
+      "faturamento": -10.4,
+      "pedidos": 2.0,
+      "ticket": -12.2,
+      "conversao_pp": 2.7
+     }
+    },
+    {
+     "mes": "ago",
+     "indice": {
+      "faturamento": 68.4,
+      "pedidos": 76.6,
+      "ticket": 89.3
+     },
+     "conversao": 17.0,
+     "funil": [
+      {
+       "etapa": "Visitas",
+       "pct": 100.0
+      },
+      {
+       "etapa": "Viram item",
+       "pct": 53.5
+      },
+      {
+       "etapa": "Carrinho",
+       "pct": 31.9
+      },
+      {
+       "etapa": "Checkout",
+       "pct": 30.8
+      },
+      {
+       "etapa": "Pedidos",
+       "pct": 17.0
+      }
+     ],
+     "disponibilidade": 92.7,
+     "dias": {
+      "seg": 0.0,
+      "ter": 13.2,
+      "qua": 10.0,
+      "qui": 11.1,
+      "sex": 16.8,
+      "sáb": 28.4,
+      "dom": 20.5
+     },
+     "pagamento": {
+      "Pix": 37.2,
+      "Crédito": 20.9,
+      "Carteira digital": 17.3,
+      "Outros": 8.9,
+      "Débito": 8.9,
+      "Dinheiro": 3.1,
+      "Vale-refeição": 3.7
+     },
+     "variacao": {
+      "faturamento": -23.6,
+      "pedidos": -24.9,
+      "ticket": 1.8,
+      "conversao_pp": -1.9
+     }
+    },
+    {
+     "mes": "set",
+     "indice": {
+      "faturamento": 87.0,
+      "pedidos": 95.6,
+      "ticket": 91.1
+     },
+     "conversao": 16.9,
+     "funil": [
+      {
+       "etapa": "Visitas",
+       "pct": 100.0
+      },
+      {
+       "etapa": "Viram item",
+       "pct": 61.5
+      },
+      {
+       "etapa": "Carrinho",
+       "pct": 36.2
+      },
+      {
+       "etapa": "Checkout",
+       "pct": 34.5
+      },
+      {
+       "etapa": "Pedidos",
+       "pct": 16.9
+      }
+     ],
+     "disponibilidade": 88.5,
+     "dias": {
+      "seg": 0.0,
+      "ter": 16.5,
+      "qua": 14.8,
+      "qui": 11.4,
+      "sex": 20.7,
+      "sáb": 17.7,
+      "dom": 19.0
+     },
+     "pagamento": {
+      "Pix": 41.9,
+      "Crédito": 20.3,
+      "Carteira digital": 12.0,
+      "Outros": 10.4,
+      "Débito": 5.8,
+      "Vale-refeição": 8.3,
+      "Dinheiro": 1.2
+     },
+     "variacao": {
+      "faturamento": 27.2,
+      "pedidos": 24.7,
+      "ticket": 2.0,
+      "conversao_pp": -0.1
+     }
+    },
+    {
+     "mes": "out",
+     "indice": {
+      "faturamento": 84.4,
+      "pedidos": 93.5,
+      "ticket": 90.2
+     },
+     "conversao": 18.3,
+     "funil": [
+      {
+       "etapa": "Visitas",
+       "pct": 100.0
+      },
+      {
+       "etapa": "Viram item",
+       "pct": 55.7
+      },
+      {
+       "etapa": "Carrinho",
+       "pct": 33.0
+      },
+      {
+       "etapa": "Checkout",
+       "pct": 31.7
+      },
+      {
+       "etapa": "Pedidos",
+       "pct": 18.3
+      }
+     ],
+     "disponibilidade": 91.6,
+     "dias": {
+      "seg": 0.0,
+      "ter": 11.2,
+      "qua": 8.6,
+      "qui": 19.0,
+      "sex": 14.7,
+      "sáb": 31.0,
+      "dom": 15.5
+     },
+     "pagamento": {
+      "Pix": 43.1,
+      "Crédito": 17.2,
+      "Carteira digital": 12.6,
+      "Outros": 8.4,
+      "Débito": 5.9,
+      "Vale-refeição": 10.9,
+      "Dinheiro": 2.1
+     },
+     "variacao": {
+      "faturamento": -3.1,
+      "pedidos": -2.1,
+      "ticket": -1.0,
+      "conversao_pp": 1.4
+     }
+    }
+   ]
+  },
+  {
+   "loja": "Loja C",
+   "segmento": "marmitaria",
+   "meses": [
+    {
+     "mes": "jun",
+     "indice": {
+      "faturamento": 100.0,
+      "pedidos": 100.0,
+      "ticket": 100.0
+     },
+     "conversao": 19.4,
+     "funil": [
+      {
+       "etapa": "Visitas",
+       "pct": 100.0
+      },
+      {
+       "etapa": "Viram item",
+       "pct": 96.5
+      },
+      {
+       "etapa": "Carrinho",
+       "pct": 52.3
+      },
+      {
+       "etapa": "Checkout",
+       "pct": 47.5
+      },
+      {
+       "etapa": "Pedidos",
+       "pct": 19.4
+      }
+     ],
+     "disponibilidade": 86.0,
+     "dias": {
+      "seg": 19.9,
+      "ter": 20.0,
+      "qua": 14.6,
+      "qui": 13.3,
+      "sex": 13.3,
+      "sáb": 11.9,
+      "dom": 7.1
+     },
+     "pagamento": {
+      "Pix": 44.8,
+      "Crédito": 23.9,
+      "Carteira digital": 11.6,
+      "Outros": 10.0,
+      "Débito": 5.7,
+      "Dinheiro": 2.3,
+      "Vale-refeição": 1.6
+     }
+    },
+    {
+     "mes": "jul",
+     "indice": {
+      "faturamento": 122.2,
+      "pedidos": 104.3,
+      "ticket": 117.2
+     },
+     "conversao": 16.6,
+     "funil": [
+      {
+       "etapa": "Visitas",
+       "pct": 100.0
+      },
+      {
+       "etapa": "Viram item",
+       "pct": 98.6
+      },
+      {
+       "etapa": "Carrinho",
+       "pct": 50.0
+      },
+      {
+       "etapa": "Checkout",
+       "pct": 46.5
+      },
+      {
+       "etapa": "Pedidos",
+       "pct": 16.6
+      }
+     ],
+     "disponibilidade": 92.5,
+     "dias": {
+      "seg": 12.7,
+      "ter": 12.4,
+      "qua": 16.5,
+      "qui": 16.9,
+      "sex": 20.1,
+      "sáb": 10.0,
+      "dom": 11.3
+     },
+     "pagamento": {
+      "Pix": 40.9,
+      "Crédito": 25.9,
+      "Outros": 12.2,
+      "Carteira digital": 9.8,
+      "Débito": 5.6,
+      "Dinheiro": 3.1,
+      "Vale-refeição": 2.4
+     },
+     "variacao": {
+      "faturamento": 22.2,
+      "pedidos": 4.3,
+      "ticket": 17.2,
+      "conversao_pp": -2.8
+     }
+    },
+    {
+     "mes": "ago",
+     "indice": {
+      "faturamento": 105.6,
+      "pedidos": 109.7,
+      "ticket": 96.2
+     },
+     "conversao": 23.4,
+     "funil": [
+      {
+       "etapa": "Visitas",
+       "pct": 100.0
+      },
+      {
+       "etapa": "Viram item",
+       "pct": 98.5
+      },
+      {
+       "etapa": "Carrinho",
+       "pct": 51.4
+      },
+      {
+       "etapa": "Checkout",
+       "pct": 47.4
+      },
+      {
+       "etapa": "Pedidos",
+       "pct": 23.4
+      }
+     ],
+     "disponibilidade": 94.3,
+     "dias": {
+      "seg": 16.8,
+      "ter": 13.3,
+      "qua": 14.1,
+      "qui": 14.4,
+      "sex": 14.5,
+      "sáb": 17.0,
+      "dom": 9.9
+     },
+     "pagamento": {
+      "Pix": 43.1,
+      "Crédito": 22.4,
+      "Outros": 12.3,
+      "Carteira digital": 10.7,
+      "Débito": 5.5,
+      "Dinheiro": 3.9,
+      "Vale-refeição": 2.3
+     },
+     "variacao": {
+      "faturamento": -13.6,
+      "pedidos": 5.2,
+      "ticket": -17.9,
+      "conversao_pp": 6.8
+     }
+    },
+    {
+     "mes": "set",
+     "indice": {
+      "faturamento": 98.9,
+      "pedidos": 87.2,
+      "ticket": 113.5
+     },
+     "conversao": 17.6,
+     "funil": [
+      {
+       "etapa": "Visitas",
+       "pct": 100.0
+      },
+      {
+       "etapa": "Viram item",
+       "pct": 96.7
+      },
+      {
+       "etapa": "Carrinho",
+       "pct": 47.9
+      },
+      {
+       "etapa": "Checkout",
+       "pct": 43.1
+      },
+      {
+       "etapa": "Pedidos",
+       "pct": 17.6
+      }
+     ],
+     "disponibilidade": 93.5,
+     "dias": {
+      "seg": 13.5,
+      "ter": 19.8,
+      "qua": 19.6,
+      "qui": 13.3,
+      "sex": 15.2,
+      "sáb": 9.6,
+      "dom": 9.0
+     },
+     "pagamento": {
+      "Pix": 45.3,
+      "Crédito": 20.6,
+      "Outros": 13.1,
+      "Carteira digital": 9.0,
+      "Dinheiro": 4.2,
+      "Débito": 4.2,
+      "Vale-refeição": 3.7
+     },
+     "variacao": {
+      "faturamento": -6.3,
+      "pedidos": -20.5,
+      "ticket": 17.9,
+      "conversao_pp": -5.8
+     }
+    },
+    {
+     "mes": "out",
+     "indice": {
+      "faturamento": 97.4,
+      "pedidos": 94.4,
+      "ticket": 103.1
+     },
+     "conversao": 19.3,
+     "funil": [
+      {
+       "etapa": "Visitas",
+       "pct": 100.0
+      },
+      {
+       "etapa": "Viram item",
+       "pct": 98.0
+      },
+      {
+       "etapa": "Carrinho",
+       "pct": 47.2
+      },
+      {
+       "etapa": "Checkout",
+       "pct": 42.6
+      },
+      {
+       "etapa": "Pedidos",
+       "pct": 19.3
+      }
+     ],
+     "disponibilidade": 77.7,
+     "dias": {
+      "seg": 17.9,
+      "ter": 16.2,
+      "qua": 14.4,
+      "qui": 13.3,
+      "sex": 17.3,
+      "sáb": 14.0,
+      "dom": 6.9
+     },
+     "pagamento": {
+      "Pix": 48.0,
+      "Crédito": 19.3,
+      "Outros": 9.6,
+      "Carteira digital": 7.8,
+      "Débito": 5.9,
+      "Dinheiro": 5.3,
+      "Vale-refeição": 4.2
+     },
+     "variacao": {
+      "faturamento": -1.6,
+      "pedidos": 8.3,
+      "ticket": -9.1,
+      "conversao_pp": 1.7
+     }
+    }
+   ]
+  },
+  {
+   "loja": "Loja D",
+   "segmento": "hamburgueria",
+   "meses": [
+    {
+     "mes": "jun",
+     "indice": {
+      "faturamento": 100.0,
+      "pedidos": 100.0,
+      "ticket": 100.0
+     },
+     "conversao": 15.9,
+     "funil": [
+      {
+       "etapa": "Visitas",
+       "pct": 100.0
+      },
+      {
+       "etapa": "Viram item",
+       "pct": 61.1
+      },
+      {
+       "etapa": "Carrinho",
+       "pct": 28.6
+      },
+      {
+       "etapa": "Checkout",
+       "pct": 27.5
+      },
+      {
+       "etapa": "Pedidos",
+       "pct": 15.9
+      }
+     ],
+     "disponibilidade": 89.5,
+     "dias": {
+      "seg": 0.0,
+      "ter": 2.1,
+      "qua": 13.1,
+      "qui": 13.9,
+      "sex": 24.1,
+      "sáb": 15.2,
+      "dom": 31.6
+     },
+     "pagamento": {
+      "Crédito": 35.3,
+      "Pix": 27.7,
+      "Carteira digital": 14.3,
+      "Vale-refeição": 8.8,
+      "Débito": 7.1,
+      "Outros": 5.9,
+      "Dinheiro": 0.8
+     }
+    },
+    {
+     "mes": "jul",
+     "indice": {
+      "faturamento": 97.7,
+      "pedidos": 100.8,
+      "ticket": 96.9
+     },
+     "conversao": 15.6,
+     "funil": [
+      {
+       "etapa": "Visitas",
+       "pct": 100.0
+      },
+      {
+       "etapa": "Viram item",
+       "pct": 53.9
+      },
+      {
+       "etapa": "Carrinho",
+       "pct": 26.2
+      },
+      {
+       "etapa": "Checkout",
+       "pct": 25.5
+      },
+      {
+       "etapa": "Pedidos",
+       "pct": 15.6
+      }
+     ],
+     "disponibilidade": 96.5,
+     "dias": {
+      "seg": 0.0,
+      "ter": 7.9,
+      "qua": 13.8,
+      "qui": 15.9,
+      "sex": 18.0,
+      "sáb": 21.8,
+      "dom": 22.6
+     },
+     "pagamento": {
+      "Crédito": 31.8,
+      "Pix": 31.4,
+      "Vale-refeição": 13.8,
+      "Carteira digital": 10.9,
+      "Outros": 5.9,
+      "Débito": 5.4,
+      "Dinheiro": 0.8
+     },
+     "variacao": {
+      "faturamento": -2.3,
+      "pedidos": 0.8,
+      "ticket": -3.1,
+      "conversao_pp": -0.3
+     }
+    },
+    {
+     "mes": "ago",
+     "indice": {
+      "faturamento": 71.0,
+      "pedidos": 75.9,
+      "ticket": 93.4
+     },
+     "conversao": 14.4,
+     "funil": [
+      {
+       "etapa": "Visitas",
+       "pct": 100.0
+      },
+      {
+       "etapa": "Viram item",
+       "pct": 50.7
+      },
+      {
+       "etapa": "Carrinho",
+       "pct": 23.5
+      },
+      {
+       "etapa": "Checkout",
+       "pct": 23.3
+      },
+      {
+       "etapa": "Pedidos",
+       "pct": 14.4
+      }
+     ],
+     "disponibilidade": 84.4,
+     "dias": {
+      "seg": 0.0,
+      "ter": 7.8,
+      "qua": 15.6,
+      "qui": 11.7,
+      "sex": 23.9,
+      "sáb": 22.8,
+      "dom": 18.3
+     },
+     "pagamento": {
+      "Pix": 30.8,
+      "Crédito": 29.7,
+      "Carteira digital": 18.1,
+      "Débito": 6.6,
+      "Vale-refeição": 7.7,
+      "Outros": 6.0,
+      "Dinheiro": 1.1
+     },
+     "variacao": {
+      "faturamento": -27.4,
+      "pedidos": -24.7,
+      "ticket": -3.6,
+      "conversao_pp": -1.2
+     }
+    },
+    {
+     "mes": "set",
+     "indice": {
+      "faturamento": 96.4,
+      "pedidos": 96.6,
+      "ticket": 99.7
+     },
+     "conversao": 13.3,
+     "funil": [
+      {
+       "etapa": "Visitas",
+       "pct": 100.0
+      },
+      {
+       "etapa": "Viram item",
+       "pct": 47.6
+      },
+      {
+       "etapa": "Carrinho",
+       "pct": 23.1
+      },
+      {
+       "etapa": "Checkout",
+       "pct": 22.5
+      },
+      {
+       "etapa": "Pedidos",
+       "pct": 13.3
+      }
+     ],
+     "disponibilidade": 86.0,
+     "dias": {
+      "seg": 8.7,
+      "ter": 5.2,
+      "qua": 13.1,
+      "qui": 10.5,
+      "sex": 17.9,
+      "sáb": 19.2,
+      "dom": 25.3
+     },
+     "pagamento": {
+      "Crédito": 28.7,
+      "Pix": 26.1,
+      "Carteira digital": 21.7,
+      "Vale-refeição": 11.7,
+      "Outros": 6.1,
+      "Débito": 4.3,
+      "Dinheiro": 1.3
+     },
+     "variacao": {
+      "faturamento": 35.8,
+      "pedidos": 27.2,
+      "ticket": 6.7,
+      "conversao_pp": -1.1
+     }
+    },
+    {
+     "mes": "out",
+     "indice": {
+      "faturamento": 65.2,
+      "pedidos": 65.0,
+      "ticket": 100.3
+     },
+     "conversao": 10.8,
+     "funil": [
+      {
+       "etapa": "Visitas",
+       "pct": 100.0
+      },
+      {
+       "etapa": "Viram item",
+       "pct": 37.4
+      },
+      {
+       "etapa": "Carrinho",
+       "pct": 18.9
+      },
+      {
+       "etapa": "Checkout",
+       "pct": 18.4
+      },
+      {
+       "etapa": "Pedidos",
+       "pct": 10.8
+      }
+     ],
+     "disponibilidade": 78.8,
+     "dias": {
+      "seg": 0.0,
+      "ter": 0.0,
+      "qua": 8.4,
+      "qui": 14.3,
+      "sex": 34.4,
+      "sáb": 23.4,
+      "dom": 19.5
+     },
+     "pagamento": {
+      "Pix": 29.5,
+      "Crédito": 25.6,
+      "Carteira digital": 22.4,
+      "Vale-refeição": 12.8,
+      "Débito": 5.1,
+      "Outros": 3.8,
+      "Dinheiro": 0.6
+     },
+     "variacao": {
+      "faturamento": -32.4,
+      "pedidos": -32.8,
+      "ticket": 0.6,
+      "conversao_pp": -2.5
+     }
+    }
+   ]
+  },
+  {
+   "loja": "Loja E",
+   "segmento": "lanches",
+   "meses": [
+    {
+     "mes": "jun",
+     "indice": {
+      "faturamento": 100.0,
+      "pedidos": 100.0,
+      "ticket": 100.0
+     },
+     "conversao": 21.5,
+     "funil": [
+      {
+       "etapa": "Visitas",
+       "pct": 100.0
+      },
+      {
+       "etapa": "Viram item",
+       "pct": 77.2
+      },
+      {
+       "etapa": "Carrinho",
+       "pct": 40.6
+      },
+      {
+       "etapa": "Checkout",
+       "pct": 39.0
+      },
+      {
+       "etapa": "Pedidos",
+       "pct": 21.5
+      }
+     ],
+     "disponibilidade": 99.6,
+     "dias": {
+      "seg": 21.5,
+      "ter": 14.5,
+      "qua": 14.8,
+      "qui": 15.1,
+      "sex": 16.7,
+      "sáb": 17.4,
+      "dom": 0.0
+     },
+     "pagamento": {
+      "Pix": 38.9,
+      "Crédito": 25.5,
+      "Outros": 11.4,
+      "Carteira digital": 9.8,
+      "Débito": 8.8,
+      "Dinheiro": 4.9,
+      "Vale-refeição": 0.7
+     }
+    },
+    {
+     "mes": "jul",
+     "indice": {
+      "faturamento": 111.9,
+      "pedidos": 108.2,
+      "ticket": 103.4
+     },
+     "conversao": 19.6,
+     "funil": [
+      {
+       "etapa": "Visitas",
+       "pct": 100.0
+      },
+      {
+       "etapa": "Viram item",
+       "pct": 68.2
+      },
+      {
+       "etapa": "Carrinho",
+       "pct": 37.5
+      },
+      {
+       "etapa": "Checkout",
+       "pct": 36.6
+      },
+      {
+       "etapa": "Pedidos",
+       "pct": 19.6
+      }
+     ],
+     "disponibilidade": 97.8,
+     "dias": {
+      "seg": 11.8,
+      "ter": 10.4,
+      "qua": 13.9,
+      "qui": 16.0,
+      "sex": 22.9,
+      "sáb": 21.5,
+      "dom": 3.4
+     },
+     "pagamento": {
+      "Pix": 38.4,
+      "Crédito": 25.2,
+      "Outros": 12.2,
+      "Carteira digital": 9.0,
+      "Débito": 7.7,
+      "Dinheiro": 5.9,
+      "Vale-refeição": 1.6
+     },
+     "variacao": {
+      "faturamento": 11.9,
+      "pedidos": 8.2,
+      "ticket": 3.4,
+      "conversao_pp": -1.9
+     }
+    },
+    {
+     "mes": "ago",
+     "indice": {
+      "faturamento": 93.3,
+      "pedidos": 89.3,
+      "ticket": 104.5
+     },
+     "conversao": 17.1,
+     "funil": [
+      {
+       "etapa": "Visitas",
+       "pct": 100.0
+      },
+      {
+       "etapa": "Viram item",
+       "pct": 55.4
+      },
+      {
+       "etapa": "Carrinho",
+       "pct": 31.3
+      },
+      {
+       "etapa": "Checkout",
+       "pct": 30.4
+      },
+      {
+       "etapa": "Pedidos",
+       "pct": 17.1
+      }
+     ],
+     "disponibilidade": 89.8,
+     "dias": {
+      "seg": 13.6,
+      "ter": 11.6,
+      "qua": 11.9,
+      "qui": 12.6,
+      "sex": 23.3,
+      "sáb": 22.8,
+      "dom": 4.2
+     },
+     "pagamento": {
+      "Pix": 39.1,
+      "Crédito": 22.2,
+      "Outros": 11.4,
+      "Carteira digital": 11.4,
+      "Débito": 9.5,
+      "Dinheiro": 4.7,
+      "Vale-refeição": 1.7
+     },
+     "variacao": {
+      "faturamento": -16.6,
+      "pedidos": -17.5,
+      "ticket": 1.0,
+      "conversao_pp": -2.5
+     }
+    },
+    {
+     "mes": "set",
+     "indice": {
+      "faturamento": 110.6,
+      "pedidos": 106.4,
+      "ticket": 104.0
+     },
+     "conversao": 19.4,
+     "funil": [
+      {
+       "etapa": "Visitas",
+       "pct": 100.0
+      },
+      {
+       "etapa": "Viram item",
+       "pct": 61.5
+      },
+      {
+       "etapa": "Carrinho",
+       "pct": 35.3
+      },
+      {
+       "etapa": "Checkout",
+       "pct": 34.4
+      },
+      {
+       "etapa": "Pedidos",
+       "pct": 19.4
+      }
+     ],
+     "disponibilidade": 98.8,
+     "dias": {
+      "seg": 19.2,
+      "ter": 12.8,
+      "qua": 11.6,
+      "qui": 12.3,
+      "sex": 22.2,
+      "sáb": 21.8,
+      "dom": 0.0
+     },
+     "pagamento": {
+      "Pix": 39.6,
+      "Crédito": 25.4,
+      "Outros": 11.2,
+      "Carteira digital": 9.0,
+      "Débito": 8.9,
+      "Dinheiro": 4.5,
+      "Vale-refeição": 1.4
+     },
+     "variacao": {
+      "faturamento": 18.5,
+      "pedidos": 19.1,
+      "ticket": -0.5,
+      "conversao_pp": 2.3
+     }
+    },
+    {
+     "mes": "out",
+     "indice": {
+      "faturamento": 103.1,
+      "pedidos": 104.8,
+      "ticket": 98.4
+     },
+     "conversao": 14.1,
+     "funil": [
+      {
+       "etapa": "Visitas",
+       "pct": 100.0
+      },
+      {
+       "etapa": "Viram item",
+       "pct": 53.2
+      },
+      {
+       "etapa": "Carrinho",
+       "pct": 29.1
+      },
+      {
+       "etapa": "Checkout",
+       "pct": 27.7
+      },
+      {
+       "etapa": "Pedidos",
+       "pct": 14.1
+      }
+     ],
+     "disponibilidade": 94.2,
+     "dias": {
+      "seg": 17.4,
+      "ter": 11.4,
+      "qua": 10.7,
+      "qui": 13.6,
+      "sex": 23.8,
+      "sáb": 23.1,
+      "dom": 0.0
+     },
+     "pagamento": {
+      "Pix": 38.1,
+      "Crédito": 24.8,
+      "Outros": 13.3,
+      "Carteira digital": 10.8,
+      "Débito": 7.4,
+      "Dinheiro": 4.0,
+      "Vale-refeição": 1.7
+     },
+     "variacao": {
+      "faturamento": -6.8,
+      "pedidos": -1.4,
+      "ticket": -5.4,
+      "conversao_pp": -5.3
+     }
+    }
+   ]
+  },
+  {
+   "loja": "Loja F",
+   "segmento": "hamburgueria",
+   "meses": [
+    {
+     "mes": "jun",
+     "indice": {
+      "faturamento": 100.0,
+      "pedidos": 100.0,
+      "ticket": 100.0
+     },
+     "conversao": 13.5,
+     "funil": [
+      {
+       "etapa": "Visitas",
+       "pct": 100.0
+      },
+      {
+       "etapa": "Viram item",
+       "pct": 78.1
+      },
+      {
+       "etapa": "Carrinho",
+       "pct": 28.5
+      },
+      {
+       "etapa": "Checkout",
+       "pct": 27.4
+      },
+      {
+       "etapa": "Pedidos",
+       "pct": 13.4
+      }
+     ],
+     "disponibilidade": 97.7,
+     "dias": {
+      "seg": 20.1,
+      "ter": 0.0,
+      "qua": 15.2,
+      "qui": 12.3,
+      "sex": 17.8,
+      "sáb": 19.3,
+      "dom": 15.2
+     },
+     "pagamento": {
+      "Pix": 38.6,
+      "Crédito": 25.4,
+      "Outros": 10.7,
+      "Carteira digital": 10.7,
+      "Dinheiro": 5.9,
+      "Débito": 5.1,
+      "Vale-refeição": 3.7
+     }
+    },
+    {
+     "mes": "jul",
+     "indice": {
+      "faturamento": 127.6,
+      "pedidos": 128.6,
+      "ticket": 99.2
+     },
+     "conversao": 13.8,
+     "funil": [
+      {
+       "etapa": "Visitas",
+       "pct": 100.0
+      },
+      {
+       "etapa": "Viram item",
+       "pct": 97.5
+      },
+      {
+       "etapa": "Carrinho",
+       "pct": 27.8
+      },
+      {
+       "etapa": "Checkout",
+       "pct": 26.0
+      },
+      {
+       "etapa": "Pedidos",
+       "pct": 13.8
+      }
+     ],
+     "disponibilidade": 94.3,
+     "dias": {
+      "seg": 13.3,
+      "ter": 3.5,
+      "qua": 13.6,
+      "qui": 15.3,
+      "sex": 25.1,
+      "sáb": 14.2,
+      "dom": 15.0
+     },
+     "pagamento": {
+      "Pix": 38.7,
+      "Crédito": 25.7,
+      "Outros": 14.2,
+      "Carteira digital": 10.7,
+      "Dinheiro": 4.6,
+      "Débito": 4.0,
+      "Vale-refeição": 2.0
+     },
+     "variacao": {
+      "faturamento": 27.6,
+      "pedidos": 28.6,
+      "ticket": -0.8,
+      "conversao_pp": 0.3
+     }
+    }
+   ]
+  },
+  {
+   "loja": "Loja G",
+   "segmento": "hamburgueria",
+   "meses": [
+    {
+     "mes": "jun",
+     "indice": {
+      "faturamento": 100.0,
+      "pedidos": 100.0,
+      "ticket": 100.0
+     },
+     "conversao": 13.0,
+     "funil": [
+      {
+       "etapa": "Visitas",
+       "pct": 100.0
+      },
+      {
+       "etapa": "Viram item",
+       "pct": 75.8
+      },
+      {
+       "etapa": "Carrinho",
+       "pct": 30.2
+      },
+      {
+       "etapa": "Checkout",
+       "pct": 28.1
+      },
+      {
+       "etapa": "Pedidos",
+       "pct": 13.0
+      }
+     ],
+     "disponibilidade": 78.3,
+     "dias": {
+      "seg": 20.5,
+      "ter": 0.0,
+      "qua": 27.3,
+      "qui": 11.4,
+      "sex": 18.2,
+      "sáb": 18.2,
+      "dom": 4.5
+     },
+     "pagamento": {
+      "Pix": 34.1,
+      "Crédito": 27.3,
+      "Outros": 18.2,
+      "Carteira digital": 13.6,
+      "Débito": 6.8
+     }
+    },
+    {
+     "mes": "jul",
+     "indice": {
+      "faturamento": 164.6,
+      "pedidos": 222.7,
+      "ticket": 73.9
+     },
+     "conversao": 12.1,
+     "funil": [
+      {
+       "etapa": "Visitas",
+       "pct": 100.0
+      },
+      {
+       "etapa": "Viram item",
+       "pct": 75.7
+      },
+      {
+       "etapa": "Carrinho",
+       "pct": 32.1
+      },
+      {
+       "etapa": "Checkout",
+       "pct": 29.3
+      },
+      {
+       "etapa": "Pedidos",
+       "pct": 12.1
+      }
+     ],
+     "disponibilidade": 91.2,
+     "dias": {
+      "seg": 12.2,
+      "ter": 12.2,
+      "qua": 23.5,
+      "qui": 18.4,
+      "sex": 21.4,
+      "sáb": 4.1,
+      "dom": 8.2
+     },
+     "pagamento": {
+      "Pix": 52.0,
+      "Outros": 15.3,
+      "Carteira digital": 8.2,
+      "Crédito": 7.1,
+      "Dinheiro": 6.1,
+      "Débito": 5.1,
+      "Vale-refeição": 6.1
+     },
+     "variacao": {
+      "faturamento": 64.6,
+      "pedidos": 122.7,
+      "ticket": -26.1,
+      "conversao_pp": -0.9
+     }
+    }
+   ],
+   "apoio": "menos de 50 pedidos em jun"
+  },
+  {
+   "loja": "Loja H",
+   "segmento": "hamburgueria",
+   "meses": [
+    {
+     "mes": "jul",
+     "indice": {
+      "faturamento": 100.0,
+      "pedidos": 100.0,
+      "ticket": 100.0
+     },
+     "conversao": 17.0,
+     "funil": [
+      {
+       "etapa": "Visitas",
+       "pct": 100.0
+      },
+      {
+       "etapa": "Viram item",
+       "pct": 62.3
+      },
+      {
+       "etapa": "Carrinho",
+       "pct": 36.0
+      },
+      {
+       "etapa": "Checkout",
+       "pct": 34.0
+      },
+      {
+       "etapa": "Pedidos",
+       "pct": 17.0
+      }
+     ],
+     "disponibilidade": 93.9,
+     "dias": {
+      "seg": 0.0,
+      "ter": 7.0,
+      "qua": 11.4,
+      "qui": 14.9,
+      "sex": 26.3,
+      "sáb": 22.8,
+      "dom": 17.5
+     },
+     "pagamento": {
+      "Pix": 37.0,
+      "Crédito": 27.8,
+      "Carteira digital": 15.2,
+      "Débito": 9.6,
+      "Outros": 7.8,
+      "Dinheiro": 1.7,
+      "Vale-refeição": 0.9
+     }
+    },
+    {
+     "mes": "ago",
+     "indice": {
+      "faturamento": 61.3,
+      "pedidos": 59.6,
+      "ticket": 102.8
+     },
+     "conversao": 13.2,
+     "funil": [
+      {
+       "etapa": "Visitas",
+       "pct": 100.0
+      },
+      {
+       "etapa": "Viram item",
+       "pct": 53.5
+      },
+      {
+       "etapa": "Carrinho",
+       "pct": 27.7
+      },
+      {
+       "etapa": "Checkout",
+       "pct": 26.3
+      },
+      {
+       "etapa": "Pedidos",
+       "pct": 13.1
+      }
+     ],
+     "disponibilidade": 84.4,
+     "dias": {
+      "seg": 0.0,
+      "ter": 6.6,
+      "qua": 8.8,
+      "qui": 6.6,
+      "sex": 20.6,
+      "sáb": 33.8,
+      "dom": 23.5
+     },
+     "pagamento": {
+      "Pix": 35.3,
+      "Crédito": 30.9,
+      "Carteira digital": 10.3,
+      "Débito": 9.6,
+      "Outros": 6.6,
+      "Vale-refeição": 5.1,
+      "Dinheiro": 2.2
+     },
+     "variacao": {
+      "faturamento": -38.7,
+      "pedidos": -40.4,
+      "ticket": 2.8,
+      "conversao_pp": -3.8
+     }
+    }
+   ]
+  }
+ ],
+ "caso_loja_b": {
+  "loja": "Loja B",
+  "base": "média de ago por dia aberto = 100",
+  "pontos": [
+   {
+    "dia": "2026-08-01",
+    "dia_semana": "sáb",
+    "indice": 176.8
+   },
+   {
+    "dia": "2026-08-02",
+    "dia_semana": "dom",
+    "indice": 176.8
+   },
+   {
+    "dia": "2026-08-03",
+    "dia_semana": "seg",
+    "indice": null
+   },
+   {
+    "dia": "2026-08-04",
+    "dia_semana": "ter",
+    "indice": 113.7
+   },
+   {
+    "dia": "2026-08-05",
+    "dia_semana": "qua",
+    "indice": 75.8
+   },
+   {
+    "dia": "2026-08-06",
+    "dia_semana": "qui",
+    "indice": 101.1
+   },
+   {
+    "dia": "2026-08-07",
+    "dia_semana": "sex",
+    "indice": 189.5
+   },
+   {
+    "dia": "2026-08-08",
+    "dia_semana": "sáb",
+    "indice": 151.6
+   },
+   {
+    "dia": "2026-08-09",
+    "dia_semana": "dom",
+    "indice": null
+   },
+   {
+    "dia": "2026-08-10",
+    "dia_semana": "seg",
+    "indice": null
+   },
+   {
+    "dia": "2026-08-11",
+    "dia_semana": "ter",
+    "indice": 63.2
+   },
+   {
+    "dia": "2026-08-12",
+    "dia_semana": "qua",
+    "indice": 88.4
+   },
+   {
+    "dia": "2026-08-13",
+    "dia_semana": "qui",
+    "indice": 75.8
+   },
+   {
+    "dia": "2026-08-14",
+    "dia_semana": "sex",
+    "indice": 75.8
+   },
+   {
+    "dia": "2026-08-15",
+    "dia_semana": "sáb",
+    "indice": 113.7
+   },
+   {
+    "dia": "2026-08-16",
+    "dia_semana": "dom",
+    "indice": 138.9
+   },
+   {
+    "dia": "2026-08-17",
+    "dia_semana": "seg",
+    "indice": null
+   },
+   {
+    "dia": "2026-08-18",
+    "dia_semana": "ter",
+    "indice": 88.4
+   },
+   {
+    "dia": "2026-08-19",
+    "dia_semana": "qua",
+    "indice": 25.3
+   },
+   {
+    "dia": "2026-08-20",
+    "dia_semana": "qui",
+    "indice": 63.2
+   },
+   {
+    "dia": "2026-08-21",
+    "dia_semana": "sex",
+    "indice": 63.2
+   },
+   {
+    "dia": "2026-08-22",
+    "dia_semana": "sáb",
+    "indice": 88.4
+   },
+   {
+    "dia": "2026-08-23",
+    "dia_semana": "dom",
+    "indice": 176.8
+   },
+   {
+    "dia": "2026-08-24",
+    "dia_semana": "seg",
+    "indice": null
+   },
+   {
+    "dia": "2026-08-25",
+    "dia_semana": "ter",
+    "indice": 50.5
+   },
+   {
+    "dia": "2026-08-26",
+    "dia_semana": "qua",
+    "indice": 50.5
+   },
+   {
+    "dia": "2026-08-27",
+    "dia_semana": "qui",
+    "indice": 25.3
+   },
+   {
+    "dia": "2026-08-28",
+    "dia_semana": "sex",
+    "indice": 75.8
+   },
+   {
+    "dia": "2026-08-29",
+    "dia_semana": "sáb",
+    "indice": 151.6
+   },
+   {
+    "dia": "2026-08-30",
+    "dia_semana": "dom",
+    "indice": null
+   },
+   {
+    "dia": "2026-08-31",
+    "dia_semana": "seg",
+    "indice": null
+   },
+   {
+    "dia": "2026-09-01",
+    "dia_semana": "ter",
+    "indice": 138.9
+   },
+   {
+    "dia": "2026-09-02",
+    "dia_semana": "qua",
+    "indice": 50.5
+   },
+   {
+    "dia": "2026-09-03",
+    "dia_semana": "qui",
+    "indice": 63.2
+   },
+   {
+    "dia": "2026-09-04",
+    "dia_semana": "sex",
+    "indice": 138.9
+   },
+   {
+    "dia": "2026-09-05",
+    "dia_semana": "sáb",
+    "indice": 214.7
+   },
+   {
+    "dia": "2026-09-06",
+    "dia_semana": "dom",
+    "indice": 277.9
+   },
+   {
+    "dia": "2026-09-07",
+    "dia_semana": "seg",
+    "indice": null
+   },
+   {
+    "dia": "2026-09-08",
+    "dia_semana": "ter",
+    "indice": 138.9
+   },
+   {
+    "dia": "2026-09-09",
+    "dia_semana": "qua",
+    "indice": 214.7
+   },
+   {
+    "dia": "2026-09-10",
+    "dia_semana": "qui",
+    "indice": 176.8
+   },
+   {
+    "dia": "2026-09-11",
+    "dia_semana": "sex",
+    "indice": 265.3
+   },
+   {
+    "dia": "2026-09-12",
+    "dia_semana": "sáb",
+    "indice": 189.5
+   },
+   {
+    "dia": "2026-09-13",
+    "dia_semana": "dom",
+    "indice": 176.8
+   },
+   {
+    "dia": "2026-09-14",
+    "dia_semana": "seg",
+    "indice": null
+   },
+   {
+    "dia": "2026-09-15",
+    "dia_semana": "ter",
+    "indice": 126.3
+   },
+   {
+    "dia": "2026-09-16",
+    "dia_semana": "qua",
+    "indice": 126.3
+   },
+   {
+    "dia": "2026-09-17",
+    "dia_semana": "qui",
+    "indice": 37.9
+   },
+   {
+    "dia": "2026-09-18",
+    "dia_semana": "sex",
+    "indice": 101.1
+   },
+   {
+    "dia": "2026-09-19",
+    "dia_semana": "sáb",
+    "indice": 126.3
+   },
+   {
+    "dia": "2026-09-20",
+    "dia_semana": "dom",
+    "indice": null
+   },
+   {
+    "dia": "2026-09-21",
+    "dia_semana": "seg",
+    "indice": null
+   },
+   {
+    "dia": "2026-09-22",
+    "dia_semana": "ter",
+    "indice": 50.5
+   },
+   {
+    "dia": "2026-09-23",
+    "dia_semana": "qua",
+    "indice": null
+   },
+   {
+    "dia": "2026-09-24",
+    "dia_semana": "qui",
+    "indice": 63.2
+   },
+   {
+    "dia": "2026-09-25",
+    "dia_semana": "sex",
+    "indice": 113.7
+   },
+   {
+    "dia": "2026-09-26",
+    "dia_semana": "sáb",
+    "indice": null
+   },
+   {
+    "dia": "2026-09-27",
+    "dia_semana": "dom",
+    "indice": 113.7
+   },
+   {
+    "dia": "2026-09-28",
+    "dia_semana": "seg",
+    "indice": null
+   },
+   {
+    "dia": "2026-09-29",
+    "dia_semana": "ter",
+    "indice": 37.9
+   },
+   {
+    "dia": "2026-09-30",
+    "dia_semana": "qua",
+    "indice": 50.5
+   }
+  ],
+  "eventos": [
+   {
+    "dia": "2026-08-06",
+    "rotulo": "mudança de 06/08"
+   },
+   {
+    "dia": "2026-09-05",
+    "rotulo": "reordenação de 05/09"
+   }
+  ]
+ }
+}

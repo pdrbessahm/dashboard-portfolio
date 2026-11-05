@@ -1,0 +1,8 @@
+{
+  "fonte": "Anotações do projeto Job Seeker, primeira coleta. Números confirmados pelo Pedro em 03/11/2026.",
+  "funil_coleta": [
+    {"etapa": "Vagas brutas", "vagas": 1405},
+    {"etapa": "Acima do corte de pontuação", "vagas": 108},
+    {"etapa": "No banco depois da limpeza", "vagas": 95}
+  ]
+}

@@ -1,0 +1,48 @@
+# Cabecalho, experiencia, competencias e rodape da pagina inicial.
+# Fonte dos fatos: curriculo.yaml e REGRAS.md do job-seeker (PLANO.md, secoes 2 e 3.2).
+
+nome = "Pedro Henrique Bessa Maia"
+cargo = "Analista de Dados"
+resumo = [
+  "Analista de dados com mais de 1 ano de experiência em métricas operacionais e análise de performance no setor de delivery.",
+  "Tenho conhecimento em consultas SQL e Python, usados para tratar e consolidar dados de plataformas digitais antes de virarem relatório.",
+]
+
+email = "bessapedro500@gmail.com"
+linkedin = "https://www.linkedin.com/in/pedro-henrique-bessa-maia/"
+github = "https://github.com/pdrbessahm"
+
+# Pendente (PLANO.md, secao 4): qual CV em PDF vai no site.
+# Quando o Pedro decidir, copie o PDF para static/cv.pdf e preencha com "/cv.pdf".
+cv = ""
+
+competencias = ["SQL", "Python", "Power BI", "ETL"]
+local = "Natal, RN · remoto"
+
+# Faixa de numeros do topo da pagina inicial: so numeros que ja estao nos projetos e na experiencia.
+[[numeros]]
+valor = "10+"
+rotulo = "operações de restaurante acompanhadas"
+
+[[numeros]]
+valor = "4% → 0,83%"
+rotulo = "atrasos e cancelamentos em mais de 8 restaurantes"
+
+[[numeros]]
+valor = "+27,2%"
+rotulo = "faturamento de uma loja em um mês, sem anúncio"
+
+[[numeros]]
+valor = "400+"
+rotulo = "produtos de catálogo reestruturados"
+
+[experiencia]
+cargo = "Analista de Dados"
+empresa = "DG Foods"
+periodo = "mar de 2025 - mar de 2026"
+contexto = "Análise de performance e métricas operacionais de mais de 10 operações de restaurante em plataformas digitais de delivery."
+itens = [
+  "Rotinas de extração e carga de dados (ETL) em Python para consolidar vendas, catálogo e funil de conversão, com carga recorrente em banco de dados.",
+  "Reestruturação do catálogo de mais de 400 produtos a partir dos dados das plataformas, com aumento de 6% a 10% no fundo do funil de conversão.",
+  "Acompanhamento de KPIs logísticos, com atrasos e cancelamentos de acima de 4% para menos de 0,83% em mais de 8 restaurantes.",
+]

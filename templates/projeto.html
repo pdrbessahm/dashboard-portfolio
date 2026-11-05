@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block titulo %}{{ projeto.titulo }} - {{ perfil.nome }}{% endblock %}
+{% block descricao %}{{ projeto.subtitulo }}{% endblock %}
+{% block conteudo %}
+    <section class="heroi heroi-projeto">
+      <div class="largura">
+        <p class="voltar"><a href="/#projetos"><span aria-hidden="true">←</span> Todos os projetos</a></p>
+        <h1>{{ projeto.titulo }}</h1>
+        <p class="subtitulo">{{ projeto.subtitulo }}</p>
+        <div class="faixa-resultado">
+          <p class="faixa-numero">{{ projeto.cartao.resultado_numero }}</p>
+          <p>{{ projeto.cartao.resultado }}</p>
+        </div>
+        <ul class="etiquetas etiquetas-escuras" aria-label="Ferramentas">
+          {% for f in projeto.cartao.ferramentas %}
+          <li>{{ f }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+
+    <div class="largura estudo">
+      <nav class="sumario" aria-label="Nesta página">
+        <p class="rotulo">Nesta página</p>
+        <ol>
+          {% for s in projeto.secoes %}
+          <li><a href="#s{{ loop.index }}">{{ s.titulo }}</a></li>
+          {% endfor %}
+          <li><a href="#graficos">Gráficos</a></li>
+          <li><a href="#repositorio">Repositório</a></li>
+        </ol>
+      </nav>
+
+      <article class="estudo-texto">
+        {% for s in projeto.secoes %}
+        <section class="bloco" id="s{{ loop.index }}">
+          <h2><span class="bloco-indice">{{ "%02d" | format(loop.index) }}</span>{{ s.titulo }}</h2>
+          {% if s.destaque is defined %}
+          <p class="destaque">{{ s.destaque }}</p>
+          {% endif %}
+          {% for par in s.paragrafos | default([]) %}
+          <p>{{ par }}</p>
+          {% endfor %}
+          {% if s.itens is defined %}
+          <ul class="lista">
+            {% for item in s.itens %}
+            <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+          {% if s.nota is defined %}
+          <p class="nota">{{ s.nota }}</p>
+          {% endif %}
+        </section>
+        {% endfor %}
+
+        <section class="bloco" id="graficos">
+          <h2><span class="bloco-indice">{{ "%02d" | format(projeto.secoes | length + 1) }}</span>Gráficos</h2>
+          <div class="graficos">
+            {% for g in projeto.graficos_montados %}
+            <figure class="grafico">
+              <figcaption>
+                <h3>{{ g.titulo }}</h3>
+                <p>{{ g.descricao }}</p>
+              </figcaption>
+              {% if g.figura is defined %}
+              <div class="grafico-area" data-figura="fig-{{ g.id }}"{% if g.figura_estreita is defined %} data-figura-estreita="fig-{{ g.id }}-estreita"{% endif %}></div>
+              <script type="application/json" id="fig-{{ g.id }}">{{ g.figura | safe }}</script>
+              {% if g.figura_estreita is defined %}
+              <script type="application/json" id="fig-{{ g.id }}-estreita">{{ g.figura_estreita | safe }}</script>
+              {% endif %}
+              <details class="tabela">
+                <summary>Ver os números em tabela</summary>
+                <table>
+                  <tbody>
+                    {% for nome, valor in g.tabela %}
+                    <tr><th scope="row">{{ nome }}</th><td>{{ valor }}</td></tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </details>
+              {% else %}
+              <div class="pendente-bloco"><span>Pendente: {{ g.pendente }}</span></div>
+              {% endif %}
+            </figure>
+            {% endfor %}
+          </div>
+        </section>
+
+        <section class="bloco" id="repositorio">
+          <h2><span class="bloco-indice">{{ "%02d" | format(projeto.secoes | length + 2) }}</span>Repositório</h2>
+          {% if projeto.repositorio %}
+          <p><a class="botao botao-cheio" href="{{ projeto.repositorio }}" rel="noopener">Ver código</a></p>
+          {% elif projeto.repositorio_pendente is defined %}
+          <p><span class="pendente">Pendente: {{ projeto.repositorio_pendente }}</span></p>
+          {% else %}
+          <p class="nota">{{ projeto.repositorio_nota }}</p>
+          {% endif %}
+        </section>
+      </article>
+    </div>
+{% endblock %}
+{% block scripts %}
+{% if projeto.graficos_montados | selectattr("figura", "defined") | list %}
+  <script src="/static/vendor/plotly.min.js" defer></script>
+  <script src="/static/js/graficos.js" defer></script>
+{% endif %}
+{% endblock %}

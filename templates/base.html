@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block titulo %}{{ perfil.nome }} - {{ perfil.cargo }}{% endblock %}</title>
+  <meta name="description" content="{% block descricao %}{{ perfil.resumo[0] }}{% endblock %}">
+  <meta name="author" content="{{ perfil.nome }}">
+  <meta name="theme-color" content="#0d1014">
+  <link rel="preload" href="/static/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/static/fonts/inter-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/static/css/site.css">
+</head>
+<body class="pagina-{{ pagina }}">
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+  <header class="topo">
+    <div class="largura topo-linha">
+      <a class="marca" href="/" aria-label="{{ perfil.nome }}, início">
+        <span class="marca-sigla" aria-hidden="true">PB</span>
+        <span class="marca-nome">{{ perfil.nome }}</span>
+      </a>
+      <button class="menu-botao" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+      <nav id="menu" class="menu" aria-label="Principal">
+        <a href="/#projetos"{% if pagina == "inicio" %} aria-current="page"{% endif %}>Projetos</a>
+        <a href="/#experiencia">Experiência</a>
+        <a class="menu-contato" href="/#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+{% block conteudo %}{% endblock %}
+  </main>
+
+  <footer id="contato" class="rodape">
+    <div class="largura">
+      <div class="convite">
+        <p class="rotulo rotulo-claro">Contato</p>
+        <h2>Vamos conversar sobre a sua vaga ou o seu time de dados?</h2>
+        <ul class="links">
+          <li><a class="botao botao-acento" href="mailto:{{ perfil.email }}">{{ perfil.email }}</a></li>
+          <li><a class="botao botao-escuro" href="{{ perfil.linkedin }}" rel="noopener">LinkedIn</a></li>
+          <li><a class="botao botao-escuro" href="{{ perfil.github }}" rel="noopener">GitHub</a></li>
+        </ul>
+      </div>
+      <p class="rodape-nome">{{ perfil.nome }} · {{ perfil.cargo }} · {{ perfil.local }}</p>
+    </div>
+  </footer>
+
+  <script src="/static/js/menu.js" defer></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>
