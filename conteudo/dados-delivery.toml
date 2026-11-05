@@ -1,20 +1,21 @@
-# Analise de lojas em marketplace de delivery (iFood). Projeto principal.
-# Texto do PLANO.md, secao 3.1. Mostra o trabalho de analise e de regra de negocio;
-# o codigo de coleta e relatorio nao e apresentado como autoria do Pedro.
+# Dados de lojas de delivery, da coleta ao relatorio. Projeto principal.
+# Texto do PLANO.md, secoes 3.1 e 5.3. Opcao A (5.1): mostra o que o Pedro definiu e analisou;
+# o codigo de coleta e pipeline nao e apresentado como escrito por ele ate ele recriar.
+# As regras de engenharia da 5.3 (cadencia, captura datada, esquema, alerta) so entram depois disso.
 # Nenhum valor em reais nem contagem absoluta das lojas aparece aqui.
 
-slug = "lojas-delivery"
+slug = "dados-delivery"
 ordem = 1
-titulo = "Análise de lojas em marketplace de delivery (iFood)"
-subtitulo = "Acompanhamento mensal de lojas de restaurante, com regras de negócio, KPIs e plano de ação."
+titulo = "Dados de lojas de delivery, da coleta ao relatório"
+subtitulo = "Acompanhamento mensal de lojas de restaurante no iFood: regras de negócio, regras de qualidade, KPIs e plano de ação."
 
-# Repositorio do projeto: privado, tem dado de cliente (curriculo.yaml). Sem link.
+# Opcao A: o botao liga quando apontar para o repositorio que o Pedro recriar seguindo o guia.
 repositorio = ""
-repositorio_nota = "Repositório privado: o projeto contém dado de cliente."
+repositorio_nota = "Código de produção privado: contém dado de cliente."
 
 [cartao]
 problema = "Donos de restaurante com loja no iFood sem uma leitura clara do que mudou de um período para o outro e do que fazer a seguir."
-fiz = "Defini as regras de negócio e os KPIs do acompanhamento e transformei os números de cada loja em relatório com plano de ação."
+fiz = "Defini as regras de negócio, os KPIs e as regras de qualidade de um fluxo que coleta os dados das lojas, guarda em banco e vira dashboard e relatório com plano de ação."
 ferramentas = ["Painel do iFood", "KPIs", "Relatório", "Python", "pandas", "Plotly"]
 resultado_numero = "+27,2%"
 resultado = "Loja B (marmitaria): +27,2% de faturamento em set contra ago, num mês sem anúncio, depois da reordenação da vitrine."
@@ -35,8 +36,22 @@ paragrafos = [
 ]
 
 [[secoes]]
+titulo = "O fluxo"
+paragrafos = [
+  "Os números de cada loja passam por cinco etapas até chegar ao dono.",
+]
+fluxo = [
+  { nome = "Coleta", entrega = "cardápio, vendas, funil e anúncio de cada loja" },
+  { nome = "Limpeza", entrega = "tipos certos e as regras de qualidade abaixo" },
+  { nome = "Banco", entrega = "os números de todas as lojas num lugar só" },
+  { nome = "Dashboard", entrega = "os gráficos desta página" },
+  { nome = "Relatório", entrega = "leitura do mês e plano de ação para o dono" },
+]
+
+[[secoes]]
 titulo = "Dados"
 paragrafos = [
+  "Os dados vêm da conta das próprias lojas, com acesso dado pelo dono.",
   "Indicadores mensais das lojas: faturamento, pedidos, ticket médio, clientes novos, conversão, funil (visitas, viram item, carrinho, checkout, pedidos), vendas por dia da semana, formas de pagamento, disponibilidade da loja e itens mais vendidos.",
   "As lojas aparecem como Loja A, Loja B e assim por diante, com o segmento ao lado.",
   "Nenhum valor absoluto que identifique a loja aparece: tudo é variação percentual, participação ou índice (primeiro mês da loja = 100).",
@@ -56,6 +71,19 @@ itens = [
 nota = "As Lojas A a E formam a série longa (jun a out de 2026). F, G e H entram num recorte de dois meses, sempre com o período ao lado do nome. Lojas com menos de 50 pedidos por mês ou com meses sem operação ficaram fora."
 
 [[secoes]]
+titulo = "Regras de qualidade"
+paragrafos = [
+  "São as regras que decidem se um número pode ir para o relatório.",
+]
+itens = [
+  "Dado não capturado não conta como zero vendas: nenhum relatório sai sem a captura do período completa.",
+  "A conversão sai do funil, nunca do ranking de mais vendidos, que só traz os 12 primeiros itens e conta unidades, não pedidos.",
+  "Item pausado pode aparecer como disponível: quem diz se o item está visível para o cliente é o status no catálogo.",
+  "A comparação com o período anterior é calculada mês cheio contra mês cheio, e não pela variação do painel, que compara com os dias imediatamente anteriores.",
+  "Nenhum relatório de um cliente revela números de outro, nem por comparação implícita.",
+]
+
+[[secoes]]
 titulo = "O que eu fiz e decidi"
 paragrafos = [
   "Defini as regras de negócio e acompanho os KPIs de vendas e conversão das lojas.",
@@ -63,7 +91,7 @@ paragrafos = [
 itens = [
   "Ciclo dos relatórios: mensal no dia 01, sobre o mês anterior, e quinzenal no dia 15, sobre o mês corrente.",
   "Todo relatório compara com o período anterior e termina num plano de ação ligado aos concorrentes da região.",
-  "Regra de qualidade: dado não capturado não conta como zero vendas, então nenhum relatório sai sem a captura do período completa.",
+  "As regras de qualidade acima.",
   "O relatório vai para o dono em linguagem de negócio, sem termo técnico.",
 ]
 

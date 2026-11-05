@@ -41,6 +41,13 @@
           {% for par in s.paragrafos | default([]) %}
           <p>{{ par }}</p>
           {% endfor %}
+          {% if s.fluxo is defined %}
+          <ol class="fluxo">
+            {% for etapa in s.fluxo %}
+            <li><strong>{{ etapa.nome }}</strong><span>{{ etapa.entrega }}</span></li>
+            {% endfor %}
+          </ol>
+          {% endif %}
           {% if s.itens is defined %}
           <ul class="lista">
             {% for item in s.itens %}

@@ -3,9 +3,11 @@
 
 nome = "Pedro Henrique Bessa Maia"
 cargo = "Analista de Dados"
+# PLANO.md 5.2: posicionamento "dados ponta a ponta", logo abaixo do nome
+frase = "Dados ponta a ponta, da coleta ao relatório."
 resumo = [
   "Analista de dados com mais de 1 ano de experiência em métricas operacionais e análise de performance no setor de delivery.",
-  "Tenho conhecimento em consultas SQL e Python, usados para tratar e consolidar dados de plataformas digitais antes de virarem relatório.",
+  "Tenho conhecimento em consultas SQL e Python, usados para coletar, tratar e carregar em banco os dados de plataformas digitais e transformá-los em dashboard e relatório para quem decide.",
 ]
 
 email = "bessapedro500@gmail.com"
@@ -16,7 +18,6 @@ github = "https://github.com/pdrbessahm"
 # Quando o Pedro decidir, copie o PDF para static/cv.pdf e preencha com "/cv.pdf".
 cv = ""
 
-competencias = ["SQL", "Python", "Power BI", "ETL"]
 local = "Natal, RN · remoto"
 
 # Faixa de numeros do topo da pagina inicial: so numeros que ja estao nos projetos e na experiencia.
@@ -46,3 +47,12 @@ itens = [
   "Reestruturação do catálogo de mais de 400 produtos a partir dos dados das plataformas, com aumento de 6% a 10% no fundo do funil de conversão.",
   "Acompanhamento de KPIs logísticos, com atrasos e cancelamentos de acima de 4% para menos de 0,83% em mais de 8 restaurantes.",
 ]
+
+# Competencias em dois grupos (PLANO.md 5.2, decidido em 04/11/2026).
+[[competencias]]
+grupo = "Engenharia de dados"
+itens = ["Python", "SQL", "ETL", "Coleta de dados", "Automação", "Pipelines"]
+
+[[competencias]]
+grupo = "Análise"
+itens = ["Power BI", "Dashboards", "KPIs", "Relatórios"]

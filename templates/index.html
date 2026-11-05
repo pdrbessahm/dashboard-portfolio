@@ -20,6 +20,9 @@
         <div class="heroi-texto">
           <p class="rotulo rotulo-claro">{{ perfil.cargo }} · {{ perfil.local }}</p>
           <h1>{{ perfil.nome }}</h1>
+          {% if perfil.frase is defined %}
+          <p class="frase">{{ perfil.frase }}</p>
+          {% endif %}
           <div class="resumo">
             {% for frase in perfil.resumo %}
             <p>{{ frase }}</p>
@@ -118,7 +121,14 @@
       </header>
       <ul class="competencias">
         {% for c in perfil.competencias %}
-        <li>{{ c }}</li>
+        <li>
+          <h3>{{ c.grupo }}</h3>
+          <ul class="etiquetas">
+            {% for item in c.itens %}
+            <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        </li>
         {% endfor %}
       </ul>
     </section>
