@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Conferir celular em faixas</title>
+  <!--
+    Auxiliar de conferência: mostra prototipo/sequencial.html a 390px em faixas de 950px lado a lado,
+    para o print de desktop ficar legível. Uso: print.mjs ... prints/conferir-celular.html?inicio=0 saida.png 1290 projeto
+  -->
+  <style>
+    body { margin: 0; display: flex; gap: 30px; background: #888; }
+    .faixa { width: 390px; height: 950px; overflow: hidden; }
+    iframe { display: block; width: 390px; height: 5000px; border: 0; }
+  </style>
+</head>
+<body>
+  <script>
+    const inicio = Number(new URLSearchParams(location.search).get('inicio') ?? 0);
+    for (let i = 0; i < 3; i++) {
+      const faixa = document.createElement('div');
+      faixa.className = 'faixa';
+      const quadro = document.createElement('iframe');
+      quadro.src = '../prototipo/sequencial.html';
+      quadro.style.marginTop = `-${inicio + i * 950}px`;
+      faixa.append(quadro);
+      document.body.append(faixa);
+    }
+  </script>
+</body>
+</html>

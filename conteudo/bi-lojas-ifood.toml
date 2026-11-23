@@ -1,0 +1,111 @@
+# Dashboard de BI das lojas iFood (tarefa #75), versao anonimizada aprovada pelo Pedro em 18/11/2026.
+# Mesma regra do dados-delivery: mostra o que o Pedro definiu, decidiu e analisou;
+# o codigo do pipeline e do painel nao e apresentado como escrito por ele.
+# O painel vem pronto e anonimizado do projeto de origem (site.py importar-painel) e fica em paineis/lojas-ifood/.
+# As letras das lojas foram sorteadas na anonimizacao deste painel e nao batem com as do dados-delivery.
+
+slug = "bi-lojas-ifood"
+ordem = 2
+titulo = "Dashboard de BI das lojas iFood"
+subtitulo = "Painel web com vendas, pedidos, funil, itens e mudanças de cardápio de 13 lojas de restaurante no iFood, em versão anonimizada."
+
+repositorio = ""
+repositorio_nota = "Código privado: o pipeline e o painel interno têm nomes e identificadores das lojas. Aqui está a versão anonimizada do painel."
+
+[cartao]
+problema = "Acompanhar restaurantes no iFood é analisar muitos dados e traduzir tudo em insights para donos que não lidam com termos técnicos, sem um lugar que junte a evolução de cada loja ao que mudou no cardápio."
+fiz = "Defini os KPIs, as regras de negócio e as regras de anonimização de um painel que junta as capturas do iFood de 13 lojas num banco só, com cada mudança de cardápio ao lado dos pedidos do dia."
+ferramentas = ["Python", "DuckDB", "SQL", "Plotly", "Power BI", "KPIs"]
+resultado_numero = "13 lojas"
+resultado = "13 lojas, de jun a out de 2026 e a 1ª quinzena de nov, e 120 mudanças de cardápio num painel só, com filtro de loja e período."
+
+# Print do cartao: a faixa de cima do mesmo print anonimizado do painel (KPIs e graficos por mes), recortada no CSS.
+[cartao.print]
+titulo = "Loja B · out de 2026 · versão anonimizada"
+src = "/static/img/bi-lojas-ifood/painel-visao-geral.png"
+largura = 1400
+altura = 1164
+
+[[secoes]]
+titulo = "Problema"
+paragrafos = [
+  "Quem acompanha diariamente o desempenho de restaurantes dentro do iFood precisa lidar com a tarefa de analisar dados variados, com uma quantidade considerável de possibilidades de leitura, e traduzir isso em insights para proprietários que não saberão lidar com termos técnicos.",
+  "Por isso, surgiu a necessidade de concentrar tudo em somente um lugar para ver a evolução de cada loja, comparar com o período anterior e saber o que mudou no cardápio antes de uma queda forte ou de um período de grande conversão do cardápio.",
+]
+
+[[secoes]]
+titulo = "O fluxo"
+paragrafos = [
+  "Os números saem das capturas do painel do iFood e passam por estas etapas até quem decide.",
+]
+fluxo = [
+  { nome = "Capturas", entrega = "dados do painel do iFood de cada loja, guardados com a data da captura" },
+  { nome = "Pipeline", entrega = "Python lê as capturas, confere e carrega num banco DuckDB" },
+  { nome = "Modelo", entrega = "lojas, períodos, desempenho, funil, pedidos por dia, itens e mudanças de cardápio" },
+  { nome = "Painel web", entrega = "a página com filtro de loja e período mostrada abaixo" },
+  { nome = "Power BI", entrega = "o mesmo modelo exportado para análise no Power BI" },
+]
+
+[[secoes]]
+titulo = "Regras de negócio"
+paragrafos = [
+  "São as regras que decidem o que o painel soma, compara e mostra.",
+]
+itens = [
+  "Só entram janelas já consolidadas pelo iFood. A janela em aberto aparece listrada, com número parcial e sem variação até fechar.",
+  "Faturamento, ticket, novos clientes, conversão, funil e itens só existem por mês civil ou 1ª quinzena, como o iFood entrega. Num período livre, só os pedidos são somados, a partir da série diária.",
+  "Dia sem dado é buraco na linha, nunca zero. Zero é venda zero informada pela plataforma.",
+  "Ticket médio é faturamento dividido por pedidos. Conversão é pedidos dividido por visitas do mesmo funil.",
+  "A variação compara com a mesma janela do período anterior.",
+  "Antes e depois de uma mudança no cardápio: média de pedidos por dia, 7 dias de cada lado sem o dia da mudança, só com dias da semana que têm dado nos dois lados.",
+  "Mudanças do mesmo dia ficam numa linha só, porque o efeito de cada uma não dá para separar. O painel diz que é comparação, não causa.",
+]
+
+[[secoes]]
+titulo = "O que o painel mostra"
+paragrafos = [
+  "O painel tem quatro abas, com os filtros de loja, período e canal fixos no topo.",
+]
+itens = [
+  "Visão geral: faturamento, pedidos, ticket médio, novos clientes e conversão do período, cada um contra a mesma janela do mês anterior e com o histórico em minibarras; a tendência de cada loja num minigráfico próprio; e o funil de visitas a pedidos.",
+  "Lojas: ranking, comparação de até 4 lojas e a tabela de todas as lojas no mesmo período.",
+  "Cardápio: itens mais vendidos e os que quase não saem, pedidos por dia com cada mudança no cardápio marcada, e o antes e depois de cada mudança.",
+  "Metodologia: de onde vêm os números, as regras de cálculo e o que a anonimização muda.",
+]
+
+[[secoes]]
+titulo = "Anonimização"
+paragrafos = [
+  "Esta versão foi feita para o portfólio e nenhum dado sai sem passar por ela.",
+]
+itens = [
+  "As lojas viram Loja A a Loja M, com a letra sorteada uma vez. A ligação com a loja real fica fora do portfólio.",
+  "Os valores em R$ (faturamento, ticket médio e receita dos itens) são multiplicados por um fator fixo e sigiloso por loja. Tendências e variações percentuais continuam iguais às reais.",
+  "Pedidos, novos clientes, funil e itens vendidos ficam reais. Escalar também as contagens distorcia as lojas pequenas no arredondamento, então decidi aplicar o fator só aos valores em R$.",
+  "Por causa do fator, comparar valores em R$ entre lojas não vale, e o rodapé do painel avisa.",
+  "Os itens viram tipo e número (Combo 01, Hambúrguer 03) e as mudanças no cardápio são descritas sem nomes próprios nem preços.",
+  "Antes de sair, a versão anonimizada passa por uma busca de CNPJ, CPF, telefone, CEP e de uma lista de termos sensíveis.",
+]
+nota = "As letras deste painel não são as mesmas do projeto Dados de lojas de delivery: a Loja B daqui não é a Loja B de lá."
+
+[[secoes]]
+titulo = "O que eu fiz e decidi"
+itens = [
+  "Defini os KPIs do painel e como cada um é calculado.",
+  "Defini as regras de negócio acima: quais janelas entram, o que um período livre soma e como tratar dia sem dado.",
+  "Defini a comparação de antes e depois das mudanças no cardápio e o aviso de que ela não prova causa.",
+  "Decidi as regras de anonimização: fator só nos valores em R$, itens por tipo e número e o aviso de que R$ não se compara entre lojas.",
+]
+
+[painel]
+nome = "lojas-ifood"
+titulo = "O painel"
+paragrafos = [
+  "O painel abaixo é a versão anonimizada, com os mesmos filtros e gráficos da versão interna.",
+  "Escolha a loja, o período ou um atalho de mês e quinzena, e navegue pelas abas.",
+]
+print = "/static/img/bi-lojas-ifood/painel-visao-geral.png"
+print_largura = 1400
+print_altura = 1164
+print_alt = "Aba Visão geral do painel, Loja B em out de 2026: cinco KPIs contra set de 2026 com o histórico em minibarras, um minigráfico de faturamento por loja e o funil de visitas a pedidos."
+print_legenda = "Loja B em out de 2026, versão anonimizada. Clique para abrir o painel."

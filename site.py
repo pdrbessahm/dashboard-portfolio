@@ -3,8 +3,10 @@
     python site.py build       gera a pasta dist/
     python site.py serve       gera e serve em http://localhost:8000
     python site.py verificar   procura dado sensível em dados/ e dist/ e lista as pendências
+    python site.py importar-painel <origem.html> <nome>
+                               traz um painel já anonimizado para paineis/<nome>/painel.html
 
-O site só lê conteudo/ (texto) e dados/ (JSON já anonimizado e agregado).
+O site só lê conteudo/ (texto), dados/ (JSON já anonimizado e agregado) e paineis/ (painéis HTML já anonimizados).
 """
 
 import argparse
@@ -31,6 +33,7 @@ CONTEUDO = RAIZ / "conteudo"
 DADOS = RAIZ / "dados"
 TEMPLATES = RAIZ / "templates"
 STATIC = RAIZ / "static"
+PAINEIS = RAIZ / "paineis"
 DIST = RAIZ / "dist"
 
 # Pasta fora do repositório com o de-para da anonimização e a lista de termos proibidos.
@@ -347,6 +350,57 @@ def escrever(caminho, texto):
     caminho.write_text(texto, encoding="utf-8")
 
 
+# ---------------------------------------------------------------- painéis
+
+PLOTLY_LOCAL = '<script src="/static/vendor/plotly.min.js"></script>'
+# Bloco do plotly.js embutido pelo gerador do painel: do cabeçalho de licença até o </script>.
+PLOTLY_EMBUTIDO = re.compile(r"<script>/\*\*\s*\* plotly\.js (v[\d.]+)\n.*?</script>", re.S)
+VERSAO_PLOTLY = re.compile(r"plotly\.js (v[\d.]+)")
+
+BARRA_VOLTAR = (
+    '<nav style="font:14px/1.4 system-ui,sans-serif;padding:10px 16px;background:#111418;">'
+    '<a href="/projetos/{slug}/" style="color:#f0efec;text-decoration:none;">'
+    '<span aria-hidden="true">←</span> Voltar ao estudo de caso</a></nav>'
+)
+
+
+def importar_painel(origem, nome):
+    """Copia um painel HTML já anonimizado, trocando o plotly.js embutido pelo do site.
+
+    O painel chega pronto e anonimizado do projeto de origem; aqui só sai o plotly.js
+    (5 MB que o site já serve em /static/vendor) e a cópia passa pela mesma busca de dado sensível.
+    """
+    html = Path(origem).read_text(encoding="utf-8")
+    achado = PLOTLY_EMBUTIDO.search(html)
+    if not achado:
+        sys.exit("Não achei o plotly.js embutido no painel: o formato mudou, confira antes de importar.")
+    versao_site = VERSAO_PLOTLY.search(get_plotlyjs()[:300]).group(1)
+    if achado.group(1) != versao_site:
+        sys.exit(f"O painel usa plotly.js {achado.group(1)} e o site serve {versao_site}: alinhe as versões antes.")
+    html = html[:achado.start()] + PLOTLY_LOCAL + html[achado.end():]
+
+    problemas = [f"{tipo}: '{t}'" for tipo, padrao in PADROES.items() for t in padrao.findall(html)]
+    termos = carregar_termos() or []
+    normal = normalizar(html)
+    problemas += ["termo proibido da lista" for t in termos if t in normal]
+    if problemas:
+        for linha in problemas:
+            print("ERRO:", linha, file=sys.stderr)
+        sys.exit("Painel não importado: dado sensível encontrado.")
+
+    destino = PAINEIS / nome / "painel.html"
+    escrever(destino, html)
+    print(f"Painel gravado em {destino.relative_to(RAIZ)} (plotly.js {versao_site} do site)")
+
+
+def publicar_painel(projeto):
+    """Grava o painel do projeto em dist/projetos/<slug>/painel/ com a barra de volta ao estudo de caso."""
+    html = (PAINEIS / projeto["painel"]["nome"] / "painel.html").read_text(encoding="utf-8")
+    barra = BARRA_VOLTAR.format(slug=projeto["slug"])
+    html = html.replace("<body>", "<body>\n" + barra, 1)
+    escrever(DIST / "projetos" / projeto["slug"] / "painel" / "index.html", html)
+
+
 def build():
     perfil = carregar_toml(CONTEUDO / "perfil.toml")
     projetos = carregar_projetos()
@@ -359,7 +413,7 @@ def build():
     usa_plotly = False
     for p in projetos:
         p["graficos_montados"] = montar_graficos(p)
-        if any("figura" in g for g in p["graficos_montados"]):
+        if any("figura" in g for g in p["graficos_montados"]) or "painel" in p:
             usa_plotly = True
     if usa_plotly:
         escrever(DIST / "static" / "vendor" / "plotly.min.js", get_plotlyjs())
@@ -369,6 +423,8 @@ def build():
     for p in projetos:
         html = env.get_template("projeto.html").render(**comum, projeto=p, pagina=p["slug"])
         escrever(DIST / "projetos" / p["slug"] / "index.html", html)
+        if "painel" in p:
+            publicar_painel(p)
     escrever(DIST / "404.html", env.get_template("404.html").render(**comum, pagina="404"))
 
     print(f"Site gerado em {DIST}")
@@ -407,7 +463,7 @@ def carregar_termos():
 
 
 def arquivos_para_verificar():
-    for pasta in (DADOS, DIST, CONTEUDO, STATIC):
+    for pasta in (DADOS, DIST, CONTEUDO, STATIC, PAINEIS):
         if not pasta.exists():
             continue
         for arq in pasta.rglob("*"):
@@ -516,12 +572,17 @@ def main():
     serve_p = sub.add_parser("serve", help="gera e serve localmente")
     serve_p.add_argument("--porta", type=int, default=8000)
     sub.add_parser("verificar", help="procura dado sensível e lista pendências")
+    imp = sub.add_parser("importar-painel", help="traz um painel HTML já anonimizado para paineis/")
+    imp.add_argument("origem", help="arquivo HTML do painel anonimizado")
+    imp.add_argument("nome", help="pasta de destino dentro de paineis/")
     args = parser.parse_args()
 
     if args.comando == "build":
         build()
     elif args.comando == "serve":
         serve(args.porta)
+    elif args.comando == "importar-painel":
+        importar_painel(args.origem, args.nome)
     else:
         verificar()
 

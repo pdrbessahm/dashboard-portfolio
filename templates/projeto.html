@@ -26,7 +26,12 @@
           {% for s in projeto.secoes %}
           <li><a href="#s{{ loop.index }}">{{ s.titulo }}</a></li>
           {% endfor %}
+          {% if projeto.painel is defined %}
+          <li><a href="#painel">{{ projeto.painel.titulo }}</a></li>
+          {% endif %}
+          {% if projeto.graficos_montados %}
           <li><a href="#graficos">Gráficos</a></li>
+          {% endif %}
           <li><a href="#repositorio">Repositório</a></li>
         </ol>
       </nav>
@@ -60,9 +65,28 @@
           {% endif %}
         </section>
         {% endfor %}
+        {% set indice = namespace(n=projeto.secoes | length) %}
 
+        {% if projeto.painel is defined %}
+        {% set indice.n = indice.n + 1 %}
+        {% set painel_url = "/projetos/" ~ projeto.slug ~ "/painel/" %}
+        <section class="bloco" id="painel">
+          <h2><span class="bloco-indice">{{ "%02d" | format(indice.n) }}</span>{{ projeto.painel.titulo }}</h2>
+          {% for par in projeto.painel.paragrafos %}
+          <p>{{ par }}</p>
+          {% endfor %}
+          <p><a class="botao botao-cheio" href="{{ painel_url }}">Abrir o painel interativo <span aria-hidden="true">→</span></a></p>
+          <figure class="painel-print">
+            <a href="{{ painel_url }}"><img src="{{ projeto.painel.print }}" alt="{{ projeto.painel.print_alt }}" width="{{ projeto.painel.print_largura }}" height="{{ projeto.painel.print_altura }}" loading="lazy"></a>
+            <figcaption>{{ projeto.painel.print_legenda }}</figcaption>
+          </figure>
+        </section>
+        {% endif %}
+
+        {% if projeto.graficos_montados %}
+        {% set indice.n = indice.n + 1 %}
         <section class="bloco" id="graficos">
-          <h2><span class="bloco-indice">{{ "%02d" | format(projeto.secoes | length + 1) }}</span>Gráficos</h2>
+          <h2><span class="bloco-indice">{{ "%02d" | format(indice.n) }}</span>Gráficos</h2>
           <div class="graficos">
             {% for g in projeto.graficos_montados %}
             <figure class="grafico">
@@ -93,9 +117,10 @@
             {% endfor %}
           </div>
         </section>
+        {% endif %}
 
         <section class="bloco" id="repositorio">
-          <h2><span class="bloco-indice">{{ "%02d" | format(projeto.secoes | length + 2) }}</span>Repositório</h2>
+          <h2><span class="bloco-indice">{{ "%02d" | format(indice.n + 1) }}</span>Repositório</h2>
           {% if projeto.repositorio %}
           <p><a class="botao botao-cheio" href="{{ projeto.repositorio }}" rel="noopener">Ver código</a></p>
           {% elif projeto.repositorio_pendente is defined %}

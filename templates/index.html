@@ -60,6 +60,12 @@
           <a class="projeto-visual" href="/projetos/{{ p.slug }}/" tabindex="-1" aria-hidden="true">
             <p class="projeto-numero">{{ p.cartao.resultado_numero }}</p>
             {% if p.cartao.visual is defined %}{{ visual(p.cartao.visual) }}{% endif %}
+            {% if p.cartao.print is defined %}
+            <figure class="mini">
+              <figcaption class="mini-titulo">{{ p.cartao.print.titulo }}</figcaption>
+              <img class="mini-print" src="{{ p.cartao.print.src }}" alt="" width="{{ p.cartao.print.largura }}" height="{{ p.cartao.print.altura }}" loading="lazy">
+            </figure>
+            {% endif %}
           </a>
           <div class="projeto-corpo">
             <p class="projeto-indice">{{ "%02d" | format(loop.index) }}</p>

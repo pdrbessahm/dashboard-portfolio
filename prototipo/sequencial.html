@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pedro Henrique Bessa Maia - Analista de Dados</title>
+  <meta name="description" content="Analista de dados com mais de 1 ano de experiência em métricas operacionais e análise de performance no setor de delivery.">
+  <meta name="author" content="Pedro Henrique Bessa Maia">
+  <!--
+    Protótipo de layout sequencial (rolagem única), separado do site gerado.
+    Texto copiado de conteudo/perfil.toml e conteudo/dados-delivery.toml.
+    Caminhos relativos: abre direto do arquivo ou servido a partir da raiz do projeto.
+  -->
+  <style>
+    @font-face { font-family: "Inter"; font-weight: 400; font-display: swap; src: url("../static/fonts/inter-latin-400-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Inter"; font-weight: 500; font-display: swap; src: url("../static/fonts/inter-latin-500-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Inter"; font-weight: 600; font-display: swap; src: url("../static/fonts/inter-latin-600-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Inter"; font-weight: 700; font-display: swap; src: url("../static/fonts/inter-latin-700-normal.woff2") format("woff2"); }
+    @font-face { font-family: "JetBrains Mono"; font-weight: 400; font-display: swap; src: url("../static/fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2"); }
+    @font-face { font-family: "JetBrains Mono"; font-weight: 600; font-display: swap; src: url("../static/fonts/jetbrains-mono-latin-600-normal.woff2") format("woff2"); }
+
+    :root {
+      --fundo: #f5f5f1;
+      --superficie: #ffffff;
+      --borda: #e3e2dc;
+      --tinta: #111418;
+      --tinta-2: #4a4f57;
+      --tinta-3: #5d626b;
+      --etiqueta: #ecebe6;
+      --escuro: #0d1014;
+      --claro-2: #a8afb9;
+      --acento: #c5f25d;
+      --acento-tinta: #4d7c0f;
+      --serie: #9aa1ab;
+      --raio: 14px;
+      --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+      --coluna: 60rem;
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body { margin: 0; background: var(--fundo); color: var(--tinta); font: 400 1rem/1.6 var(--sans); }
+    h1, h2, h3, p, ul, dl, dd, figure { margin: 0; }
+    ul { padding: 0; list-style: none; }
+    a { color: inherit; }
+
+    .coluna { max-width: var(--coluna); margin: 0 auto; padding: 0 1.5rem; }
+    /* Cada bloco com o próprio fundo: verde claro, branco, areia e, no contato, escuro */
+    .bloco { padding: 5.5rem 0; }
+    .bloco-inicio { background: #f2f7e4; }
+    .bloco-projeto { background: var(--superficie); }
+    .bloco-experiencia { background: #ebeae3; }
+    .bloco-experiencia .etiquetas li { background: var(--superficie); }
+
+    .rotulo { font: 600 .75rem/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--tinta-3); }
+    .bloco-titulo { margin: .75rem 0 2.5rem; font-size: clamp(1.6rem, 3vw, 2.1rem); line-height: 1.2; letter-spacing: -.02em; }
+
+    .botoes { display: flex; flex-wrap: wrap; gap: .625rem; }
+    .botao { display: inline-flex; align-items: center; gap: .4rem; padding: .7rem 1.15rem; border: 1px solid var(--borda);
+             border-radius: 999px; background: var(--superficie); font-weight: 600; font-size: .9rem; text-decoration: none; }
+    .botao:hover { border-color: var(--tinta); }
+    .botao-cheio { background: var(--tinta); border-color: var(--tinta); color: #fff; }
+    .botao-acento { background: var(--acento); border-color: var(--acento); color: var(--tinta); }
+
+    /* Toda a página justificada; a hifenização (lang pt-BR) evita buracos entre palavras nas colunas estreitas */
+    body { text-align: justify; -webkit-hyphens: auto; hyphens: auto; hyphenate-limit-chars: 6 2 2; }
+    /* Elementos de uma linha só: a última linha (a única) também justificada.
+       Rótulos, cargo, período, assinatura, legenda e os 4 números ficam
+       justificados sem forçar a última linha: forçada, ela abria buracos enormes entre as palavras. */
+    .botao, .etiquetas li, .mini li span { text-align-last: justify; }
+    /* Títulos fora do justificado: alinhados à esquerda */
+    h1, h2, h3, h4 { text-align: left; }
+    /* Nome, títulos e botões não quebram palavra com hífen */
+    .nome, h2, h3, h4, .botao { -webkit-hyphens: manual; hyphens: manual; }
+    /* O resumo fica num bloco centralizado: a última linha acompanha o centro */
+    .resumo p { text-align-last: center; }
+
+    .etiquetas { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .etiquetas li { padding: .25rem .6rem; border-radius: 6px; background: var(--etiqueta); font: 400 .78rem/1.4 var(--mono); color: var(--tinta-2); }
+
+    /* Bloco 1: foto e apresentação */
+    .apresentacao { display: grid; justify-items: center; gap: 2.75rem; }
+    .apresentacao .botoes { justify-content: center; }
+    /* Foto em destaque: 27.5rem (440px); a imagem real precisa ter pelo menos 880x880 para não pixelar em tela de alta densidade */
+    .foto { width: 27.5rem; max-width: 100%; aspect-ratio: 1; flex-shrink: 0; overflow: hidden; border-radius: 50%; border: 2px dashed var(--tinta-3);
+            background: repeating-linear-gradient(45deg, #ecebe6 0 12px, #e5e4de 12px 24px);
+            box-shadow: 0 0 0 .75rem var(--superficie), 0 0 0 calc(.75rem + 1px) var(--borda), 0 1.5rem 3rem -1rem rgba(17, 20, 24, .25);
+            display: grid; place-content: center; text-align: center; font: 600 .95rem/1.4 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--tinta-2); }
+    /* Quando entrar a foto real: corta para o círculo sem distorcer */
+    .foto img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .nome { margin: .9rem 0 .5rem; font-size: clamp(2.2rem, 5vw, 3.25rem); line-height: 1.05; letter-spacing: -.03em; text-wrap: balance; }
+    .frase { font-size: 1.15rem; font-weight: 600; color: var(--acento-tinta); text-align: center; }
+    .resumo { margin: 1.25rem auto 1.75rem; max-width: 38rem; color: var(--tinta-2); }
+    .resumo p + p { margin-top: .6rem; }
+
+    .numeros { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 4rem; border: 1px solid var(--borda); border-radius: var(--raio); background: var(--superficie); }
+    .numeros div { padding: 1.25rem 1rem; }
+    .numeros div + div { border-left: 1px solid var(--borda); }
+    .numeros dd { font: 600 1.45rem/1.2 var(--mono); letter-spacing: -.02em; }
+    .numeros dt { margin-top: .4rem; font-size: .85rem; line-height: 1.45; color: var(--tinta-3); }
+
+    /* Projetos: um bloco por projeto */
+    .projeto { display: grid; grid-template-columns: 1fr 22rem; gap: 3rem; align-items: start; }
+    .projeto h3 { font-size: 1.6rem; line-height: 1.25; letter-spacing: -.02em; }
+    .projeto-sub { margin-top: .6rem; color: var(--tinta-2); }
+    .projeto-dl { display: grid; gap: 1.25rem; margin: 2rem 0; }
+    .projeto-dl dt { margin-bottom: .3rem; }
+    .projeto .etiquetas { margin-bottom: 2rem; }
+    .projeto-nota { margin-top: .9rem; font-size: .85rem; color: var(--tinta-3); }
+
+    /* Resultado em número e mini gráfico juntos, sem espaço sobrando entre eles */
+    .resultado { padding: 1.75rem; border-radius: var(--raio); background: var(--escuro); color: #fff; }
+    .resultado-numero { font: 600 3rem/1 var(--mono); letter-spacing: -.04em; color: var(--acento); }
+    .resultado-texto { margin: .9rem 0 1.75rem; font-size: .9rem; line-height: 1.5; color: var(--claro-2); }
+    .mini figcaption { margin-bottom: .9rem; font: 400 .72rem/1.4 var(--mono); color: var(--claro-2); }
+    .mini li { display: grid; grid-template-columns: 2.2rem 1fr 3.2rem; align-items: center; gap: .6rem; font: 400 .78rem/1 var(--mono); color: var(--claro-2); }
+    .mini li + li { margin-top: .55rem; }
+    .mini-trilho { height: 1.4rem; border-radius: 4px; background: #1c2229; }
+    .mini-barra { display: block; height: 100%; width: calc(var(--v) * 100%); border-radius: 4px; background: #5b636e; }
+    .mini-barra-final { background: var(--acento); }
+    .mini-valor { color: #fff; }
+
+    /* Experiência e competências */
+    .experiencia { display: grid; grid-template-columns: 12rem 1fr; gap: 2rem; }
+    .periodo { font: 400 .8rem/1.6 var(--mono); color: var(--tinta-3); }
+    .experiencia h3 { font-size: 1.15rem; }
+    .empresa { font-weight: 400; color: var(--tinta-3); }
+    .contexto { margin: .4rem 0 1rem; color: var(--tinta-2); }
+    .lista li { position: relative; padding-left: 1.25rem; }
+    .lista li + li { margin-top: .5rem; }
+    .lista li::before { content: ""; position: absolute; left: 0; top: .78em; width: .6rem; height: 2px; background: var(--tinta); }
+    .competencias { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px dashed var(--borda); }
+    .competencias h4 { margin: 0 0 .75rem; font-size: .95rem; }
+
+    /* Contato */
+    .contato { padding: 5rem 0 3rem; background: var(--escuro); color: #fff; }
+    .contato .rotulo { color: var(--acento); }
+    .contato h2 { margin: .75rem 0 2rem; max-width: 35rem; font-size: clamp(1.6rem, 3vw, 2.1rem); line-height: 1.2; letter-spacing: -.02em; }
+    .contato .botao:not(.botao-acento) { background: transparent; border-color: #2a3038; color: #fff; }
+    .contato .botao:not(.botao-acento):hover { border-color: #fff; }
+    .assinatura { margin-top: 3.5rem; padding-top: 1.5rem; border-top: 1px solid #2a3038; font-size: .85rem; color: var(--claro-2); }
+
+    @media (max-width: 52rem) {
+      .bloco { padding: 4rem 0; }
+      .apresentacao, .projeto, .experiencia, .competencias { grid-template-columns: 1fr; }
+      .apresentacao { gap: 1.75rem; }
+      /* 18.75rem (300px) no celular; o max-width: 100% segura em telas mais estreitas */
+      .foto { width: 18.75rem; font-size: .8rem; box-shadow: 0 0 0 .5rem var(--superficie), 0 0 0 calc(.5rem + 1px) var(--borda), 0 1rem 2rem -.75rem rgba(17, 20, 24, .25); }
+      /* Nome numa linha só, ocupando a largura da coluna */
+      .nome { font-size: calc((100vw - 3rem) / 13); }
+      /* Frase curta numa linha só: em duas, a primeira linha abria buracos */
+      .frase { font-size: 1rem; }
+      .numeros { grid-template-columns: 1fr 1fr; }
+      .numeros div { padding: 1.1rem 1rem; }
+      /* "4% → 0,83%" cabe numa linha no cartão de meia largura */
+      .numeros dd { font-size: 1.3rem; }
+      /* Um pouco mais de largura para o texto justificado do cartão escuro */
+      .resultado { padding: 1.75rem 1.4rem; }
+      .numeros div:nth-child(3) { border-left: 0; }
+      .numeros div:nth-child(n+3) { border-top: 1px solid var(--borda); }
+      .experiencia { gap: .5rem; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="bloco bloco-inicio" aria-labelledby="nome">
+      <div class="coluna">
+        <div class="apresentacao">
+          <div class="foto" role="img" aria-label="Espaço reservado para a foto">Sua foto<br>aqui</div>
+          <div>
+            <p class="rotulo">Analista de Dados · Natal, RN · remoto</p>
+            <h1 id="nome" class="nome">Pedro Henrique Bessa Maia</h1>
+            <p class="frase">Dados ponta a ponta, da coleta ao relatório.</p>
+            <div class="resumo">
+              <p>Analista de dados com mais de 1 ano de experiência em métricas operacionais e análise de performance no setor de delivery.</p>
+              <p>Tenho conhecimento em consultas SQL e Python, usados para coletar, tratar e carregar em banco os dados de plataformas digitais e transformá-los em dashboard e relatório para quem decide.</p>
+            </div>
+            <ul class="botoes">
+              <li><a class="botao botao-cheio" href="../static/CV_Pedro-Bessa.pdf">Baixar CV em PDF</a></li>
+              <li><a class="botao" href="https://www.linkedin.com/in/pedro-henrique-bessa-maia/" rel="noopener">LinkedIn</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <dl class="numeros">
+          <div><dd>100+</dd><dt>lojas atendidas</dt></div>
+          <div><dd>4% → 0,83%</dd><dt>atrasos e cancelamentos em mais de 8 restaurantes</dt></div>
+          <div><dd>+27,2%</dd><dt>faturamento de uma loja em um mês, sem anúncio</dt></div>
+          <div><dd>400+</dd><dt>produtos de catálogo reestruturados</dt></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="bloco bloco-projeto" aria-labelledby="projeto-1">
+      <div class="coluna">
+        <p class="rotulo">Projeto 01</p>
+        <div class="projeto" style="margin-top: .9rem">
+          <div>
+            <h3 id="projeto-1">Dados de Vendas de Delivery - Da Coleta ao Relatório</h3>
+            <p class="projeto-sub">Acompanhamento diário de lojas de restaurante no iFood, com consolidação mensal: regras de negócio, regras de qualidade, KPIs e plano de ação.</p>
+            <dl class="projeto-dl">
+              <div>
+                <dt class="rotulo">Problema</dt>
+                <dd>Queda nas vendas causada por fatores da plataforma ou externos, que não ficam detalhados nem são fáceis de entender para os donos. Sem saber o que mudou de um período para o outro, eles ficam sem saber o que fazer.</dd>
+              </div>
+              <div>
+                <dt class="rotulo">O que eu fiz</dt>
+                <dd>Defini as regras de negócio com base nos indicadores disponíveis e, a partir delas, os KPIs e as regras de qualidade de um fluxo que coleta os dados da loja, guarda em banco e vira dashboard e relatório com plano de ação.</dd>
+              </div>
+            </dl>
+            <ul class="etiquetas" aria-label="Ferramentas">
+              <li>Painel do iFood</li><li>KPIs</li><li>Relatório</li><li>Python</li><li>pandas</li><li>Plotly</li>
+            </ul>
+            <a class="botao botao-cheio" href="../projetos/dados-delivery/">Ver estudo de caso <span aria-hidden="true">→</span></a>
+            <p class="projeto-nota">Código de produção privado: contém dado de cliente.</p>
+          </div>
+
+          <aside class="resultado" aria-label="Resultado">
+            <p class="resultado-numero">+27,2%</p>
+            <p class="resultado-texto">Loja B (marmitaria): +27,2% de faturamento em set contra ago, num mês sem anúncio, depois da reordenação da vitrine.</p>
+            <figure class="mini">
+              <figcaption>Loja B · faturamento (índice, ago = 100)</figcaption>
+              <ul>
+                <li><span>ago</span><span class="mini-trilho"><span class="mini-barra" style="--v: 0.7862"></span></span><span class="mini-valor">100</span></li>
+                <li><span>set</span><span class="mini-trilho"><span class="mini-barra mini-barra-final" style="--v: 1"></span></span><span class="mini-valor">127,2</span></li>
+              </ul>
+            </figure>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="bloco bloco-experiencia" aria-labelledby="experiencia">
+      <div class="coluna">
+        <p class="rotulo">Experiência</p>
+        <h2 id="experiencia" class="bloco-titulo">Onde isso foi aplicado</h2>
+        <article class="experiencia">
+          <p class="periodo">mar de 2025 - mar de 2026</p>
+          <div>
+            <h3>Analista de Dados <span class="empresa">· DG Foods</span></h3>
+            <p class="contexto">Análise de performance e métricas operacionais de mais de 10 operações de restaurante em plataformas digitais de delivery.</p>
+            <ul class="lista">
+              <li>Rotinas de extração e carga de dados (ETL) em Python para consolidar vendas, catálogo e funil de conversão, com carga recorrente em banco de dados.</li>
+              <li>Reestruturação do catálogo de mais de 400 produtos a partir dos dados das plataformas, com aumento de 6% a 10% no fundo do funil de conversão.</li>
+              <li>Acompanhamento de KPIs logísticos, com atrasos e cancelamentos de acima de 4% para menos de 0,83% em mais de 8 restaurantes.</li>
+            </ul>
+          </div>
+        </article>
+        <div class="competencias">
+          <div>
+            <h4>Engenharia de dados</h4>
+            <ul class="etiquetas"><li>Python</li><li>SQL</li><li>ETL</li><li>Coleta de dados</li><li>Automação</li><li>Pipelines</li></ul>
+          </div>
+          <div>
+            <h4>Análise</h4>
+            <ul class="etiquetas"><li>Power BI</li><li>Dashboards</li><li>KPIs</li><li>Relatórios</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="contato" aria-labelledby="contato">
+    <div class="coluna">
+      <p class="rotulo">Contato</p>
+      <h2 id="contato">Vamos conversar sobre a sua vaga ou o seu time de dados?</h2>
+      <ul class="botoes">
+        <li><a class="botao botao-acento" href="mailto:bessapedro500@gmail.com">bessapedro500@gmail.com</a></li>
+        <li><a class="botao" href="https://www.linkedin.com/in/pedro-henrique-bessa-maia/" rel="noopener">LinkedIn</a></li>
+        <li><a class="botao" href="https://github.com/pdrbessahm" rel="noopener">GitHub</a></li>
+      </ul>
+      <p class="assinatura">Pedro Henrique Bessa Maia · Analista de Dados · Natal, RN · remoto</p>
+    </div>
+  </footer>
+</body>
+</html>

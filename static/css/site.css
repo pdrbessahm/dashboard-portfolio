@@ -252,6 +252,8 @@ p { margin: 0 0 1rem; }
 .mini-trilho { height: 2.25rem; border-radius: 4px; background: rgb(255 255 255 / .06); overflow: hidden; }
 .mini-barra { display: block; height: 100%; width: calc(var(--v) * 100%); min-width: 4px; border-radius: 4px; background: #59626e; transform-origin: left; animation: crescer .9s cubic-bezier(.2, .7, .2, 1) both; }
 .mini-barra-final { background: var(--acento); }
+/* print do painel no cartao: so a faixa de cima (KPIs e graficos por mes) */
+.mini-print { display: block; width: 100%; height: auto; aspect-ratio: 1400 / 600; object-fit: cover; object-position: top; border-radius: 6px; border: 1px solid rgb(255 255 255 / .12); background: #fff; }
 @keyframes crescer { from { transform: scaleX(0); } }
 @media (prefers-reduced-motion: reduce) { .mini-barra { animation: none; } }
 
@@ -350,6 +352,11 @@ p { margin: 0 0 1rem; }
   box-shadow: inset 4px 0 0 var(--acento);
 }
 .nota { color: var(--tinta-3); font-size: .9375rem; }
+
+.painel-print { margin: 1.5rem 0 0; }
+.painel-print a { display: block; border: 1px solid var(--borda); border-radius: var(--raio); overflow: hidden; background: var(--superficie); }
+.painel-print img { display: block; width: 100%; height: auto; }
+.painel-print figcaption { margin-top: .625rem; color: var(--tinta-3); font-size: .875rem; }
 
 .graficos { display: grid; gap: 1.25rem; }
 .grafico { margin: 0; padding: 1.5rem; border: 1px solid var(--borda); border-radius: var(--raio); background: var(--superficie); }

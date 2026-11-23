@@ -80,6 +80,11 @@ const carregou = evento('Page.loadEventFired');
 await cdp('Page.navigate', { url });
 await carregou;
 await cdp('Runtime.evaluate', { expression: 'document.fonts.ready', awaitPromise: true });
+// imagens com loading="lazy" abaixo da dobra nao carregam sem rolagem: forca o carregamento e espera todas
+await cdp('Runtime.evaluate', { awaitPromise: true, expression: `Promise.all([...document.images].map((img) => {
+  img.loading = 'eager';
+  return img.complete ? null : new Promise((ok) => { img.addEventListener('load', ok); img.addEventListener('error', ok); });
+}))` });
 await new Promise((ok) => setTimeout(ok, 800));
 
 const { cssContentSize } = await cdp('Page.getLayoutMetrics');
@@ -90,6 +95,18 @@ const { data } = await cdp('Page.captureScreenshot', {
 });
 writeFileSync(saida, Buffer.from(data, 'base64'));
 console.log(`ok: ${saida} (${LARGURA}x${altura} css, escala ${ESCALA}, largura do conteudo ${Math.ceil(cssContentSize.width)})`);
+if (cssContentSize.width > LARGURA + 0.5) {
+  // pagina mais larga que a tela: lista os elementos que passam da borda direita (fora de area com rolagem propria)
+  const { result } = await cdp('Runtime.evaluate', { returnByValue: true, expression: `(() => {
+    const rola = (el) => { for (let p = el.parentElement; p; p = p.parentElement) {
+      const o = getComputedStyle(p).overflowX; if (o === 'auto' || o === 'scroll' || o === 'hidden') return true; } return false; };
+    return [...document.querySelectorAll('body *')]
+      .filter((el) => el.getBoundingClientRect().right > ${LARGURA} + 0.5 && !rola(el))
+      .slice(0, 12)
+      .map((el) => el.tagName.toLowerCase() + (el.id ? '#' + el.id : '') + (el.className && typeof el.className === 'string' ? '.' + el.className.trim().split(/\\s+/).join('.') : '') + ' ate ' + Math.round(el.getBoundingClientRect().right) + 'px');
+  })()` });
+  console.log('AVISO: conteudo mais largo que a tela:\n  ' + result.value.join('\n  '));
+}
 ws.close();
 proc.kill();
 servidor.close();
