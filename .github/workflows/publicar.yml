@@ -1,0 +1,37 @@
+# Gera o site e publica no Azure Static Web Apps a cada push na main (ou na mao, em Actions > Publicar > Run workflow).
+# A chave vem do segredo AZURE_STATIC_WEB_APPS_API_TOKEN (Settings > Secrets and variables > Actions),
+# que e o "deployment token" do Static Web App na Azure. Sem ele, o site so e gerado e a publicacao e pulada.
+# A verificacao de dado sensivel (site.py verificar) roda no notebook antes do push: a lista de termos proibidos
+# nao sai de la, entao aqui o build so avisa que ela falta.
+name: Publicar
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    env:
+      TOKEN_AZURE: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - run: python site.py build
+      - run: cp staticwebapp.config.json dist/
+      - name: Publicar na Azure
+        if: env.TOKEN_AZURE != ''
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          action: upload
+          app_location: dist
+          skip_app_build: true
+          skip_api_build: true
+      - name: Sem chave da Azure
+        if: env.TOKEN_AZURE == ''
+        run: echo "::warning::AZURE_STATIC_WEB_APPS_API_TOKEN nao configurado; o site foi gerado mas nao publicado."
