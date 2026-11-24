@@ -42,23 +42,27 @@ dist/          site gerado (fora do repositório)
 ## Publicação
 
 O repositório é `pdrbessahm/dashboard-portfolio` (privado).
-A cada push na `main`, o GitHub Actions (`.github/workflows/publicar.yml`) gera o `dist/` e publica no Azure Static Web Apps.
+O site fica no Cloudflare Pages, ligado ao repositório: a cada push na `main`, o Cloudflare gera o `dist/` e publica.
+Push em outro branch vira uma prévia com endereço próprio, sem mexer no site no ar.
 Antes de cada push, rode `python site.py verificar` aqui (com `PORTFOLIO_PRIVADO`): a lista de termos proibidos não vai para o GitHub.
 
-Para ligar a Azure (uma vez):
+Para ligar o Cloudflare (uma vez):
 
-1. No portal da Azure, crie um Static Web App (plano Free basta).
-   Em "Detalhes da implantação", escolha **Outro**, e não GitHub: o processo de publicação já está neste repositório, e escolher GitHub faria a Azure criar um segundo.
-2. No Static Web App criado, em "Visão geral" > "Gerenciar token de implantação", copie o token.
-3. No GitHub, em Settings > Secrets and variables > Actions > New repository secret, crie `AZURE_STATIC_WEB_APPS_API_TOKEN` com esse token.
-4. Em Actions > Publicar > Run workflow, rode uma vez. O endereço do site aparece na "Visão geral" do Static Web App.
-5. Domínio próprio: em "Domínios personalizados" no Static Web App, que mostra o registro DNS a criar.
+1. No painel do Cloudflare, em Workers & Pages > Create > Pages > Connect to Git, autorize o GitHub e escolha `pdrbessahm/dashboard-portfolio` (o repositório privado funciona).
+2. Configuração do build:
+   - Production branch: `main`
+   - Framework preset: None
+   - Build command: `pip install -r requirements.txt && python site.py build`
+   - Build output directory: `dist`
+3. Save and Deploy. O endereço sai como `<nome-do-projeto>.pages.dev`.
+4. Domínio próprio: em Custom domains no projeto do Pages.
 
-`staticwebapp.config.json` faz o `404.html` ser a página de erro.
+O Python do build vem do `.python-version` (3.12).
+O Pages usa o `404.html` da raiz como página de erro sozinho, sem configuração.
 
 ## O que o servidor precisa
 
-- Hospedagem de arquivos estáticos com HTTPS (por exemplo Azure Static Web Apps ou o site estático do Azure Storage).
+- Hospedagem de arquivos estáticos com HTTPS (por exemplo Cloudflare Pages).
 - Nenhum runtime, banco ou variável secreta.
 - Publicar é copiar o conteúdo de `dist/` para a raiz do site.
   Configure `404.html` como página de erro.
