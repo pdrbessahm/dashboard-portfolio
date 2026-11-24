@@ -15,7 +15,6 @@ import json
 import os
 import re
 import shutil
-import subprocess
 import sys
 import tomllib
 import unicodedata
@@ -27,6 +26,8 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
 from plotly.offline import get_plotlyjs
+from pypdf import PdfReader
+from pypdf.errors import PdfReadError
 
 RAIZ = Path(__file__).resolve().parent
 CONTEUDO = RAIZ / "conteudo"
@@ -472,12 +473,15 @@ def arquivos_para_verificar():
 
 
 def ler_texto(arq):
-    """Texto do arquivo; PDF (o CV) passa pelo pdftotext. None se não der para ler."""
+    """Texto do arquivo; PDF (o CV) passa pelo pypdf. None se não der para ler.
+
+    pypdf e não pdftotext: o build do Cloudflare Pages não tem o poppler e não instala pacote do sistema.
+    """
     if arq.suffix != ".pdf":
         return arq.read_text(encoding="utf-8", errors="ignore")
     try:
-        return subprocess.run(["pdftotext", str(arq), "-"], capture_output=True, text=True, check=True).stdout
-    except (FileNotFoundError, subprocess.CalledProcessError):
+        return "\n".join(pagina.extract_text() or "" for pagina in PdfReader(arq).pages)
+    except PdfReadError:
         return None
 
 
@@ -498,7 +502,7 @@ def verificar_sensiveis(estrito):
         texto = ler_texto(arq)
         rel = arq.relative_to(RAIZ)
         if texto is None:
-            problemas.append(f"{rel}: não consegui ler o texto do PDF (precisa do pdftotext, do poppler-utils)")
+            problemas.append(f"{rel}: não consegui ler o texto do PDF")
             continue
         for nome, padrao in PADROES.items():
             for achado in padrao.findall(texto):
