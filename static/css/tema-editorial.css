@@ -1,0 +1,126 @@
+/* Variação 1, editorial minimalista: papel off-white, títulos em serifa, uma coluna estreita, quase sem cartões.
+   Vai por cima do site.css (site.py build --tema editorial). As cores "escuras" do site.css viram claras aqui,
+   então topo, herói e rodapé passam para o papel sem mexer no template.
+   Contraste contra o fundo #faf8f3: tinta 16,9:1, tinta-2 8,6:1, tinta-3 5,4:1, azul 6,4:1. */
+@font-face { font-family: "Fraunces"; font-weight: 600; font-display: swap; src: url("/static/fonts/fraunces-latin-600-normal.woff2") format("woff2"); }
+
+:root.tema-editorial {
+  --fundo: #faf8f3;
+  --superficie: #faf8f3;
+  --borda: #e2ddd1;
+  --tinta: #1a1a1a;
+  --tinta-2: #4a4945;
+  --tinta-3: #67645d;
+  --etiqueta: #f0ece2;
+  --escuro: #faf8f3;
+  --escuro-2: #f3efe6;
+  --escuro-borda: #ddd7ca;
+  --claro: #1a1a1a;
+  --claro-2: #4a4945;
+  --acento: #1d4ed8;
+  --acento-forte: #1e3a8a;
+  --acento-escuro: #1d4ed8;
+  --acento-borda: #b9cff5;
+  --largura: 42rem;
+  --serifa: "Fraunces", Georgia, "Times New Roman", serif;
+  background: var(--fundo);
+}
+
+.tema-editorial body { font-size: 1.0625rem; line-height: 1.75; }
+.tema-editorial h1, .tema-editorial h2, .tema-editorial h3 { font-family: var(--serifa); font-weight: 600; letter-spacing: -.015em; }
+.tema-editorial h1 { font-size: clamp(2.5rem, 4vw + 1.25rem, 3.75rem); line-height: 1.05; letter-spacing: -.025em; }
+.tema-editorial h2 { font-size: clamp(1.75rem, 1.5vw + 1.2rem, 2.25rem); }
+.tema-editorial .rotulo { font: 600 .75rem/1.4 var(--sans); letter-spacing: .14em; color: var(--tinta-3); }
+.tema-editorial .rotulo-claro { color: var(--acento-escuro); }
+
+/* topo: barra de papel com fio embaixo */
+.tema-editorial .topo { background: rgb(250 248 243 / .94); border-bottom-color: var(--borda); }
+.tema-editorial .marca { font-family: var(--serifa); font-size: 1.125rem; letter-spacing: -.01em; }
+.tema-editorial .menu a:hover, .tema-editorial .menu a[aria-current="page"] { background: transparent; text-decoration: underline; }
+.tema-editorial .menu a.menu-contato { color: #fff; background: var(--acento-escuro); border-radius: 4px; }
+.tema-editorial .menu a.menu-contato:hover { color: #fff; background: var(--acento-escuro-forte); text-decoration: none; }
+
+/* botões: sem pílula cheia, só o principal em azul */
+.tema-editorial .botao { border-radius: 4px; background: transparent; }
+.tema-editorial .botao-acento, .tema-editorial .botao-cheio { background: var(--acento-escuro); border-color: var(--acento-escuro); color: #fff; }
+.tema-editorial .botao-acento:hover, .tema-editorial .botao-cheio:hover { background: var(--acento-escuro-forte); border-color: var(--acento-escuro-forte); }
+.tema-editorial .botao-escuro { border-color: var(--tinta-3); }
+.tema-editorial .botao-escuro:hover { border-color: var(--tinta); }
+.tema-editorial .etiquetas li { background: transparent; border: 1px solid var(--borda); border-radius: 3px; font-family: var(--sans); }
+
+/* herói: só texto, em uma coluna, sem quadriculado nem brilho */
+.tema-editorial .heroi { padding: clamp(4rem, 10vw, 7rem) 0 clamp(3rem, 6vw, 4.5rem); }
+.tema-editorial .heroi::before, .tema-editorial .heroi::after { display: none; }
+.tema-editorial .heroi-grade { grid-template-columns: 1fr; gap: 3rem; }
+.tema-editorial .heroi .frase { font: 600 1.375rem/1.35 var(--serifa); color: var(--acento-escuro); }
+.tema-editorial .heroi .resumo { font-size: 1.125rem; }
+
+/* números do topo: lista com fios, número em serifa ao lado da legenda */
+.tema-editorial .numeros { grid-template-columns: 1fr; gap: 0; border: 0; border-radius: 0; background: none; border-top: 1px solid var(--borda); }
+.tema-editorial .numero { flex-direction: row-reverse; justify-content: flex-end; align-items: baseline; gap: 1.25rem; padding: 1rem 0; background: none; border-bottom: 1px solid var(--borda); }
+.tema-editorial .numero dd { flex: none; min-width: 9.5rem; font: 600 1.5rem/1.2 var(--serifa); letter-spacing: -.01em; color: var(--tinta); }
+.tema-editorial .numero:first-child dd { color: var(--acento-escuro); }
+.tema-editorial .numero dt { font-size: .9375rem; color: var(--tinta-2); }
+
+/* seções: separadas por fio, não por cartão */
+.tema-editorial .secao { padding-top: clamp(3.5rem, 7vw, 5rem); }
+.tema-editorial .secao-topo { margin-bottom: 2rem; }
+.tema-editorial .projetos { gap: 0; }
+.tema-editorial .projeto,
+.tema-editorial .projeto:nth-child(even) { grid-template-columns: 1fr; border: 0; border-top: 1px solid var(--tinta); border-radius: 0; background: none; overflow: visible; }
+.tema-editorial .projeto:hover { box-shadow: none; }
+/* número grande abre cada projeto, mini-gráfico logo abaixo, texto depois */
+.tema-editorial .projeto:nth-child(n) .projeto-visual { order: 0; padding: 2rem 0 0; gap: 1rem; background: none; }
+.tema-editorial .projeto-visual::before { display: none; }
+.tema-editorial .projeto-numero { font: 600 clamp(2.75rem, 3vw + 1.75rem, 3.5rem)/1 var(--serifa); letter-spacing: -.02em; color: var(--acento-escuro); }
+.tema-editorial .projeto-corpo { padding: 1.75rem 0 3.5rem; }
+.tema-editorial .projeto-indice { font-family: var(--sans); letter-spacing: .1em; }
+.tema-editorial .projeto h3 { font-size: clamp(1.5rem, 1vw + 1.1rem, 1.875rem); }
+.tema-editorial .resultado { font-size: 1.125rem; }
+.tema-editorial .projeto-dl { padding-top: 0; border-top: 0; }
+.tema-editorial .projeto-dl dt { font-family: var(--sans); }
+
+/* mini-gráfico do cartão: barras finas e horizontais em qualquer largura */
+.tema-editorial .mini-titulo { font-family: var(--sans); color: var(--tinta-3); }
+.tema-editorial .projeto-visual .mini { flex: none; display: block; }
+.tema-editorial .projeto-visual .mini-barras { grid-auto-flow: row; gap: .5rem; }
+.tema-editorial .projeto-visual .mini-barras li { grid-template-columns: 3rem minmax(0, 1fr) 3.5rem; grid-template-rows: none; align-items: center; justify-items: stretch; gap: .75rem; font-family: var(--sans); }
+.tema-editorial .projeto-visual .mini-rotulo, .tema-editorial .projeto-visual .mini-valor { order: 0; }
+.tema-editorial .projeto-visual .mini-valor { text-align: right; font-size: .875rem; color: var(--tinta); }
+.tema-editorial .projeto-visual .mini-rotulo { color: var(--tinta-2); }
+.tema-editorial .projeto-visual .mini-trilho { position: static; height: .75rem; min-height: 0; border-radius: 0; background: var(--etiqueta); }
+.tema-editorial .projeto-visual .mini-barra { position: static; width: calc(var(--v) * 100%); height: 100%; border-radius: 0; background: #8a8780; }
+.tema-editorial .projeto-visual .mini-barra-final { background: var(--acento-escuro); }
+.tema-editorial .projeto-visual .mini-print { flex: none; aspect-ratio: 1400 / 600; border: 1px solid var(--borda); border-radius: 2px; }
+
+/* experiência e competências sem caixa */
+.tema-editorial .experiencia { grid-template-columns: 1fr; gap: .25rem; padding: 1.5rem 0 0; border: 0; border-top: 1px solid var(--tinta); border-radius: 0; background: none; }
+.tema-editorial .periodo { font-family: var(--sans); }
+.tema-editorial .competencias { grid-template-columns: 1fr; gap: 0; }
+.tema-editorial .competencias > li { padding: 1.25rem 0; border: 0; border-top: 1px solid var(--borda); border-radius: 0; background: none; }
+.tema-editorial .competencias > li::before { display: none; }
+
+/* estudo de caso: coluna única de leitura, sumário escondido */
+.tema-editorial .estudo { grid-template-columns: 1fr; gap: 0; padding-top: 3rem; }
+.tema-editorial .sumario { display: none; }
+.tema-editorial .faixa-resultado { background: none; border-color: var(--borda); border-radius: 0; border-width: 1px 0; padding-inline: 0; }
+.tema-editorial .faixa-numero { font-family: var(--serifa); color: var(--acento-escuro) !important; }
+.tema-editorial .fluxo { grid-template-columns: 1fr; gap: 1.25rem; }
+.tema-editorial .fluxo li:not(:last-child)::after { content: "↓"; right: auto; left: 1.25rem; top: auto; bottom: -1.25rem; transform: none; }
+.tema-editorial .destaque { background: none; color: var(--tinta); font: 600 1.25rem/1.5 var(--serifa); box-shadow: inset 3px 0 0 var(--acento-escuro); }
+.tema-editorial .grafico { padding: 1.5rem 0; border-width: 1px 0 0; border-radius: 0; background: none; }
+.tema-editorial .bloco-indice { font-family: var(--sans); }
+
+/* rodapé: mesmo papel, separado por um fio forte */
+.tema-editorial .rodape { border-top: 1px solid var(--tinta); }
+.tema-editorial .convite h2 { font-size: clamp(1.75rem, 2vw + 1rem, 2.5rem); }
+.tema-editorial .pendente-escuro { background: var(--pendente-fundo); border-color: var(--pendente); color: var(--pendente); }
+
+@media (max-width: 40rem) {
+  .tema-editorial .menu.aberto { background: var(--fundo); }
+  .tema-editorial .menu-botao { border-radius: 4px; border-color: var(--tinta-3); }
+  .tema-editorial .numero { flex-direction: column-reverse; align-items: flex-start; gap: .125rem; }
+  .tema-editorial .numero dd { min-width: 0; }
+  .tema-editorial .projeto:nth-child(n) .projeto-visual { padding: 1.5rem 0 0; }
+  .tema-editorial .projeto-corpo { padding: 1.5rem 0 2.5rem; }
+}

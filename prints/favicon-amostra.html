@@ -1,0 +1,85 @@
+<!doctype html>
+<!-- Folha de conferencia do favicon, para print (node prints/print.mjs <chrome> prints/favicon-amostra.html <saida> 1440 projeto 0 <seletor>).
+     #janela: moldura de navegador simulada (o Chromium sem tela nao desenha abas) com a pagina inicial real de dist/ dentro.
+     #ampliado: o desenho grande, o 16 e o 32 px pixel a pixel, o icone do iPhone e abas no tamanho real, clara e escura.
+     Servida da raiz do repositorio: dentro do iframe, /static/ e o mesmo static/ que o build copia. Rode o build antes. -->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Favicon - conferencia</title>
+<style>
+  @font-face { font-family: Inter; src: url(/static/fonts/inter-latin-400-normal.woff2) format("woff2"); font-weight: 400; }
+  @font-face { font-family: Inter; src: url(/static/fonts/inter-latin-600-normal.woff2) format("woff2"); font-weight: 600; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 400 14px/1.4 Inter, system-ui, sans-serif; color: #1c1c24; background: #ffffff; }
+
+  /* ---------- moldura de navegador */
+  .janela { background: #dee1e6; }
+  .abas { display: flex; align-items: flex-end; gap: 2px; height: 42px; padding: 0 12px 0 84px; position: relative; }
+  .bolinhas { position: absolute; left: 16px; top: 15px; display: flex; gap: 8px; }
+  .bolinhas i { width: 12px; height: 12px; border-radius: 50%; background: #b9bdc4; }
+  .aba { display: flex; align-items: center; gap: 8px; width: 240px; height: 34px; padding: 0 12px; border-radius: 10px 10px 0 0; font-size: 12px; color: #3c4043; white-space: nowrap; overflow: hidden; }
+  .aba img { width: 16px; height: 16px; flex: none; }
+  .aba span { overflow: hidden; text-overflow: ellipsis; }
+  .aba.ativa { background: #ffffff; color: #1f1f1f; }
+  .aba.outra .vazio { width: 16px; height: 16px; border-radius: 50%; background: #9aa0a6; flex: none; }
+  .barra { display: flex; align-items: center; gap: 14px; height: 44px; padding: 0 14px; background: #ffffff; border-bottom: 1px solid #dadce0; }
+  .barra .setas { color: #5f6368; letter-spacing: 10px; font-size: 16px; }
+  .endereco { flex: 1; height: 32px; display: flex; align-items: center; padding: 0 16px; border-radius: 16px; background: #f1f3f4; color: #202124; font-size: 14px; }
+  .janela iframe { display: block; width: 1440px; height: 900px; border: 0; }
+
+  /* ---------- folha ampliada */
+  .ampliado { padding: 56px 64px 64px; background: #f8f8fc; }
+  .ampliado h1 { margin: 0 0 6px; font-size: 26px; font-weight: 600; letter-spacing: -.02em; }
+  .ampliado .sub { margin: 0 0 40px; color: #4f505a; font-size: 15px; }
+  .linha { display: flex; align-items: flex-end; gap: 56px; flex-wrap: wrap; }
+  figure { margin: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+  figcaption { font-size: 13px; color: #4f505a; }
+  .px { image-rendering: pixelated; display: block; }
+  .xadrez { background: repeating-conic-gradient(#e6e6ee 0 25%, #ffffff 0 50%) 0 0 / 16px 16px; padding: 8px; border-radius: 8px; }
+  .iphone { width: 60px; height: 60px; border-radius: 14px; display: block; }
+  .tela { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 18px 22px; border-radius: 18px; background: linear-gradient(#2a3a6a, #0f1d3a); color: #fff; font-size: 11px; }
+  .abas-reais { margin-top: 48px; display: grid; gap: 16px; }
+  .tira { display: flex; align-items: flex-end; height: 42px; padding: 0 12px; border-radius: 10px; }
+  .tira.clara { background: #dee1e6; }
+  .tira.escura { background: #1f1f1f; }
+  .tira.escura .aba.ativa { background: #3c3c3c; color: #e8eaed; }
+  .tira.escura .aba.outra { color: #9aa0a6; }
+</style>
+</head>
+<body>
+
+<section id="janela" class="janela" aria-label="Moldura simulada com a página inicial real">
+  <div class="abas">
+    <div class="bolinhas"><i></i><i></i><i></i></div>
+    <div class="aba ativa"><img src="/static/favicon/favicon.svg" alt=""><span>Pedro Henrique Bessa Maia - Analista de Dados</span></div>
+    <div class="aba outra"><span class="vazio"></span><span>Nova guia</span></div>
+  </div>
+  <div class="barra"><span class="setas">← → ⟳</span><div class="endereco">pedrobessa.com.br</div></div>
+  <iframe src="/dist/index.html" title="Página inicial"></iframe>
+</section>
+
+<section id="ampliado" class="ampliado">
+  <h1>Favicon: monograma "pb"</h1>
+  <p class="sub">Em JetBrains Mono, no azul-marinho da capa, com o b no azul e lilás do gradiente do site.</p>
+  <div class="linha">
+    <figure><img src="/static/favicon/favicon.svg" width="256" height="256" alt=""><figcaption>SVG (navegadores atuais)</figcaption></figure>
+    <figure><span class="xadrez"><img class="px" src="/favicon/favicon-16.png" width="160" height="160" alt=""></span><figcaption>16 px, pixel a pixel (10x)</figcaption></figure>
+    <figure><span class="xadrez"><img class="px" src="/static/favicon/favicon-32.png" width="160" height="160" alt=""></span><figcaption>32 px, pixel a pixel (5x)</figcaption></figure>
+    <figure><div class="tela"><img class="iphone" src="/static/favicon/apple-touch-icon.png" alt=""><span>Pedro Bessa</span></div><figcaption>Tela inicial do iPhone (180 px)</figcaption></figure>
+  </div>
+  <div class="abas-reais">
+    <figcaption>Na aba, tamanho real (16 px na tela comum; o print sai em tela de alta densidade, 2x)</figcaption>
+    <div class="tira clara">
+      <div class="aba ativa"><img class="px" src="/favicon/favicon-16.png" alt=""><span>Pedro Henrique Bessa Maia - Analista de Dados</span></div>
+      <div class="aba outra"><span class="vazio"></span><span>Nova guia</span></div>
+    </div>
+    <div class="tira escura">
+      <div class="aba ativa"><img class="px" src="/favicon/favicon-16.png" alt=""><span>Pedro Henrique Bessa Maia - Analista de Dados</span></div>
+      <div class="aba outra"><span class="vazio"></span><span>Nova guia</span></div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

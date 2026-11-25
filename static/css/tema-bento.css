@@ -1,0 +1,114 @@
+/* Variação 3, bento grid: herói e projetos em mosaico de blocos de tamanhos diferentes, cantos bem arredondados,
+   fundo cinza claro com blocos brancos, um bloco escuro (apresentação) e um azul (número principal).
+   Vai por cima do site.css (site.py build --tema bento). Títulos em Space Grotesk.
+   Contraste: tinta-2 no branco 8,1:1, tinta-3 no branco 5,0:1; texto escuro no azul #5eadff 8,0:1. */
+@font-face { font-family: "Space Grotesk"; font-weight: 600; font-display: swap; src: url("/static/fonts/space-grotesk-latin-600-normal.woff2") format("woff2"); }
+
+:root.tema-bento {
+  --fundo: #eceef1;
+  --superficie: #ffffff;
+  --borda: #dde1e6;
+  --tinta-3: #636974;
+  --etiqueta: #eef0f3;
+  --raio: 24px;
+  --raio-p: 12px;
+  --grotesca: "Space Grotesk", var(--sans);
+  --vao: 1rem;
+  background: var(--fundo);
+}
+
+.tema-bento h1, .tema-bento h2, .tema-bento h3 { font-family: var(--grotesca); font-weight: 600; letter-spacing: -.03em; }
+
+/* topo: pílula branca flutuando sobre o fundo */
+.tema-bento .topo { top: .75rem; margin-top: .75rem; background: none; border: 0; backdrop-filter: none; -webkit-backdrop-filter: none; color: var(--tinta); }
+.tema-bento .topo-linha { min-height: 3.5rem; padding: 0 .5rem 0 1.25rem; border: 1px solid var(--borda); border-radius: 999px; background: rgb(255 255 255 / .9); backdrop-filter: saturate(160%) blur(12px); -webkit-backdrop-filter: saturate(160%) blur(12px); box-shadow: 0 8px 24px -16px rgb(15 20 25 / .3); }
+.tema-bento .marca { color: var(--tinta); font-family: var(--grotesca); font-size: 1rem; }
+.tema-bento .menu a { color: var(--tinta-2); }
+.tema-bento .menu a:hover, .tema-bento .menu a[aria-current="page"] { color: var(--tinta); background: var(--etiqueta); }
+.tema-bento .topo :is(a, button):focus-visible { outline-color: var(--acento-escuro); }
+
+/* herói: mosaico. Apresentação num bloco escuro grande; cada número vira um bloco (a dl some do layout) */
+.tema-bento .heroi { padding: 1.5rem 0 0; background: none; color: var(--tinta); overflow: visible; }
+.tema-bento .heroi::before, .tema-bento .heroi::after { display: none; }
+.tema-bento .heroi-grade { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--vao); align-items: stretch; }
+.tema-bento .heroi-texto {
+  grid-column: 1 / 5; grid-row: 1 / 3;
+  position: relative; overflow: hidden; isolation: isolate;
+  padding: clamp(2rem, 4vw, 3.5rem);
+  border-radius: var(--raio);
+  background: var(--escuro);
+  color: var(--claro);
+}
+.tema-bento .heroi-texto::after { content: ""; position: absolute; z-index: -1; width: 30rem; height: 30rem; right: -10rem; top: -14rem; border-radius: 50%; background: radial-gradient(circle, var(--acento-brilho), transparent 65%); }
+.tema-bento .heroi-texto :is(a, button):focus-visible { outline-color: var(--acento); }
+.tema-bento .heroi h1 { font-size: clamp(2.25rem, 3.5vw + 1rem, 3.75rem); }
+.tema-bento .heroi .frase { font-family: var(--grotesca); }
+.tema-bento .heroi .resumo { font-size: 1.0625rem; }
+
+.tema-bento .numeros { display: contents; }
+.tema-bento .numero { justify-content: flex-end; padding: 1.5rem; border: 1px solid var(--borda); border-radius: var(--raio); background: var(--superficie); }
+.tema-bento .numero dd { font: 600 clamp(1.75rem, 1.5vw + 1.1rem, 2.5rem)/1.1 var(--grotesca); color: var(--tinta); white-space: normal; }
+.tema-bento .numero dt { color: var(--tinta-2); font-size: .9375rem; }
+.tema-bento .numero:nth-child(1) { grid-column: 5 / 7; grid-row: 1; border-color: var(--acento); background: var(--acento); }
+.tema-bento .numero:nth-child(1) :is(dd, dt) { color: var(--escuro); }
+.tema-bento .numero:nth-child(2) { grid-column: 5 / 7; grid-row: 2; }
+.tema-bento .numero:nth-child(3) { grid-column: 1 / 3; grid-row: 3; }
+.tema-bento .numero:nth-child(4) { grid-column: 3 / 7; grid-row: 3; }
+
+/* seções: título curto, conteúdo em blocos */
+.tema-bento .secao { padding-top: clamp(3.5rem, 7vw, 5.5rem); }
+.tema-bento .rotulo { color: var(--tinta-3); }
+
+/* projetos: cada projeto é um par de blocos (visual escuro e texto branco) com larguras diferentes,
+   que se alternam de lado; o artigo em si fica sem caixa */
+.tema-bento .projetos { gap: var(--vao); }
+.tema-bento .projeto { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--vao); border: 0; border-radius: 0; background: none; overflow: visible; }
+.tema-bento .projeto:nth-child(even) { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+.tema-bento .projeto:hover { box-shadow: none; }
+.tema-bento .projeto-visual, .tema-bento .projeto-corpo { border-radius: var(--raio); transition: transform .2s, box-shadow .2s; }
+.tema-bento .projeto:hover :is(.projeto-visual, .projeto-corpo) { box-shadow: 0 18px 40px -28px rgb(15 20 25 / .45); }
+.tema-bento .projeto-visual { padding: 2rem; }
+.tema-bento .projeto-visual::before { display: none; }
+.tema-bento .projeto-numero { font-family: var(--grotesca); letter-spacing: -.04em; }
+.tema-bento .projeto-corpo { padding: 2rem; border: 1px solid var(--borda); background: var(--superficie); }
+.tema-bento .projeto h3 { font-size: clamp(1.375rem, 1vw + 1rem, 1.75rem); }
+.tema-bento .mini-trilho, .tema-bento .mini-barra { border-radius: 10px; }
+/* no bloco alto e estreito o print é recortado: ancora no canto de cima à esquerda para o título do painel aparecer inteiro */
+.tema-bento .mini-print { border-radius: 12px; object-position: left top; }
+.tema-bento .etiquetas li { border-radius: 999px; padding-inline: .75rem; }
+
+.tema-bento .experiencia { border-radius: var(--raio); }
+.tema-bento .competencias > li { border-radius: var(--raio); }
+.tema-bento .competencias > li::before { border-radius: 999px; }
+.tema-bento .grafico { border-radius: var(--raio); }
+.tema-bento .fluxo li { border-radius: var(--raio-p); }
+
+/* estudo de caso e 404: o herói escuro vira um bloco arredondado */
+.tema-bento .heroi-projeto { padding-top: 1.5rem; }
+.tema-bento .heroi-projeto > .largura { padding: clamp(2rem, 4vw, 3.5rem); border-radius: var(--raio); background: var(--escuro); color: var(--claro); }
+.tema-bento .heroi-projeto :is(a, button):focus-visible { outline-color: var(--acento); }
+.tema-bento main:has(> .heroi:last-child) + .rodape { margin-top: clamp(4rem, 8vw, 6.5rem); border-top: 0; }
+
+/* rodapé: bloco escuro arredondado, com margem do fundo */
+.tema-bento .rodape { width: min(100% - 2.5rem, var(--largura)); margin-inline: auto; margin-bottom: 1.25rem; padding-inline: clamp(1.5rem, 4vw, 3.5rem); border-radius: var(--raio); }
+.tema-bento .rodape > .largura { width: 100%; }
+
+@media (max-width: 60rem) {
+  .tema-bento .heroi-grade { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tema-bento .heroi-texto { grid-column: 1 / -1; grid-row: auto; }
+  /* quatro números em duas linhas de dois, sem bloco sobrando */
+  .tema-bento .numero:nth-child(n) { grid-column: auto; grid-row: auto; }
+  .tema-bento .projeto, .tema-bento .projeto:nth-child(even) { grid-template-columns: 1fr; }
+}
+@media (max-width: 40rem) {
+  :root.tema-bento { --raio: 20px; --vao: .75rem; }
+  .tema-bento .topo-linha { padding-left: 1rem; }
+  .tema-bento .menu-botao { border-color: var(--borda); color: var(--tinta); }
+  .tema-bento .menu.aberto { top: calc(3.5rem + .5rem); padding: .75rem; border: 1px solid var(--borda); border-radius: 20px; background: var(--superficie); box-shadow: 0 12px 32px -16px rgb(15 20 25 / .35); }
+  .tema-bento .heroi-texto { padding: 1.75rem 1.5rem; }
+  .tema-bento .numero { padding: 1.125rem; gap: .375rem; }
+  .tema-bento .numero dd { font-size: 1.5rem; }
+  .tema-bento .numero dt { font-size: .875rem; }
+  .tema-bento .projeto-visual, .tema-bento .projeto-corpo { padding: 1.5rem; }
+  .tema-bento .rodape { width: min(100% - 1.5rem, var(--largura)); }
+}

@@ -1,7 +1,9 @@
 """Gera, serve e verifica o site do portfólio.
 
-    python site.py build       gera a pasta dist/
-    python site.py serve       gera e serve em http://localhost:8000
+    python site.py build       gera a pasta dist/ com o visual publicado (TEMA_PUBLICADO, hoje a vitrine)
+    python site.py build --tema editorial|painel|bento|misto|vitrine|nenhum
+                               gera dist/ com outra variação de visual, para comparar (nenhum: o visual antigo)
+    python site.py serve       gera e serve em http://localhost:8000 (aceita --tema também)
     python site.py verificar   procura dado sensível em dados/ e dist/ e lista as pendências
     python site.py importar-painel <origem.html> <nome>
                                traz um painel já anonimizado para paineis/<nome>/painel.html
@@ -45,12 +47,29 @@ EMAIL_PERMITIDO = "bessapedro500@gmail.com"
 
 # Cores do gráfico: barras em cinza e a etapa final no tom de destaque, como os cartões da página inicial.
 COR_SERIE = "#9aa1ab"
-COR_DESTAQUE = "#4d7c0f"
+# Mesmo azul do --acento-escuro do site.css (o tom de destaque que funciona no fundo claro).
+COR_DESTAQUE = "#1d4ed8"
 TINTA = "#111418"
 TINTA_SECUNDARIA = "#4a4f57"
 GRADE = "#e3e2dc"
-# Segunda série quando duas medidas dividem o gráfico (validada contra o destaque, inclusive para daltonismo).
-COR_PAR = "#2a78d6"
+# Variações de visual em teste, cada uma num CSS próprio (static/css/tema-<nome>.css) aplicado por cima do site.css.
+# Mesmo conteúdo e mesmos templates; sem --tema o site sai como sempre. cor: theme-color; fonte: a que vale pré-carregar.
+TEMAS = {
+    "editorial": {"cor": "#faf8f3", "fonte": "fraunces-latin-600-normal.woff2"},
+    "painel": {"cor": "#0b0f14", "fonte": "jetbrains-mono-latin-400-normal.woff2"},
+    "bento": {"cor": "#eceef1", "fonte": "space-grotesk-latin-600-normal.woff2"},
+    "misto": {"cor": "#faf8f3", "fonte": "fraunces-latin-600-normal.woff2"},
+    # A vitrine muda a estrutura da página inicial (topo com foto, sobre, áreas de interesse e grade de projetos),
+    # então além do CSS tem moldura (layout) e página inicial (index) próprias; os estudos de caso usam a moldura dela.
+    "vitrine": {"cor": "#ffffff", "fonte": "inter-latin-600-normal.woff2",
+                "layout": "vitrine/base.html", "index": "vitrine/index.html"},
+}
+# O visual que vai para o ar: o build sem --tema usa este, e o Cloudflare Pages roda o build sem --tema.
+TEMA_PUBLICADO = "vitrine"
+SEM_TEMA = "nenhum"
+
+# Segunda série quando duas medidas dividem o gráfico: laranja, o par do azul que segue distinto no daltonismo.
+COR_PAR = "#c2410c"
 # Variação: vermelho para queda, azul para alta, cinza no zero.
 DIVERGENTE = [[0, "#e34948"], [0.5, "#f0efec"], [1, "#2a78d6"]]
 
@@ -227,10 +246,14 @@ def grafico_caso_loja_b(dados, estreito=False):
         rotulo = e["dia"][8:] + "/" + e["dia"][5:7] if estreito else e["rotulo"]
         fig.add_annotation(x=e["dia"], y=1, yref="paper", text=rotulo, showarrow=False, xanchor="left", xshift=4,
                            yanchor="top", font=dict(color=TINTA, size=12), bgcolor="rgba(255,255,255,.85)")
-    fig.update_layout(**layout_base(height=300, bargap=0.25, margin=dict(l=8, r=64 if estreito else 120, t=16, b=36)))
+    # margem de cima para a barra de ferramentas do Plotly (sempre visível em tela de toque) não cobrir os rótulos,
+    # e folga acima da barra mais alta para o rótulo dos eventos não ficar em cima dela
+    fig.update_layout(**layout_base(height=330, bargap=0.25, margin=dict(l=8, r=64 if estreito else 120, t=40, b=36)))
     eixos_discretos(fig, type="date", tickformat="%d/%m", dtick=(14 if estreito else 7) * 86400000, tick0="2026-08-03",
                     tickangle=0)
-    fig.update_yaxes(title=dict(text="pedidos por dia, índice", font=dict(color=TINTA_SECUNDARIA, size=12)))
+    maior = max(p["indice"] for p in pontos if p["indice"] is not None)
+    fig.update_yaxes(title=dict(text="pedidos por dia, índice", font=dict(color=TINTA_SECUNDARIA, size=12)),
+                     range=[0, maior * 1.18])
 
     def media(a, b):
         v = [p["indice"] for p in pontos if a <= p["dia"] <= b and p["indice"] is not None]
@@ -394,22 +417,45 @@ def importar_painel(origem, nome):
     print(f"Painel gravado em {destino.relative_to(RAIZ)} (plotly.js {versao_site} do site)")
 
 
-def publicar_painel(projeto):
-    """Grava o painel do projeto em dist/projetos/<slug>/painel/ com a barra de volta ao estudo de caso."""
+AUTOR_META = re.compile(r'(<meta name="author" content=")[^"]*(")')
+AUTOR_RODAPE = re.compile(r'("autor":\s*")[^"]*(")')
+
+
+def publicar_painel(projeto, nome_autor):
+    """Grava o painel do projeto em dist/projetos/<slug>/painel/ com a barra de volta ao estudo de caso.
+
+    O gerador do painel assina com o nome curto; no site vale o nome completo do perfil,
+    no metadado e no rodapé do painel, igual ao resto das páginas.
+    """
     html = (PAINEIS / projeto["painel"]["nome"] / "painel.html").read_text(encoding="utf-8")
+    for padrao in (AUTOR_META, AUTOR_RODAPE):
+        html, trocas = padrao.subn(lambda m: m.group(1) + nome_autor + m.group(2), html, count=1)
+        if not trocas:
+            sys.exit(f"Não achei o autor no painel ({padrao.pattern}): o formato mudou, confira antes de publicar.")
     barra = BARRA_VOLTAR.format(slug=projeto["slug"])
     html = html.replace("<body>", "<body>\n" + barra, 1)
+    # mesmo favicon das outras páginas
+    if "</head>" not in html:
+        sys.exit("Não achei o </head> no painel: o formato mudou, confira antes de publicar.")
+    html = html.replace("</head>", ambiente().get_template("favicon.html").render() + "</head>", 1)
     escrever(DIST / "projetos" / projeto["slug"] / "painel" / "index.html", html)
 
 
-def build():
+def build(tema=None):
     perfil = carregar_toml(CONTEUDO / "perfil.toml")
     projetos = carregar_projetos()
     env = ambiente()
 
     if DIST.exists():
         shutil.rmtree(DIST)
-    shutil.copytree(STATIC, DIST / "static")
+    # só o CSS do tema escolhido vai para dist/; no build padrão, nenhum
+    css_tema = f"tema-{tema}.css" if tema else None
+    # e as opções de favicon não escolhidas (static/favicon/opcoes/) ficam fora do ar
+    shutil.copytree(STATIC, DIST / "static", ignore=lambda pasta, nomes: [
+        n for n in nomes if (n.startswith("tema-") and n.endswith(".css") and n != css_tema)
+        or (n == "opcoes" and Path(pasta).name == "favicon")])
+    # o navegador pede /favicon.ico na raiz mesmo sem link (leitor de RSS, aba de PDF, versões antigas)
+    shutil.copy2(STATIC / "favicon" / "favicon.ico", DIST / "favicon.ico")
 
     usa_plotly = False
     for p in projetos:
@@ -419,16 +465,18 @@ def build():
     if usa_plotly:
         escrever(DIST / "static" / "vendor" / "plotly.min.js", get_plotlyjs())
 
-    comum = dict(perfil=perfil, projetos=projetos)
-    escrever(DIST / "index.html", env.get_template("index.html").render(**comum, pagina="inicio"))
+    config = TEMAS[tema] if tema else {}
+    comum = dict(perfil=perfil, projetos=projetos, tema=dict(config, nome=tema) if tema else None,
+                 layout=config.get("layout", "base.html"))
+    escrever(DIST / "index.html", env.get_template(config.get("index", "index.html")).render(**comum, pagina="inicio"))
     for p in projetos:
         html = env.get_template("projeto.html").render(**comum, projeto=p, pagina=p["slug"])
         escrever(DIST / "projetos" / p["slug"] / "index.html", html)
         if "painel" in p:
-            publicar_painel(p)
+            publicar_painel(p, perfil["nome"])
     escrever(DIST / "404.html", env.get_template("404.html").render(**comum, pagina="404"))
 
-    print(f"Site gerado em {DIST}")
+    print(f"Site gerado em {DIST}" + (f" (tema {tema})" if tema else ""))
     problemas = verificar_sensiveis(estrito=False)
     if problemas:
         for linha in problemas:
@@ -559,8 +607,8 @@ class Handler(SimpleHTTPRequestHandler):
         super().send_error(code, message, explain)
 
 
-def serve(porta):
-    build()
+def serve(porta, tema=None):
+    build(tema)
     servidor = ThreadingHTTPServer(("127.0.0.1", porta), partial(Handler, directory=str(DIST)))
     print(f"Servindo em http://localhost:{porta} (Ctrl+C para parar)")
     try:
@@ -572,19 +620,23 @@ def serve(porta):
 def main():
     parser = argparse.ArgumentParser(description="Site do portfólio")
     sub = parser.add_subparsers(dest="comando", required=True)
-    sub.add_parser("build", help="gera dist/")
+    build_p = sub.add_parser("build", help="gera dist/")
     serve_p = sub.add_parser("serve", help="gera e serve localmente")
     serve_p.add_argument("--porta", type=int, default=8000)
+    for p in (build_p, serve_p):
+        p.add_argument("--tema", choices=[*sorted(TEMAS), SEM_TEMA], default=TEMA_PUBLICADO,
+                       help=f"variação de visual (padrão: {TEMA_PUBLICADO}, a publicada; {SEM_TEMA}: o visual antigo)")
     sub.add_parser("verificar", help="procura dado sensível e lista pendências")
     imp = sub.add_parser("importar-painel", help="traz um painel HTML já anonimizado para paineis/")
     imp.add_argument("origem", help="arquivo HTML do painel anonimizado")
     imp.add_argument("nome", help="pasta de destino dentro de paineis/")
     args = parser.parse_args()
 
+    tema = None if getattr(args, "tema", None) == SEM_TEMA else getattr(args, "tema", None)
     if args.comando == "build":
-        build()
+        build(tema)
     elif args.comando == "serve":
-        serve(args.porta)
+        serve(args.porta, tema)
     elif args.comando == "importar-painel":
         importar_painel(args.origem, args.nome)
     else:

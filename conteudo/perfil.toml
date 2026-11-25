@@ -2,6 +2,8 @@
 # Fonte dos fatos: curriculo.yaml e REGRAS.md do job-seeker (PLANO.md, secoes 2 e 3.2).
 
 nome = "Pedro Henrique Bessa Maia"
+# nome da marca na barra do topo (o mesmo do dominio e do PDF do CV)
+nome_curto = "Pedro Bessa"
 cargo = "Analista de Dados"
 # PLANO.md 5.2: posicionamento "dados ponta a ponta", logo abaixo do nome
 frase = "Dados ponta a ponta, da coleta ao relatório."
@@ -47,6 +49,50 @@ itens = [
   "Reestruturação do catálogo de mais de 400 produtos a partir dos dados das plataformas, com aumento de 6% a 10% no fundo do funil de conversão.",
   "Acompanhamento de KPIs logísticos, com atrasos e cancelamentos de acima de 4% para menos de 0,83% em mais de 8 restaurantes.",
 ]
+
+# Pagina inicial da v5 (site.py build --tema vitrine).
+[vitrine]
+# imagem de fundo do topo, escurecida pelo CSS; para usar uma foto, ponha o arquivo em static/img/ e troque aqui
+heroi_imagem = "/static/img/heroi-painel.jpg"
+saudacao = "Oi! Sou o Pedro"
+frase_heroi = "Analiso dados de negócio para transformar números soltos em decisões."
+# foto da secao Sobre; vazio: o texto ocupa a secao sozinho
+foto = ""
+areas_titulo = "Áreas de interesse"
+areas_frase = "O que eu gosto de fazer com dados."
+projetos_titulo = "Meus projetos recentes"
+projetos_frase = "Problemas reais de negócio, lidos com dados."
+
+# icone: um dos desenhos de templates/vitrine/icones.html
+[[vitrine.areas]]
+icone = "analise"
+nome = "Análise de dados"
+texto = "Análise de performance e métricas operacionais de mais de 10 operações de restaurante em delivery."
+
+[[vitrine.areas]]
+icone = "painel"
+nome = "BI e dashboards"
+texto = "KPIs, dashboards e relatórios gerenciais em Power BI e em painel web, para quem decide."
+
+[[vitrine.areas]]
+icone = "banco"
+nome = "SQL e NoSQL"
+texto = "Conhecimento em consultas SQL em PostgreSQL, MySQL e SQLite para limpar e validar a base."
+
+[[vitrine.areas]]
+icone = "codigo"
+nome = "Python e automação"
+texto = "Rotinas de extração e carga (ETL) em Python, com carga recorrente em banco de dados."
+
+[[vitrine.areas]]
+icone = "delivery"
+nome = "Delivery iFood com dados"
+texto = "Catálogo de mais de 400 produtos reestruturado, com 6% a 10% a mais no fundo do funil."
+
+[[vitrine.areas]]
+icone = "historia"
+nome = "Storytelling com dados"
+texto = "Relatório em linguagem de negócio, sem termo técnico, que termina num plano de ação."
 
 # Competencias em dois grupos (PLANO.md 5.2, decidido em 04/11/2026).
 [[competencias]]

@@ -1,0 +1,209 @@
+/* Variação 5, vitrine: topo em tela cheia com foto escurecida, menu fino e transparente por cima, saudação grande
+   no centro com um traço colorido e um botão redondo chamando para rolar. Daqui para baixo, fundo claro:
+   "Eu sou" com a foto ao lado, áreas de interesse em grade com ícone fino, projetos em cartões de capa, data,
+   fio e título em caixa alta. Azul e lilás como única cor de destaque, em gradiente nos botões.
+   Vai por cima do site.css, com moldura e página inicial próprias (templates/vitrine, site.py build --tema vitrine).
+   Contraste: tinta 16:1 e tinta-2 7,3:1 no branco; tinta-3 5,1:1 no tom; branco sobre as duas pontas do gradiente
+   acima de 4,8:1; texto do topo sobre a foto escurecida acima de 9:1. */
+
+:root.tema-vitrine {
+  --fundo: #ffffff;
+  --tom: #f8f8fc;
+  --superficie: #ffffff;
+  --borda: #e6e6ee;
+  --tinta: #1c1c24;
+  --tinta-2: #4f505a;
+  --tinta-3: #6a6b75;
+  --etiqueta: #f0f0f6;
+  --acento-escuro: #3d5af1;
+  --acento-escuro-forte: #2c45c9;
+  --lilas: #7c4dff;
+  --lilas-escuro: #5b33d6;
+  --gradiente: linear-gradient(90deg, #3d5af1, #7c4dff);
+  --gradiente-forte: linear-gradient(90deg, #2c45c9, #6236ea);
+  --raio: 6px;
+  --raio-p: 4px;
+  --largura: 70rem;
+  background: var(--fundo);
+}
+
+.tema-vitrine body { background: var(--fundo); color: var(--tinta); }
+.tema-vitrine h1, .tema-vitrine h2, .tema-vitrine h3 { letter-spacing: -.02em; }
+.tema-vitrine :is(.topo, .heroi, .rodape, .destaque) :is(a, button, summary):focus-visible { outline-color: var(--acento-escuro); }
+
+/* ------------------------------------------------------------ topo */
+
+/* sólido: estudos de caso, página inicial depois de rolar, menu aberto no celular e sem JavaScript */
+.tema-vitrine .topo {
+  background: rgb(255 255 255 / .97);
+  border-bottom: 1px solid transparent;
+  box-shadow: 0 6px 24px -12px rgb(28 28 36 / .18);
+  color: var(--tinta);
+  transition: background-color .25s, box-shadow .25s, border-color .25s;
+}
+.tema-vitrine .topo-heroi { position: fixed; left: 0; right: 0; }
+.tema-vitrine .marca { font: 700 1.125rem/1 var(--sans); letter-spacing: -.01em; color: var(--tinta); }
+.tema-vitrine .menu { gap: .375rem; }
+.tema-vitrine .menu a { padding: .4375rem .875rem; font-size: .8125rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--tinta-2); border: 1px solid transparent; }
+.tema-vitrine .menu a:hover { color: var(--tinta); background: var(--etiqueta); }
+.tema-vitrine .menu a.menu-cv { color: var(--lilas-escuro); border-color: var(--lilas); }
+.tema-vitrine .menu a.menu-cv:hover { color: #fff; background: var(--lilas-escuro); border-color: var(--lilas-escuro); }
+
+/* transparente sobre a foto: só no alto da página inicial, com JavaScript */
+.tema-vitrine.js .topo-heroi:not(.rolado):not(:has(.menu.aberto)) {
+  background: transparent;
+  border-bottom-color: rgb(255 255 255 / .22);
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.tema-vitrine.js .topo-heroi:not(.rolado):not(:has(.menu.aberto)) :is(.marca, .menu a, .menu-botao) { color: #fff; }
+.tema-vitrine.js .topo-heroi:not(.rolado):not(:has(.menu.aberto)) .menu a { color: rgb(255 255 255 / .9); }
+.tema-vitrine.js .topo-heroi:not(.rolado):not(:has(.menu.aberto)) .menu a:hover { color: #fff; background: rgb(255 255 255 / .12); }
+.tema-vitrine.js .topo-heroi:not(.rolado):not(:has(.menu.aberto)) .menu a.menu-cv { border-color: transparent; }
+.tema-vitrine.js .topo-heroi:not(.rolado):not(:has(.menu.aberto)) .menu-botao { border-color: rgb(255 255 255 / .5); }
+.tema-vitrine.js .topo-heroi:not(.rolado) :is(a, button):focus-visible { outline-color: #fff; }
+
+/* ------------------------------------------------------------ botões */
+
+.tema-vitrine .botao { border-radius: 3px; border-color: var(--borda); font-size: .875rem; letter-spacing: .04em; text-transform: uppercase; }
+.tema-vitrine .botao:hover { border-color: var(--tinta-3); }
+.tema-vitrine .botao-gradiente, .tema-vitrine .botao-acento, .tema-vitrine .botao-cheio {
+  padding: .8125rem 1.625rem;
+  border: 0;
+  background: var(--gradiente);
+  color: #fff;
+  box-shadow: 0 10px 22px -12px rgb(61 90 241 / .7);
+}
+.tema-vitrine .botao-gradiente:hover, .tema-vitrine .botao-acento:hover, .tema-vitrine .botao-cheio:hover { background: var(--gradiente-forte); }
+/* o e-mail fica em minúsculas, como se digita */
+.tema-vitrine .rodape .botao-gradiente { text-transform: none; letter-spacing: 0; font-size: .9375rem; }
+
+/* ------------------------------------------------------------ capa (tela cheia com foto) */
+
+.capa {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: 6rem 0 4rem;
+  text-align: center;
+  color: #fff;
+  background:
+    linear-gradient(rgb(10 22 48 / .66), rgb(10 22 48 / .76)),
+    var(--heroi-imagem) center / cover no-repeat,
+    #0f1d3a;
+}
+.capa h1 {
+  margin: 0;
+  font-size: clamp(2.5rem, 6vw + 1rem, 4.75rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: .01em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+.traco { display: block; width: 3.25rem; height: 3px; margin: 1.75rem auto; border-radius: 2px; background: var(--gradiente); }
+.capa p { max-width: 36rem; margin: 0 auto 2.25rem; font-size: clamp(1.0625rem, .6vw + .95rem, 1.3125rem); line-height: 1.55; color: rgb(255 255 255 / .9); text-wrap: balance; }
+.botao-rolar {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .9375rem 1.875rem;
+  border-radius: 999px;
+  background: var(--gradiente);
+  color: #fff;
+  font-weight: 700;
+  font-size: .875rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 14px 30px -14px rgb(124 77 255 / .8);
+  transition: transform .15s, box-shadow .15s;
+}
+.botao-rolar:hover { transform: translateY(-2px); box-shadow: 0 18px 34px -14px rgb(124 77 255 / .9); }
+.botao-rolar:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+.botao-rolar svg { animation: descer 1.8s ease-in-out infinite; }
+@keyframes descer { 50% { transform: translateY(3px); } }
+@media (prefers-reduced-motion: reduce) { .botao-rolar svg { animation: none; } }
+
+/* ------------------------------------------------------------ sobre */
+
+.sobre { padding: clamp(4.5rem, 9vw, 7rem) 0; background: var(--tom); }
+.sobre-grade { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2.5rem, 6vw, 5rem); align-items: center; }
+.sobre-eu { margin: 0 0 .25rem; font-weight: 700; font-size: 1.0625rem; }
+.sobre h2 { margin: 0 0 .5rem; font-size: clamp(2.25rem, 2.5vw + 1.25rem, 3rem); }
+.sobre-cargo { margin-bottom: 1.5rem; color: var(--tinta-3); font-size: .9375rem; }
+.sobre-texto p:not(.sobre-eu):not(.sobre-cargo) { max-width: 32rem; color: var(--tinta-2); font-size: 1.0625rem; }
+.sobre-texto .botao { margin-top: .75rem; }
+.sobre-grade.sem-foto { grid-template-columns: minmax(0, 1fr); }
+.sobre-foto { justify-self: end; width: 100%; max-width: 27rem; aspect-ratio: 6 / 7; object-fit: cover; }
+
+/* ------------------------------------------------------------ seções centralizadas */
+
+.secao-centro { padding: clamp(4.5rem, 9vw, 7rem) 0; }
+.secao-tom { background: var(--tom); }
+.secao-cabeca { max-width: 40rem; margin: 0 auto clamp(3rem, 6vw, 4.5rem); text-align: center; }
+.secao-cabeca h2, .rodape h2 { margin: 0 0 .75rem; font-size: clamp(2rem, 1.75vw + 1.25rem, 2.625rem); }
+.secao-frase { margin: 0; color: var(--tinta-2); font-size: 1.0625rem; }
+
+/* áreas de interesse */
+.areas { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3rem); text-align: center; }
+.area-icone { display: block; margin: 0 auto 1.25rem; color: var(--tinta); }
+.areas h3 { margin: 0 0 .625rem; font-size: 1.125rem; font-weight: 700; letter-spacing: -.01em; }
+.areas p { max-width: 20rem; margin: 0 auto; color: var(--tinta-2); font-size: .9375rem; line-height: 1.6; }
+
+/* projetos: três colunas; com menos de três cartões, eles ficam centralizados na mesma largura */
+.cartoes { display: flex; flex-wrap: wrap; justify-content: center; gap: 3rem 2rem; }
+.cartao { flex: 0 1 calc((100% - 4rem) / 3); min-width: 0; }
+.cartao-capa { display: block; aspect-ratio: 16 / 10; overflow: hidden; border: 1px solid var(--borda); background: #fff; }
+.cartao-capa img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top left; transition: transform .35s ease; }
+.cartao:hover .cartao-capa img { transform: scale(1.03); }
+.cartao-data { margin: 1rem 0 0; padding-bottom: 1rem; border-bottom: 1px solid var(--borda); color: var(--tinta-3); font-size: .875rem; }
+.cartao h3 { margin: 1.25rem 0 .625rem; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: .02em; text-transform: uppercase; }
+.cartao h3 a { text-decoration: none; }
+.cartao h3 a:hover { color: var(--acento-escuro); }
+.cartao-texto { margin: 0; color: var(--tinta-2); font-size: .9375rem; line-height: 1.6; }
+
+/* ------------------------------------------------------------ rodapé (contato) */
+
+.tema-vitrine .rodape { margin-top: 0; padding: clamp(4.5rem, 9vw, 6.5rem) 0 2rem; background: var(--fundo); color: var(--tinta); border-top: 1px solid var(--borda); text-align: center; }
+.tema-vitrine .rodape .secao-frase { max-width: 32rem; margin: 0 auto 2.25rem; }
+.tema-vitrine .rodape .links { justify-content: center; }
+.tema-vitrine .rodape-nome { margin-top: clamp(3.5rem, 7vw, 5rem); padding-top: 1.5rem; border-top: 1px solid var(--borda); color: var(--tinta-3); }
+.tema-vitrine main:has(> .heroi:last-child) + .rodape { border-top-color: var(--borda); }
+
+/* ------------------------------------------------------------ estudo de caso e 404: mesmo visual claro */
+
+.tema-vitrine .heroi { background: var(--tom); color: var(--tinta); }
+.tema-vitrine .heroi::before, .tema-vitrine .heroi::after { display: none; }
+.tema-vitrine .rotulo-claro { color: var(--acento-escuro); }
+.tema-vitrine .voltar a { color: var(--tinta-2); }
+.tema-vitrine .voltar a:hover { color: var(--acento-escuro); }
+.tema-vitrine .subtitulo { color: var(--tinta-2); }
+.tema-vitrine .faixa-resultado { background: #fff; border-color: var(--borda); }
+.tema-vitrine .faixa-resultado p { color: var(--tinta-2); }
+.tema-vitrine .faixa-numero { font-family: var(--sans); font-weight: 700; letter-spacing: -.03em; color: var(--acento-escuro) !important; }
+.tema-vitrine .bloco-indice, .tema-vitrine .rotulo { font-family: var(--sans); }
+.tema-vitrine .etiquetas li { background: var(--etiqueta); color: var(--tinta-2); font-family: var(--sans); }
+.tema-vitrine .etiquetas-escuras li { background: #fff; border: 1px solid var(--borda); }
+.tema-vitrine .destaque { background: #f3f0ff; color: var(--tinta); box-shadow: inset 4px 0 0 var(--lilas); }
+.tema-vitrine .pendente-escuro { background: var(--pendente-fundo); border-color: var(--pendente); color: var(--pendente); }
+.tema-vitrine .sumario a:hover { color: var(--acento-escuro); border-left-color: var(--acento-escuro); }
+
+/* ------------------------------------------------------------ telas menores */
+
+@media (max-width: 60rem) {
+  .areas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cartao { flex-basis: calc((100% - 2rem) / 2); }
+}
+
+@media (max-width: 40rem) {
+  .tema-vitrine .menu-botao { border-color: var(--borda); color: var(--tinta); text-transform: uppercase; font-size: .8125rem; font-weight: 600; letter-spacing: .06em; }
+  .tema-vitrine .menu.aberto { background: #fff; border-bottom: 1px solid var(--borda); box-shadow: 0 12px 24px -16px rgb(28 28 36 / .25); }
+  .tema-vitrine .menu.aberto a { padding: .75rem .875rem; font-size: .875rem; }
+  .tema-vitrine .menu.aberto a.menu-cv { margin-top: .25rem; text-align: center; }
+  .sobre-grade { grid-template-columns: 1fr; }
+  .sobre-foto { order: -1; justify-self: center; max-width: 22rem; }
+  .areas { grid-template-columns: 1fr; }
+  .cartao { flex-basis: 100%; }
+}

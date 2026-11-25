@@ -1,0 +1,93 @@
+<!doctype html>
+<!-- Comparativo das 3 opcoes de favicon (favicon/opcoes.py), para print:
+     node prints/print.mjs <chrome> prints/favicon-opcoes.html <saida.png> 1440 projeto
+     Servida da raiz do repositorio. O 16 e o 32 px sao o SVG desenhado num canvas desse tamanho e ampliado sem suavizar,
+     como o navegador faz na aba. -->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Favicon - 3 opcoes de fonte</title>
+<style>
+  @font-face { font-family: Inter; src: url(/static/fonts/inter-latin-400-normal.woff2) format("woff2"); font-weight: 400; }
+  @font-face { font-family: Inter; src: url(/static/fonts/inter-latin-600-normal.woff2) format("woff2"); font-weight: 600; }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 48px 56px 56px; font: 400 14px/1.4 Inter, system-ui, sans-serif; color: #1c1c24; background: #f8f8fc; }
+  h1 { margin: 0 0 6px; font-size: 26px; font-weight: 600; letter-spacing: -.02em; }
+  .sub { margin: 0 0 32px; color: #4f505a; font-size: 15px; }
+  .opcoes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .opcao { background: #fff; border: 1px solid #e3e3ec; border-radius: 16px; padding: 24px; display: grid; gap: 20px; justify-items: start; }
+  .titulo { display: flex; align-items: center; gap: 12px; }
+  .numero { width: 40px; height: 40px; border-radius: 50%; background: #0f1d3a; color: #fff; font-size: 20px; font-weight: 600; display: grid; place-items: center; }
+  .titulo h2 { margin: 0; font-size: 20px; font-weight: 600; }
+  .titulo small { display: block; color: #6a6b75; font-size: 12px; font-weight: 400; }
+  .grande { width: 220px; height: 220px; display: block; }
+  .pixels { display: flex; gap: 20px; align-items: flex-end; }
+  figure { margin: 0; display: grid; gap: 8px; }
+  figcaption { font-size: 12px; color: #4f505a; }
+  canvas { display: block; image-rendering: pixelated; }
+  /* xadrez atrás das ampliações: os cantos arredondados são transparentes */
+  .pixels canvas { background: repeating-conic-gradient(#e2e2ea 0 25%, #ffffff 0 50%) 0 0 / 16px 16px; }
+  .tira { width: 100%; display: flex; align-items: flex-end; height: 40px; padding: 0 10px; border-radius: 10px; }
+  .tira.clara { background: #dee1e6; }
+  .tira.escura { background: #1f1f1f; }
+  .aba { display: flex; align-items: center; gap: 8px; width: 150px; height: 32px; padding: 0 12px; border-radius: 10px 10px 0 0; font-size: 12px; background: #fff; color: #1f1f1f; white-space: nowrap; overflow: hidden; }
+  .tira.escura .aba { background: #3c3c3c; color: #e8eaed; }
+  .aba span { overflow: hidden; text-overflow: ellipsis; }
+  .aba canvas { flex: none; }
+  .abas { width: 100%; display: grid; gap: 10px; }
+</style>
+</head>
+<body>
+<h1>Favicon "pb": 3 opções de fonte</h1>
+<p class="sub">Mesmo azul-marinho e mesmo azul e lilás do site; as hastes do p (desce) e do b (sobe) como duas barras de gráfico. Letras em contorno, sem depender de fonte instalada.</p>
+<div class="opcoes" id="opcoes"></div>
+
+<script>
+  const OPCOES = [
+    { n: 1, pasta: '1-space-grotesk', nome: 'Space Grotesk', tipo: 'sans, a dos títulos do site' },
+    { n: 2, pasta: '2-fraunces', nome: 'Fraunces', tipo: 'serifada, a do nome no topo' },
+    { n: 3, pasta: '3-jetbrains-mono', nome: 'JetBrains Mono', tipo: 'monoespaçada, a dos números do site' },
+  ];
+  // o SVG ganha largura e altura do tamanho final, para o Chromium rasterizar direto nele (como na aba)
+  async function carregar(src, lado) {
+    const texto = (await (await fetch(src)).text()).replace('<svg ', `<svg width="${lado}" height="${lado}" `);
+    return new Promise((ok, erro) => {
+      const i = new Image(); i.onload = () => ok(i); i.onerror = erro;
+      i.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(texto);
+    });
+  }
+  // desenha o SVG num canvas de "lado" px reais e mostra ampliado "zoom" vezes, sem suavizar
+  function pixel(img, lado, zoom) {
+    const c = document.createElement('canvas');
+    c.width = lado; c.height = lado;
+    c.getContext('2d').drawImage(img, 0, 0, lado, lado);
+    c.style.width = c.style.height = lado * zoom + 'px';
+    return c;
+  }
+  // a aba do print sai em tela 2x: o favicon de 16 px css ocupa 32 px reais, como num notebook com tela de alta densidade
+  window.pronto = (async () => {
+    const raiz = document.getElementById('opcoes');
+    for (const o of OPCOES) {
+      const base = `/static/favicon/opcoes/${o.pasta}/`;
+      const [i32, i16] = await Promise.all([carregar(base + 'favicon.svg', 32), carregar(base + 'favicon-16.svg', 16)]);
+      const el = document.createElement('section');
+      el.className = 'opcao';
+      el.innerHTML = `<div class="titulo"><span class="numero">${o.n}</span><h2>${o.nome}<small>${o.tipo}</small></h2></div>
+        <img class="grande" src="${base}favicon.svg" alt="">
+        <div class="pixels"><figure class="f16"><figcaption>16 px, pixel a pixel</figcaption></figure>
+        <figure class="f32"><figcaption>32 px, pixel a pixel</figcaption></figure></div>
+        <div class="abas"><figcaption>Na aba, tamanho real (16 px na tela comum e 32 px na de alta densidade)</figcaption>
+        <div class="tira clara"><div class="aba c16"><span>16 px · Pedro Bessa</span></div><div class="aba c32"><span>32 px · Pedro Bessa</span></div></div>
+        <div class="tira escura"><div class="aba c16"><span>16 px · Pedro Bessa</span></div><div class="aba c32"><span>32 px · Pedro Bessa</span></div></div></div>`;
+      el.querySelector('.f16').prepend(pixel(i16, 16, 8));
+      el.querySelector('.f32').prepend(pixel(i32, 32, 4));
+      // tela comum: 16 px reais, mostrados em 16 css (que no print 2x viram 32 px, cada pixel dobrado)
+      el.querySelectorAll('.c16').forEach((a) => a.prepend(pixel(i16, 16, 1)));
+      // alta densidade: 32 px reais em 16 css
+      el.querySelectorAll('.c32').forEach((a) => a.prepend(pixel(i32, 32, 0.5)));
+      raiz.append(el);
+    }
+  })();
+</script>
+</body>
+</html>

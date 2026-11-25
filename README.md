@@ -20,6 +20,9 @@ Outros comandos:
 
 - `python site.py build`: só gera a pasta `dist/`.
 - `python site.py importar-painel <origem.html> <nome>`: traz um painel HTML já anonimizado para `paineis/<nome>/`, troca o plotly.js embutido pelo do site e recusa o arquivo se achar dado sensível.
+- `python favicon/opcoes.py` e depois `node favicon/gerar.mjs <caminho do chrome>`: refazem o favicon (monograma "pb" em JetBrains Mono).
+  O primeiro grava os SVG (precisa de `pip install fonttools brotli`), o segundo gera no Chromium os PNG de 32 e 180 px e o `favicon.ico` em `static/favicon/`.
+  O build copia o `favicon.ico` também para a raiz do `dist/`.
 - `python site.py verificar`: procura em `dados/`, `conteudo/`, `paineis/`, `static/` e `dist/` CPF, CNPJ, telefone, e-mail de terceiros e os termos da lista de proibidos, e lista o que ainda está pendente.
 
 A lista de termos proibidos e o de-para da anonimização ficam fora do repositório.
@@ -52,7 +55,7 @@ Para ligar o Cloudflare (uma vez):
 2. Configuração do build:
    - Production branch: `main`
    - Framework preset: None
-   - Build command: `pip install -r requirements.txt && python site.py build`
+   - Build command: `pip install -r requirements.txt && python site.py build` (sai o visual publicado, `TEMA_PUBLICADO` no `site.py`, hoje a vitrine)
    - Build output directory: `dist`
 3. Save and Deploy. O endereço sai como `<nome-do-projeto>.pages.dev`.
 4. Domínio próprio: em Custom domains no projeto do Pages.

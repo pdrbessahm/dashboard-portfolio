@@ -1,6 +1,8 @@
 // Print de pagina inteira via CDP no Chromium do cache do Playwright.
-// Uso: node prints/print.mjs <chrome> <pagina dentro de dist/, ex.: index.html> <saida.png> [largura] [projeto]
-// Com "projeto" no fim, a pagina e relativa a raiz do repositorio (ex.: prototipo/sequencial.html).
+// Uso: node prints/print.mjs <chrome> <pagina dentro de dist/, ex.: index.html> <saida.png> [largura] [projeto|dist] [altura] [seletor]
+// Com "projeto", a pagina e relativa a raiz do repositorio (ex.: prototipo/sequencial.html); "dist" e o padrao.
+// Com "altura", captura so essa faixa do alto da pagina (ex.: 200 para conferir a barra do topo); 0 = sem limite.
+// Com "seletor" (CSS), captura so a area que cobre os elementos encontrados (ex.: ".topo, .heroi" ou "#projetos").
 // Largura padrao 390 (celular); a partir de 1024 (ex.: 1440) emula desktop, sem toque.
 // Serve dist/ por HTTP: o site usa caminhos absolutos (/static/...), que nao funcionam em file://.
 import { spawn } from 'node:child_process';
@@ -10,13 +12,13 @@ import { tmpdir } from 'node:os';
 import { dirname, extname, join, normalize, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const [chrome, pagina, saida, larguraArg, raizArg] = process.argv.slice(2);
+const [chrome, pagina, saida, larguraArg, raizArg, alturaArg, seletor] = process.argv.slice(2);
 // raiz opcional: "projeto" serve a raiz do repositorio (para o prototipo/, que usa ../static/)
 const RAIZ = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const DIST = raizArg === 'projeto' ? RAIZ : join(RAIZ, 'dist');
 const TIPOS = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript',
-  '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.pdf': 'application/pdf',
-  '.woff2': 'font/woff2' };
+  '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.pdf': 'application/pdf',
+  '.woff2': 'font/woff2', '.ico': 'image/x-icon' };
 const servidor = createServer((req, res) => {
   let caminho = normalize(decodeURIComponent(new URL(req.url, 'http://x').pathname));
   if (caminho.endsWith('/')) caminho += 'index.html';
@@ -88,10 +90,23 @@ await cdp('Runtime.evaluate', { awaitPromise: true, expression: `Promise.all([..
 await new Promise((ok) => setTimeout(ok, 800));
 
 const { cssContentSize } = await cdp('Page.getLayoutMetrics');
-const altura = Math.ceil(cssContentSize.height);
+// faixa vertical a capturar: a pagina toda ou, com seletor, do topo do primeiro elemento ao fim do ultimo
+let topo = 0, fim = Math.ceil(cssContentSize.height);
+if (seletor) {
+  const { result } = await cdp('Runtime.evaluate', { returnByValue: true, expression: `(() => {
+    const els = [...document.querySelectorAll(${JSON.stringify(seletor)})];
+    if (!els.length) return null;
+    const r = els.map((el) => el.getBoundingClientRect());
+    return [Math.min(...r.map((x) => x.top)) + scrollY, Math.max(...r.map((x) => x.bottom)) + scrollY];
+  })()` });
+  if (!result.value) throw new Error(`nenhum elemento para o seletor ${seletor}`);
+  [topo, fim] = [Math.floor(result.value[0]), Math.ceil(result.value[1])];
+}
+const limite = Number(alturaArg) > 0 ? Number(alturaArg) : Infinity;
+const altura = Math.min(fim - topo, limite);
 const { data } = await cdp('Page.captureScreenshot', {
   format: 'png', captureBeyondViewport: true,
-  clip: { x: 0, y: 0, width: LARGURA, height: altura, scale: 1 },
+  clip: { x: 0, y: topo, width: LARGURA, height: altura, scale: 1 },
 });
 writeFileSync(saida, Buffer.from(data, 'base64'));
 console.log(`ok: ${saida} (${LARGURA}x${altura} css, escala ${ESCALA}, largura do conteudo ${Math.ceil(cssContentSize.width)})`);

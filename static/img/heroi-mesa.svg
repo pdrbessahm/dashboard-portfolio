@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+  <!-- Imagem provisoria do topo: mesa de madeira com notebook, celular e caneca, desfocada.
+       Para trocar por uma foto, mude heroi_imagem em conteudo/perfil.toml. -->
+  <defs>
+    <linearGradient id="parede" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3a2f2a"/>
+      <stop offset="1" stop-color="#5a4334"/>
+    </linearGradient>
+    <linearGradient id="madeira" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6b4a32"/>
+      <stop offset=".5" stop-color="#8a5f3e"/>
+      <stop offset="1" stop-color="#4e3424"/>
+    </linearGradient>
+    <linearGradient id="tampa" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c9ccd1"/>
+      <stop offset="1" stop-color="#8d9299"/>
+    </linearGradient>
+    <linearGradient id="base" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#d9dbdf"/>
+      <stop offset="1" stop-color="#a7abb2"/>
+    </linearGradient>
+    <linearGradient id="tela" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1c2633"/>
+      <stop offset="1" stop-color="#0e141c"/>
+    </linearGradient>
+    <filter id="desfoque" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+    <pattern id="veios" width="240" height="40" patternUnits="userSpaceOnUse" patternTransform="rotate(-8)">
+      <path d="M0 20 C60 8 120 32 240 18" fill="none" stroke="#3d2819" stroke-opacity=".35" stroke-width="3"/>
+      <path d="M0 36 C80 28 160 40 240 34" fill="none" stroke="#a8784f" stroke-opacity=".25" stroke-width="2"/>
+    </pattern>
+  </defs>
+  <g filter="url(#desfoque)">
+    <rect width="1600" height="1000" fill="url(#parede)"/>
+    <!-- tampo da mesa em perspectiva -->
+    <path d="M0 430 L1600 360 L1600 1000 L0 1000 Z" fill="url(#madeira)"/>
+    <path d="M0 430 L1600 360 L1600 1000 L0 1000 Z" fill="url(#veios)"/>
+    <!-- luz da janela -->
+    <ellipse cx="1180" cy="420" rx="620" ry="260" fill="#f3d9b5" fill-opacity=".18"/>
+    <!-- caneca ao fundo -->
+    <ellipse cx="250" cy="430" rx="110" ry="26" fill="#1b1411" fill-opacity=".6"/>
+    <rect x="150" y="250" width="200" height="180" rx="18" fill="#2b211c"/>
+    <ellipse cx="250" cy="252" rx="100" ry="22" fill="#3b2d25"/>
+    <path d="M350 300 q70 10 60 70 q-8 40 -60 40" fill="none" stroke="#2b211c" stroke-width="22"/>
+    <!-- notebook: tela -->
+    <path d="M520 470 L700 160 L1500 120 L1500 470 Z" fill="url(#tampa)"/>
+    <path d="M560 455 L725 180 L1480 142 L1480 455 Z" fill="url(#tela)"/>
+    <!-- grafico de barras na tela -->
+    <g fill="#5e8fd6" fill-opacity=".75">
+      <rect x="820" y="330" width="60" height="100"/>
+      <rect x="910" y="290" width="60" height="140"/>
+      <rect x="1000" y="250" width="60" height="180"/>
+      <rect x="1090" y="300" width="60" height="130"/>
+      <rect x="1180" y="220" width="60" height="210" fill="#a78bfa"/>
+    </g>
+    <!-- notebook: teclado -->
+    <path d="M330 760 L520 470 L1600 470 L1600 820 Z" fill="url(#base)"/>
+    <path d="M520 540 L600 490 L1520 490 L1560 560 Z" fill="#2d3138" fill-opacity=".85"/>
+    <path d="M470 620 L540 570 L1560 570 L1590 640 Z" fill="#2d3138" fill-opacity=".7"/>
+    <path d="M760 720 L790 670 L1180 670 L1200 720 Z" fill="#b5b9bf"/>
+    <!-- celular -->
+    <g transform="rotate(-14 330 830)">
+      <rect x="170" y="700" width="330" height="190" rx="28" fill="#121417"/>
+      <rect x="190" y="716" width="290" height="158" rx="14" fill="#1d2127"/>
+    </g>
+  </g>
+</svg>

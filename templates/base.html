@@ -1,24 +1,28 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR"{% if tema %} class="tema-{{ tema.nome }}"{% endif %}>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block titulo %}{{ perfil.nome }} - {{ perfil.cargo }}{% endblock %}</title>
   <meta name="description" content="{% block descricao %}{{ perfil.resumo[0] }}{% endblock %}">
   <meta name="author" content="{{ perfil.nome }}">
-  <meta name="theme-color" content="#0d1014">
+  <meta name="theme-color" content="{{ tema.cor if tema else '#0d1014' }}">
+{% include "favicon.html" %}
   <link rel="preload" href="/static/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/static/fonts/inter-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  {% if tema %}
+  <link rel="preload" href="/static/fonts/{{ tema.fonte }}" as="font" type="font/woff2" crossorigin>
+  {% endif %}
   <link rel="stylesheet" href="/static/css/site.css">
+  {% if tema %}
+  <link rel="stylesheet" href="/static/css/tema-{{ tema.nome }}.css">
+  {% endif %}
 </head>
 <body class="pagina-{{ pagina }}">
   <a class="pular" href="#conteudo">Pular para o conteúdo</a>
   <header class="topo">
     <div class="largura topo-linha">
-      <a class="marca" href="/" aria-label="{{ perfil.nome }}, início">
-        <span class="marca-sigla" aria-hidden="true">PB</span>
-        <span class="marca-nome">{{ perfil.nome }}</span>
-      </a>
+      <a class="marca" href="/" aria-label="{{ perfil.nome_curto }}, início">{{ perfil.nome_curto }}</a>
       <button class="menu-botao" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
       <nav id="menu" class="menu" aria-label="Principal">
         <a href="/#projetos"{% if pagina == "inicio" %} aria-current="page"{% endif %}>Projetos</a>

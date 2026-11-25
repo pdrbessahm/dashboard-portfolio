@@ -1,0 +1,18 @@
+{# Ícones de traço fino das áreas de interesse (24x24, cor do texto). #}
+{% macro icone(nome) %}
+<svg class="area-icone" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  {% if nome == "analise" %}
+  <rect x="3.5" y="3.5" width="17" height="17" rx="1.5"/><path d="M8 16.5v-4M12 16.5v-9M16 16.5v-6.5"/>
+  {% elif nome == "painel" %}
+  <rect x="2.5" y="4" width="19" height="13" rx="1.5"/><path d="M8.5 20.5h7M12 17v3.5"/><path d="M6 13.5l3.5-3.5 3 2.5L18 7.5"/>
+  {% elif nome == "banco" %}
+  <ellipse cx="12" cy="5.5" rx="7.5" ry="2.5"/><path d="M4.5 5.5v13c0 1.4 3.4 2.5 7.5 2.5s7.5-1.1 7.5-2.5v-13"/><path d="M4.5 12c0 1.4 3.4 2.5 7.5 2.5s7.5-1.1 7.5-2.5"/>
+  {% elif nome == "codigo" %}
+  <path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 4.5l-3 15"/>
+  {% elif nome == "delivery" %}
+  <path d="M5 8.5h14l-1 12H6l-1-12z"/><path d="M9 11V7a3 3 0 0 1 6 0v4"/>
+  {% elif nome == "historia" %}
+  <path d="M4 4.5h16v11.5H9.5L5 19.5V16H4z"/><path d="M8.5 12.5v-2M12 12.5v-5M15.5 12.5v-3.5"/>
+  {% endif %}
+</svg>
+{% endmacro %}

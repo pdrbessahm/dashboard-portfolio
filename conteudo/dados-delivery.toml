@@ -19,6 +19,9 @@ fiz = "Defini as regras de negócio, os KPIs e as regras de qualidade de um flux
 ferramentas = ["Painel do iFood", "KPIs", "Relatório", "Python", "pandas", "Plotly"]
 resultado_numero = "+27,2%"
 resultado = "Loja B (marmitaria): +27,2% de faturamento em set contra ago, num mês sem anúncio, depois da reordenação da vitrine."
+# v5: periodo dos dados e capa do cartao (print do grafico da Loja B desta pagina)
+data = "jun a out de 2026"
+capa = "/static/img/dados-delivery-capa.png"
 
 # Mini grafico do cartao (indice, ago = 100): o mesmo numero do resultado, sem valor absoluto.
 [cartao.visual]
@@ -152,7 +155,7 @@ dados = "lojas.json"
 [[graficos]]
 id = "caso-loja-b"
 titulo = "Loja B: pedidos por dia aberto em ago e set"
-descricao = "Pedidos de cada dia aberto em índice (média de ago por dia aberto = 100), com as duas mudanças de vitrine marcadas. Dia sem barra é dia fechado. Em verde, os 9 dias depois da reordenação."
+descricao = "Pedidos de cada dia aberto em índice (média de ago por dia aberto = 100), com as duas mudanças de vitrine marcadas. Dia sem barra é dia fechado. Em azul, os 9 dias depois da reordenação."
 dados = "lojas.json"
 
 [[graficos]]

@@ -1,0 +1,116 @@
+/* Variação 2, painel/terminal: cara de dashboard de dados, fundo escuro, JetBrains Mono predominante,
+   números do topo em fileira de KPIs e projetos em grade de cartões com a métrica em destaque.
+   Vai por cima do site.css (site.py build --tema painel). As cores "claras" do site.css viram escuras aqui.
+   Contraste contra o cartão #111820: tinta 15,2:1, tinta-2 8,5:1, tinta-3 5,5:1, azul 7,6:1. */
+
+:root.tema-painel {
+  --fundo: #0b0f14;
+  --superficie: #111820;
+  --borda: #233040;
+  --tinta: #e6edf3;
+  --tinta-2: #b0bac6;
+  --tinta-3: #8693a3;
+  --etiqueta: #18222e;
+  --escuro: #0b0f14;
+  --escuro-2: #111820;
+  --escuro-borda: #233040;
+  --claro: #e6edf3;
+  --claro-2: #b0bac6;
+  --acento-escuro: #5eadff;
+  --acento-escuro-forte: #8ccaff;
+  --acento-borda: #3b6ea3;
+  --ok: #4ade80;
+  --raio: 8px;
+  --raio-p: 6px;
+  --largura: 80rem;
+  background: var(--fundo);
+}
+
+.tema-painel body { font: 400 .9375rem/1.65 var(--mono); }
+.tema-painel h1, .tema-painel h2, .tema-painel h3 { font-family: var(--mono); font-weight: 600; letter-spacing: -.02em; }
+.tema-painel h1 { font-size: clamp(2rem, 3.5vw + 1rem, 3.5rem); letter-spacing: -.045em; }
+.tema-painel h2 { font-size: clamp(1.375rem, 1.5vw + 1rem, 1.875rem); }
+.tema-painel .rotulo { color: var(--tinta-3); letter-spacing: .08em; }
+.tema-painel .rotulo::before { content: "// " / ""; color: var(--acento); }
+.tema-painel .rotulo-claro::before { color: var(--tinta-3); }
+
+/* topo: barra de status */
+.tema-painel .topo { background: rgb(11 15 20 / .96); border-bottom-color: var(--borda); }
+.tema-painel .marca::before { content: "> " / ""; color: var(--acento); }
+.tema-painel .menu a { border-radius: var(--raio-p); font-weight: 400; }
+.tema-painel .menu-botao { border-radius: var(--raio-p) !important; font-family: var(--mono) !important; }
+
+.tema-painel .botao { border-radius: var(--raio-p); font-weight: 600; font-size: .875rem; background: transparent; color: var(--tinta); }
+.tema-painel .botao:hover { border-color: var(--tinta-3); }
+.tema-painel .botao-cheio, .tema-painel .botao-acento { background: var(--acento); border-color: var(--acento); color: var(--escuro); }
+.tema-painel .botao-cheio:hover, .tema-painel .botao-acento:hover { background: var(--acento-forte); border-color: var(--acento-forte); }
+.tema-painel .etiquetas li { border-radius: 4px; border: 1px solid var(--borda); background: var(--etiqueta); color: var(--tinta-2); }
+
+/* herói: painel com cabeçalho, texto de um lado e KPIs numa fileira embaixo */
+.tema-painel .heroi { padding: clamp(2.5rem, 5vw, 4rem) 0 clamp(2.5rem, 5vw, 3.5rem); border-bottom: 1px solid var(--borda); }
+.tema-painel .heroi::before { background-size: 32px 32px; -webkit-mask-image: linear-gradient(#000, transparent 85%); mask-image: linear-gradient(#000, transparent 85%); }
+.tema-painel .heroi::after { display: none; }
+.tema-painel .heroi-grade { grid-template-columns: 1fr; gap: 2.5rem; }
+.tema-painel .heroi-texto { max-width: 52rem; }
+.tema-painel .heroi .rotulo-claro { display: inline-flex; align-items: center; gap: .5rem; padding: .25rem .625rem; border: 1px solid var(--borda); border-radius: 4px; background: var(--superficie); color: var(--tinta-2); letter-spacing: .04em; }
+.tema-painel .heroi .rotulo-claro::before { content: "" / ""; width: .5rem; height: .5rem; border-radius: 50%; background: var(--ok); }
+.tema-painel .heroi h1::after { content: "_" / ""; color: var(--acento); animation: piscar 1.1s steps(1) infinite; }
+@keyframes piscar { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .tema-painel .heroi h1::after { animation: none; } }
+.tema-painel .heroi .frase { font: 600 1.125rem/1.4 var(--mono); }
+.tema-painel .heroi .resumo { font: 400 1rem/1.7 var(--sans); max-width: 46rem; }
+
+.tema-painel .numeros { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; border: 0; border-radius: 0; background: none; overflow: visible; }
+.tema-painel .numero { gap: .75rem; padding: 1.25rem; border: 1px solid var(--borda); border-radius: var(--raio); background: var(--superficie); box-shadow: inset 0 2px 0 var(--borda); }
+.tema-painel .numero:first-child { box-shadow: inset 0 2px 0 var(--acento); }
+.tema-painel .numero dd { font-size: clamp(1.5rem, 1.2vw + 1rem, 2rem); white-space: normal; }
+.tema-painel .numero dt { font-size: .8125rem; color: var(--tinta-2); }
+
+/* seções e projetos: grade de cartões, métrica em cima */
+.tema-painel .secao { padding-top: clamp(3rem, 6vw, 4.5rem); }
+.tema-painel .secao-topo { max-width: none; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px dashed var(--borda); }
+.tema-painel .projetos { grid-template-columns: repeat(auto-fit, minmax(min(100%, 30rem), 1fr)); gap: 1rem; }
+.tema-painel .projeto,
+.tema-painel .projeto:nth-child(even) { grid-template-columns: 1fr; grid-row: span 2; grid-template-rows: subgrid; gap: 0; border-radius: var(--raio); background: var(--superficie); }
+.tema-painel .projeto:hover { border-color: var(--acento-borda); box-shadow: 0 0 0 1px var(--acento-borda); }
+.tema-painel .projeto:nth-child(even) .projeto-visual { order: 0; }
+.tema-painel .projeto-visual { gap: 1.25rem; padding: 1.5rem; border-bottom: 1px solid var(--borda); background: var(--fundo); }
+.tema-painel .projeto-visual::before { background-image: linear-gradient(rgb(255 255 255 / .035) 1px, transparent 1px); background-size: 100% 25%; }
+.tema-painel .projeto-numero { font-size: clamp(2.5rem, 2vw + 1.75rem, 3.25rem); }
+.tema-painel .projeto-corpo { padding: 1.5rem; }
+.tema-painel .projeto-indice::before { content: "projeto " / ""; }
+.tema-painel .projeto h3 { font-size: 1.25rem; }
+.tema-painel .resultado { font-size: .9375rem; color: var(--tinta-2); }
+.tema-painel .projeto-dl { border-top-style: dashed; }
+.tema-painel .projeto-dl dd { font: 400 .9375rem/1.6 var(--sans); color: var(--tinta-2); }
+/* subgrid acima: visual e texto de cartões vizinhos dividem a mesma altura de linha; o visual preenche a sua */
+.tema-painel .projeto-visual .mini-barras { min-height: 11rem; }
+.tema-painel .projeto-visual .mini-print { flex: none; height: 14rem; aspect-ratio: auto; border-color: var(--borda); }
+
+.tema-painel .experiencia { border-radius: var(--raio); }
+.tema-painel .contexto, .tema-painel .lista { font-family: var(--sans); font-size: 1rem; }
+.tema-painel .lista li::before { background: var(--acento); }
+.tema-painel .competencias > li { border-radius: var(--raio); }
+.tema-painel .competencias > li::before { background: var(--acento); }
+
+/* estudo de caso: texto corrido em Inter para leitura; gráficos ficam em cartão claro, nas cores para fundo claro */
+.tema-painel .estudo-texto { font: 400 1.0625rem/1.7 var(--sans); }
+.tema-painel .estudo-texto h2, .tema-painel .estudo-texto h3 { font-family: var(--mono); }
+.tema-painel .faixa-resultado { background: var(--superficie); }
+.tema-painel .destaque { background: var(--superficie); border: 1px solid var(--borda); }
+.tema-painel .grafico { --tinta: #111418; --tinta-2: #4a4f57; --tinta-3: #6c717a; --borda: #e3e2dc; --superficie: #ffffff; --acento-escuro: #1d4ed8; background: #fff; color: var(--tinta); }
+.tema-painel .painel-print a { border-color: var(--borda); }
+
+.tema-painel .rodape { border-top: 1px solid var(--borda); }
+
+@media (max-width: 60rem) {
+  .tema-painel .numeros { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 40rem) {
+  .tema-painel .numeros { gap: .625rem; }
+  .tema-painel .numero { padding: 1rem; }
+  .tema-painel .numero dd { font-size: 1.375rem; }
+  .tema-painel .projeto-visual, .tema-painel .projeto-corpo { padding: 1.25rem; }
+  .tema-painel .projeto-visual .mini-barras { min-height: 0; }
+  .tema-painel .projeto-visual .mini-print { height: auto; aspect-ratio: 1400 / 600; }
+}

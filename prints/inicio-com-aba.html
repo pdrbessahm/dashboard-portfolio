@@ -1,0 +1,44 @@
+<!doctype html>
+<!-- Pagina inicial no celular com a aba do navegador mostrando o favicon, para print:
+     node prints/print.mjs <chrome> prints/inicio-com-aba.html <saida.png> 390 projeto
+     O Chromium sem tela nao desenha abas: a faixa de cima e uma moldura simulada, a pagina abaixo e a real de dist/.
+     Servida da raiz do repositorio: dentro do iframe, /static/ e o mesmo static/ que o build copia. Rode o build antes. -->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pagina inicial com aba - conferencia</title>
+<style>
+  @font-face { font-family: Inter; src: url(/static/fonts/inter-latin-400-normal.woff2) format("woff2"); font-weight: 400; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 400 13px/1.4 Inter, system-ui, sans-serif; background: #ffffff; }
+  .abas { display: flex; align-items: flex-end; gap: 2px; height: 40px; padding: 0 8px; background: #dee1e6; }
+  .aba { display: flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px; border-radius: 10px 10px 0 0; font-size: 12px; color: #3c4043; white-space: nowrap; overflow: hidden; }
+  .aba img { width: 16px; height: 16px; flex: none; }
+  .aba span { overflow: hidden; text-overflow: ellipsis; }
+  .aba.ativa { flex: 1; min-width: 0; background: #ffffff; color: #1f1f1f; }
+  .aba.mais { width: 32px; justify-content: center; padding: 0; color: #5f6368; font-size: 18px; }
+  iframe { display: block; width: 390px; height: 804px; border: 0; }
+</style>
+</head>
+<body>
+  <div class="abas">
+    <div class="aba ativa"><img src="/static/favicon/favicon.svg" alt=""><span>Pedro Henrique Bessa Maia - Analista de Dados</span></div>
+    <div class="aba mais">+</div>
+  </div>
+  <!-- O iframe comeca com a altura da tela do celular menos a aba (844 - 40) e depois cresce ate a altura
+       da pagina, para o print pegar a pagina inteira. Antes de crescer, a capa (min-height em vh, que dentro
+       do iframe segue a altura dele) fica presa na altura de uma tela, senao ela cresceria junto. -->
+  <iframe src="/dist/index.html" title="Página inicial" onload="crescer(this)"></iframe>
+  <script>
+    function crescer(quadro) {
+      const doc = quadro.contentDocument;
+      const capa = doc.querySelector('.capa');
+      if (capa) capa.style.minHeight = capa.offsetHeight + 'px';
+      // o print.mjs so força o carregamento das imagens lazy da pagina de fora, nao das do iframe
+      for (const img of doc.images) img.loading = 'eager';
+      quadro.style.height = doc.documentElement.scrollHeight + 'px';
+    }
+  </script>
+</body>
+</html>

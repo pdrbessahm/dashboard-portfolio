@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-BR" class="tema-vitrine">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block titulo %}{{ perfil.nome }} - {{ perfil.cargo }}{% endblock %}</title>
+  <meta name="description" content="{% block descricao %}{{ perfil.resumo[0] }}{% endblock %}">
+  <meta name="author" content="{{ perfil.nome }}">
+  <meta name="theme-color" content="{{ tema.cor }}">
+{% include "favicon.html" %}
+  <link rel="preload" href="/static/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/static/fonts/inter-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/static/fonts/{{ tema.fonte }}" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/static/css/site.css">
+  <link rel="stylesheet" href="/static/css/tema-vitrine.css">
+  {# com JavaScript, o topo da página inicial começa transparente sobre a foto e fica sólido ao rolar;
+     sem ele, fica sólido o tempo todo para continuar legível #}
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body class="pagina-{{ pagina }}">
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+  <header class="topo{% if pagina == 'inicio' %} topo-heroi{% endif %}">
+    <div class="largura topo-linha">
+      <a class="marca" href="/" aria-label="{{ perfil.nome_curto }}, início">{{ perfil.nome_curto }}</a>
+      <button class="menu-botao" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+      <nav id="menu" class="menu" aria-label="Principal">
+        <a href="/#sobre">Sobre</a>
+        <a href="/#projetos">Projetos</a>
+        <a class="menu-cv" href="{{ perfil.cv }}">Currículo</a>
+        <a href="/#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+{% block conteudo %}{% endblock %}
+  </main>
+
+  <footer id="contato" class="rodape">
+    <div class="largura">
+      <h2>Contato</h2>
+      <p class="secao-frase">Vamos conversar sobre a sua vaga ou o seu time de dados?</p>
+      <ul class="links">
+        <li><a class="botao botao-gradiente" href="mailto:{{ perfil.email }}">{{ perfil.email }}</a></li>
+        <li><a class="botao" href="{{ perfil.linkedin }}" rel="noopener">LinkedIn</a></li>
+        <li><a class="botao" href="{{ perfil.github }}" rel="noopener">GitHub</a></li>
+        <li><a class="botao" href="{{ perfil.cv }}">Currículo em PDF</a></li>
+      </ul>
+      <p class="rodape-nome">{{ perfil.nome }} · {{ perfil.cargo }} · {{ perfil.local }}</p>
+    </div>
+  </footer>
+
+  <script src="/static/js/menu.js" defer></script>
+  <script src="/static/js/topo.js" defer></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

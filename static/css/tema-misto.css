@@ -1,0 +1,144 @@
+/* Variação 4, mista: a base editorial da variação 1 (papel creme, títulos e números em serifa, o azul forte como
+   única cor de destaque, rótulos discretos em caixa alta, botões e etiquetas sóbrios) com a grade de cartões da
+   variação 3 (número de um lado e texto do outro, trocando de lado a cada projeto).
+   Sem o preto: os cartões são de um creme mais claro que o fundo, com borda fina e cantos pouco arredondados,
+   e o lado do número fica sem moldura, só o número grande em azul com o mini-gráfico embaixo.
+   No celular (até 40rem) volta a ser praticamente a variação 1: uma coluna, separada por fios.
+   Vai por cima do site.css (site.py build --tema misto).
+   Contraste contra o fundo #faf8f3: tinta 16,9:1, tinta-2 8,6:1, tinta-3 5,4:1, azul 6,4:1 (no cartão #fffdf9, um pouco mais). */
+@font-face { font-family: "Fraunces"; font-weight: 600; font-display: swap; src: url("/static/fonts/fraunces-latin-600-normal.woff2") format("woff2"); }
+
+:root.tema-misto {
+  --fundo: #faf8f3;
+  --superficie: #fffdf9;
+  --borda: #e2ddd1;
+  --tinta: #1a1a1a;
+  --tinta-2: #4a4945;
+  --tinta-3: #67645d;
+  --etiqueta: #f0ece2;
+  --escuro: #faf8f3;
+  --escuro-2: #f3efe6;
+  --escuro-borda: #ddd7ca;
+  --claro: #1a1a1a;
+  --claro-2: #4a4945;
+  --acento: #1d4ed8;
+  --acento-forte: #1e3a8a;
+  --acento-escuro: #1d4ed8;
+  --acento-borda: #b9cff5;
+  --raio: 6px;
+  --raio-p: 4px;
+  --largura: 68rem;
+  --vao: 1.25rem;
+  --serifa: "Fraunces", Georgia, "Times New Roman", serif;
+  background: var(--fundo);
+}
+
+.tema-misto body { font-size: 1.0625rem; line-height: 1.7; }
+.tema-misto h1, .tema-misto h2, .tema-misto h3 { font-family: var(--serifa); font-weight: 600; letter-spacing: -.015em; }
+.tema-misto h1 { font-size: clamp(2.5rem, 4vw + 1.25rem, 3.75rem); line-height: 1.05; letter-spacing: -.025em; }
+.tema-misto h2 { font-size: clamp(1.75rem, 1.5vw + 1.2rem, 2.25rem); }
+.tema-misto .rotulo { font: 600 .75rem/1.4 var(--sans); letter-spacing: .14em; color: var(--tinta-3); }
+.tema-misto .rotulo-claro { color: var(--acento-escuro); }
+
+/* topo: barra de papel com fio embaixo */
+.tema-misto .topo { background: rgb(250 248 243 / .94); border-bottom-color: var(--borda); }
+.tema-misto .marca { font-family: var(--serifa); font-size: 1.125rem; letter-spacing: -.01em; }
+.tema-misto .menu a:hover, .tema-misto .menu a[aria-current="page"] { background: transparent; text-decoration: underline; }
+.tema-misto .menu a.menu-contato { color: #fff; background: var(--acento-escuro); border-radius: 4px; }
+.tema-misto .menu a.menu-contato:hover { color: #fff; background: var(--acento-escuro-forte); text-decoration: none; }
+
+/* botões: sem pílula cheia, só o principal em azul */
+.tema-misto .botao { border-radius: 4px; background: transparent; }
+.tema-misto .botao-acento, .tema-misto .botao-cheio { background: var(--acento-escuro); border-color: var(--acento-escuro); color: #fff; }
+.tema-misto .botao-acento:hover, .tema-misto .botao-cheio:hover { background: var(--acento-escuro-forte); border-color: var(--acento-escuro-forte); }
+.tema-misto .botao-escuro { border-color: var(--tinta-3); }
+.tema-misto .botao-escuro:hover { border-color: var(--tinta); }
+.tema-misto .etiquetas li { background: transparent; border: 1px solid var(--borda); border-radius: 3px; font-family: var(--sans); }
+
+/* herói: texto solto no papel à esquerda, os quatro números numa grade de cartões claros à direita */
+.tema-misto .heroi { padding: clamp(4rem, 9vw, 6.5rem) 0 clamp(2rem, 4vw, 3rem); }
+.tema-misto .heroi::before, .tema-misto .heroi::after { display: none; }
+.tema-misto .heroi-grade { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(2.5rem, 5vw, 4.5rem); }
+.tema-misto .heroi .frase { font: 600 1.375rem/1.35 var(--serifa); color: var(--acento-escuro); }
+.tema-misto .heroi .resumo { font-size: 1.125rem; }
+
+.tema-misto .numeros { gap: .75rem; border: 0; border-radius: 0; background: none; overflow: visible; }
+.tema-misto .numero { gap: .375rem; padding: 1.25rem; border: 1px solid var(--borda); border-radius: var(--raio); background: var(--superficie); }
+.tema-misto .numero dd { font: 600 clamp(1.5rem, .8vw + 1.1rem, 1.875rem)/1.15 var(--serifa); letter-spacing: -.01em; color: var(--tinta); }
+.tema-misto .numero:first-child dd { color: var(--acento-escuro); }
+.tema-misto .numero dt { font-size: .875rem; color: var(--tinta-2); }
+
+/* seções */
+.tema-misto .secao { padding-top: clamp(3.5rem, 7vw, 5rem); }
+.tema-misto .secao-topo { margin-bottom: 2rem; }
+
+/* projetos: o artigo some como caixa e vira um par lado a lado (número sem moldura e cartão de texto),
+   trocando de lado a cada projeto */
+.tema-misto .projetos { gap: clamp(2.5rem, 5vw, 3.5rem); }
+.tema-misto .projeto { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(2rem, 4vw, 3.5rem); align-items: start; border: 0; border-radius: 0; background: none; overflow: visible; }
+.tema-misto .projeto:nth-child(even) { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+.tema-misto .projeto:hover { box-shadow: none; }
+.tema-misto .projeto-visual { justify-content: flex-start; gap: 1rem; padding: 2rem 0 0; background: none; overflow: visible; }
+.tema-misto .projeto-visual::before { display: none; }
+.tema-misto .projeto-numero { font: 600 clamp(2.75rem, 3vw + 1.75rem, 4rem)/1 var(--serifa); letter-spacing: -.02em; color: var(--acento-escuro); }
+.tema-misto .projeto-corpo { padding: 2rem 2.25rem 2.25rem; border: 1px solid var(--borda); border-radius: var(--raio); background: var(--superficie); transition: border-color .2s; }
+.tema-misto .projeto:hover .projeto-corpo { border-color: var(--acento-borda); }
+.tema-misto .projeto-indice { font-family: var(--sans); letter-spacing: .1em; }
+.tema-misto .projeto h3 { font-size: clamp(1.5rem, 1vw + 1.1rem, 1.875rem); }
+.tema-misto .resultado { font-size: 1.125rem; }
+.tema-misto .projeto-dl dt { font-family: var(--sans); }
+
+/* mini-gráfico: barras finas e horizontais em qualquer largura, como na variação 1 */
+.tema-misto .mini-titulo { font-family: var(--sans); color: var(--tinta-3); }
+.tema-misto .projeto-visual .mini { flex: none; display: block; }
+.tema-misto .projeto-visual .mini-barras { grid-auto-flow: row; gap: .5rem; }
+.tema-misto .projeto-visual .mini-barras li { grid-template-columns: 3rem minmax(0, 1fr) 3.5rem; grid-template-rows: none; align-items: center; justify-items: stretch; gap: .75rem; font-family: var(--sans); }
+.tema-misto .projeto-visual .mini-rotulo, .tema-misto .projeto-visual .mini-valor { order: 0; }
+.tema-misto .projeto-visual .mini-valor { text-align: right; font-size: .875rem; color: var(--tinta); }
+.tema-misto .projeto-visual .mini-rotulo { color: var(--tinta-2); }
+.tema-misto .projeto-visual .mini-trilho { position: static; height: .75rem; min-height: 0; border-radius: 0; background: var(--etiqueta); }
+.tema-misto .projeto-visual .mini-barra { position: static; width: calc(var(--v) * 100%); height: 100%; border-radius: 0; background: #8a8780; }
+.tema-misto .projeto-visual .mini-barra-final { background: var(--acento-escuro); }
+.tema-misto .projeto-visual .mini-print { flex: none; aspect-ratio: 1400 / 600; border: 1px solid var(--borda); border-radius: 2px; }
+
+/* experiência e competências: mesmos cartões claros dos projetos */
+.tema-misto .periodo { font-family: var(--sans); }
+.tema-misto .competencias > li::before { height: 2px; border-radius: 0; }
+
+/* estudo de caso: coluna única de leitura, como na variação 1 */
+.tema-misto .estudo { grid-template-columns: minmax(0, 42rem); justify-content: center; gap: 0; padding-top: 3rem; }
+.tema-misto .sumario { display: none; }
+.tema-misto .faixa-resultado { background: none; border-color: var(--borda); border-radius: 0; border-width: 1px 0; padding-inline: 0; }
+.tema-misto .faixa-numero { font-family: var(--serifa); color: var(--acento-escuro) !important; }
+.tema-misto .destaque { background: none; color: var(--tinta); font: 600 1.25rem/1.5 var(--serifa); box-shadow: inset 3px 0 0 var(--acento-escuro); }
+.tema-misto .bloco-indice { font-family: var(--sans); }
+
+/* rodapé: mesmo papel, separado por um fio forte */
+.tema-misto .rodape { border-top: 1px solid var(--tinta); }
+.tema-misto .convite h2 { font-size: clamp(1.75rem, 2vw + 1rem, 2.5rem); }
+.tema-misto .pendente-escuro { background: var(--pendente-fundo); border-color: var(--pendente); color: var(--pendente); }
+
+@media (max-width: 60rem) {
+  .tema-misto .heroi-grade { grid-template-columns: 1fr; gap: 2.5rem; }
+  .tema-misto .projeto, .tema-misto .projeto:nth-child(even) { grid-template-columns: 1fr; gap: 1.5rem; }
+  .tema-misto .projeto:nth-child(even) .projeto-visual { order: 0; }
+  .tema-misto .projeto-visual { padding-top: 0; }
+}
+
+/* celular: praticamente a variação 1, uma coluna separada por fios, sem cartões */
+@media (max-width: 40rem) {
+  .tema-misto .menu.aberto { background: var(--fundo); }
+  .tema-misto .menu-botao { border-radius: 4px; border-color: var(--tinta-3); }
+  .tema-misto .numeros { grid-template-columns: 1fr; gap: 0; border-top: 1px solid var(--borda); }
+  .tema-misto .numero { gap: .125rem; padding: 1rem 0; border: 0; border-bottom: 1px solid var(--borda); border-radius: 0; background: none; }
+  .tema-misto .numero dd { font-size: 1.5rem; }
+  .tema-misto .projetos { gap: 0; }
+  .tema-misto .projeto, .tema-misto .projeto:nth-child(even) { gap: 0; border-top: 1px solid var(--tinta); }
+  .tema-misto .projeto-visual { padding: 1.5rem 0 0; }
+  .tema-misto .projeto-corpo { padding: 1.5rem 0 2.5rem; border: 0; border-radius: 0; background: none; }
+  .tema-misto .projeto-dl { padding-top: 0; border-top: 0; }
+  .tema-misto .experiencia { padding: 1.5rem 0 0; border: 0; border-top: 1px solid var(--tinta); border-radius: 0; background: none; }
+  .tema-misto .competencias { gap: 0; }
+  .tema-misto .competencias > li { padding: 1.25rem 0; border: 0; border-top: 1px solid var(--borda); border-radius: 0; background: none; }
+  .tema-misto .competencias > li::before { display: none; }
+}

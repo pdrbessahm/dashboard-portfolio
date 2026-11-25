@@ -1,6 +1,8 @@
 dist/
 .venv/
 __pycache__/
+# so serve para tirar a fonte do pacote; os arquivos usados ficam em static/fonts/
+node_modules/
 .env
 *.env
 

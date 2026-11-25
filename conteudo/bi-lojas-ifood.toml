@@ -18,6 +18,9 @@ fiz = "Defini os KPIs, as regras de negócio e as regras de anonimização de um
 ferramentas = ["Python", "DuckDB", "SQL", "Plotly", "Power BI", "KPIs"]
 resultado_numero = "13 lojas"
 resultado = "13 lojas, de jun a out de 2026 e a 1ª quinzena de nov, e 120 mudanças de cardápio num painel só, com filtro de loja e período."
+# v5: periodo dos dados e capa do cartao (o print anonimizado do painel, recortado no CSS)
+data = "jun a nov de 2026"
+capa = "/static/img/bi-lojas-ifood/painel-visao-geral.png"
 
 # Print do cartao: a faixa de cima do mesmo print anonimizado do painel (KPIs e graficos por mes), recortada no CSS.
 [cartao.print]

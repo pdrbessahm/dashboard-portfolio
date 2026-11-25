@@ -1,0 +1,30 @@
+<!doctype html>
+<!-- Capa do cartão de projeto a partir de um gráfico já gerado em dist/ (sem a barra de ferramentas do Plotly).
+     Uso: node prints/print.mjs <chrome> "prints/capa-grafico.html?pagina=projetos/dados-delivery/&figura=fig-caso-loja-b" <saida.png> 1100 projeto 0 "#capa"
+     Gere o site antes (site.py build): a figura sai do HTML do estudo de caso. -->
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/dist/static/css/site.css">
+  <style>
+    body { margin: 0; background: #fff; }
+    #capa { width: 800px; height: 500px; padding: 28px 24px 12px; box-sizing: border-box; background: #fff; }
+    #grafico { width: 100%; height: 100%; }
+  </style>
+  <script src="/dist/static/vendor/plotly.min.js"></script>
+</head>
+<body>
+  <div id="capa"><div id="grafico"></div></div>
+  <script>
+    (async function () {
+      var parametros = new URLSearchParams(location.search);
+      var html = await (await fetch("/dist/" + parametros.get("pagina") + "index.html")).text();
+      var pagina = new DOMParser().parseFromString(html, "text/html");
+      var figura = JSON.parse(pagina.getElementById(parametros.get("figura")).textContent);
+      figura.layout.height = undefined;
+      figura.layout.autosize = true;
+      await Plotly.newPlot("grafico", figura.data, figura.layout, { displayModeBar: false, staticPlot: true });
+    })();
+  </script>
+</body>
+</html>
