@@ -1,0 +1,81 @@
+<!doctype html>
+<!-- Aba do navegador com o favicon do site em 16 e 32 px, para print:
+     node prints/print.mjs <chrome> prints/favicon-aba.html <saida.png> 1024 projeto 0 "body"
+     Servida da raiz do repositorio. Rode o build antes: as imagens de 16 e 32 px saem de dentro do dist/favicon.ico,
+     o mesmo arquivo que o navegador baixa. O Chromium sem tela nao desenha abas: a faixa de abas e simulada.
+     O print sai em tela 2x: o favicon de 16 px css ocupa 32 px reais. Na linha "tela comum" ele e a imagem de 16 px
+     com cada pixel dobrado; na linha "alta densidade", a de 32 px no tamanho real. -->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Favicon na aba - conferencia</title>
+<style>
+  @font-face { font-family: Inter; src: url(/static/fonts/inter-latin-400-normal.woff2) format("woff2"); font-weight: 400; }
+  @font-face { font-family: Inter; src: url(/static/fonts/inter-latin-600-normal.woff2) format("woff2"); font-weight: 600; }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 32px 40px 36px; font: 400 14px/1.4 Inter, system-ui, sans-serif; color: #1c1c24; background: #f8f8fc; }
+  h1 { margin: 0 0 4px; font-size: 22px; font-weight: 600; letter-spacing: -.02em; }
+  .sub { margin: 0 0 24px; color: #4f505a; }
+  .linha { display: grid; grid-template-columns: 170px 1fr; gap: 20px; align-items: center; margin-bottom: 18px; }
+  .rotulo { font-size: 13px; color: #4f505a; }
+  .rotulo b { display: block; font-size: 15px; font-weight: 600; color: #1c1c24; }
+  .tiras { display: grid; gap: 10px; }
+  .tira { display: flex; align-items: flex-end; gap: 2px; height: 40px; padding: 0 8px; border-radius: 10px; }
+  .tira.clara { background: #dee1e6; }
+  .tira.escura { background: #1f1f1f; }
+  .aba { display: flex; align-items: center; gap: 8px; width: 240px; height: 32px; padding: 0 12px; border-radius: 10px 10px 0 0; font-size: 12px; white-space: nowrap; overflow: hidden; color: #3c4043; }
+  .aba.ativa { background: #fff; color: #1f1f1f; }
+  .tira.escura .aba { color: #9aa0a6; }
+  .tira.escura .aba.ativa { background: #3c3c3c; color: #e8eaed; }
+  .aba span { overflow: hidden; text-overflow: ellipsis; }
+  .aba img, .aba .vazio { width: 16px; height: 16px; flex: none; image-rendering: pixelated; }
+  .aba .vazio { border-radius: 50%; background: #9aa0a6; opacity: .5; }
+  .zoom { display: flex; gap: 28px; margin-top: 32px; padding-bottom: 36px; }
+  figure { margin: 0; display: grid; gap: 8px; }
+  figcaption { font-size: 12px; color: #4f505a; }
+  /* xadrez atras das ampliacoes: os cantos arredondados sao transparentes */
+  .zoom img { display: block; width: 128px; height: 128px; image-rendering: pixelated;
+    background: repeating-conic-gradient(#e2e2ea 0 25%, #ffffff 0 50%) 0 0 / 16px 16px; }
+</style>
+</head>
+<body>
+<h1>Favicon novo na aba do navegador</h1>
+<p class="sub">Variação A: fundo em degradê do azul ao lilás dos botões, "pb" branco em JetBrains Mono. Imagens tiradas do favicon.ico do site.</p>
+<div id="linhas"></div>
+<div class="zoom" id="zoom"></div>
+
+<script>
+  // le as imagens PNG de dentro do ICO (cabecalho de 6 bytes, entradas de 16)
+  async function imagensDoIco(src) {
+    const buf = await (await fetch(src)).arrayBuffer();
+    const v = new DataView(buf);
+    const saida = {};
+    for (let i = 0; i < v.getUint16(4, true); i++) {
+      const e = 6 + 16 * i;
+      const lado = v.getUint8(e) || 256;
+      const tam = v.getUint32(e + 8, true), desl = v.getUint32(e + 12, true);
+      saida[lado] = URL.createObjectURL(new Blob([buf.slice(desl, desl + tam)], { type: 'image/png' }));
+    }
+    return saida;
+  }
+  const carregar = (src) => new Promise((ok) => { const i = new Image(); i.onload = i.onerror = () => ok(i); i.src = src; });
+  window.pronto = (async () => {
+    const img = await imagensDoIco('/dist/favicon.ico');
+    const LINHAS = [
+      { lado: 16, titulo: '16 px', texto: 'tela comum (cada pixel dobrado)' },
+      { lado: 32, titulo: '32 px', texto: 'tela de alta densidade' },
+    ];
+    const aba = (src, ativa, titulo) => `<div class="aba${ativa ? ' ativa' : ''}">`
+      + (src ? `<img src="${src}" alt="">` : '<span class="vazio"></span>') + `<span>${titulo}</span></div>`;
+    const tira = (classe, src) => `<div class="tira ${classe}">${aba(src, true, 'Pedro Henrique Bessa Maia - Analista de Dados')}`
+      + `${aba(null, false, 'Nova guia')}</div>`;
+    document.getElementById('linhas').innerHTML = LINHAS.map((l) => `<div class="linha">
+      <div class="rotulo"><b>${l.titulo}</b>${l.texto}</div>
+      <div class="tiras">${tira('clara', img[l.lado])}${tira('escura', img[l.lado])}</div></div>`).join('');
+    document.getElementById('zoom').innerHTML = [16, 32, 48].map((l) =>
+      `<figure><img src="${img[l]}" alt=""><figcaption>${l} px do favicon.ico, ampliado</figcaption></figure>`).join('');
+    await Promise.all([...document.images].map((i) => i.complete ? null : carregar(i.src)));
+  })();
+</script>
+</body>
+</html>

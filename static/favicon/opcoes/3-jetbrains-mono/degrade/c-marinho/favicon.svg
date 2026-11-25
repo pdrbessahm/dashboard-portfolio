@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Monograma "pb" em JetBrains Mono (SIL Open Font License), letras convertidas em contorno. Variação em degradê c-marinho. Gerado por favicon/degrade.py. -->
+  <defs>
+    <linearGradient id="f" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="32" y2="32">
+      <stop offset="0" stop-color="#0f1d3a"/>
+      <stop offset="1" stop-color="#2e2a7a"/>
+    </linearGradient>
+    <linearGradient id="g" gradientUnits="userSpaceOnUse" x1="16.82" y1="22.7" x2="27.3" y2="5.31">
+      <stop offset="0" stop-color="#8fa3ff"/>
+      <stop offset="1" stop-color="#c0a6ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" rx="7" fill="url(#f)"/>
+  <path d="M4.7 26.69V9.54H7.4V12.01H7.99L7.4 12.64Q7.4 11.09 8.35 10.2Q9.3 9.3 10.9 9.3Q12.85 9.3 14.01 10.63Q15.18 11.96 15.18 14.21V17.79Q15.18 19.27 14.65 20.38Q14.12 21.5 13.17 22.1Q12.22 22.7 10.9 22.7Q9.3 22.7 8.35 21.8Q7.4 20.91 7.4 19.36L7.99 19.99H7.38L7.45 23.02V26.69ZM9.94 20.32Q11.11 20.32 11.78 19.63Q12.45 18.94 12.45 17.67V14.33Q12.45 13.04 11.78 12.36Q11.11 11.68 9.94 11.68Q8.79 11.68 8.12 12.38Q7.45 13.09 7.45 14.33V17.67Q7.45 18.91 8.12 19.62Q8.79 20.32 9.94 20.32Z" fill="#ffffff" stroke="#ffffff" stroke-width="0.4" stroke-linejoin="round"/>
+  <path d="M23 22.7Q21.4 22.7 20.46 21.8Q19.52 20.91 19.52 19.36L20.11 19.99H19.52V22.46H16.82V5.31H19.57V8.98L19.5 12.01H20.11L19.52 12.64Q19.52 11.09 20.48 10.2Q21.43 9.3 23 9.3Q24.95 9.3 26.13 10.63Q27.3 11.96 27.3 14.21V17.79Q27.3 20.04 26.13 21.37Q24.95 22.7 23 22.7ZM22.04 20.32Q23.24 20.32 23.91 19.63Q24.57 18.94 24.57 17.67V14.33Q24.57 13.06 23.91 12.37Q23.24 11.68 22.04 11.68Q20.91 11.68 20.24 12.38Q19.57 13.09 19.57 14.33V17.67Q19.57 18.91 20.24 19.62Q20.91 20.32 22.04 20.32Z" fill="url(#g)" stroke="url(#g)" stroke-width="0.4" stroke-linejoin="round"/>
+</svg>

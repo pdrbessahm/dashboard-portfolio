@@ -20,7 +20,7 @@ Outros comandos:
 
 - `python site.py build`: só gera a pasta `dist/`.
 - `python site.py importar-painel <origem.html> <nome>`: traz um painel HTML já anonimizado para `paineis/<nome>/`, troca o plotly.js embutido pelo do site e recusa o arquivo se achar dado sensível.
-- `python favicon/opcoes.py` e depois `node favicon/gerar.mjs <caminho do chrome>`: refazem o favicon (monograma "pb" em JetBrains Mono).
+- `python favicon/degrade.py` e depois `node favicon/gerar.mjs <caminho do chrome>`: refazem o favicon (monograma "pb" branco em JetBrains Mono, fundo em degradê do azul ao lilás).
   O primeiro grava os SVG (precisa de `pip install fonttools brotli`), o segundo gera no Chromium os PNG de 32 e 180 px e o `favicon.ico` em `static/favicon/`.
   O build copia o `favicon.ico` também para a raiz do `dist/`.
 - `python site.py verificar`: procura em `dados/`, `conteudo/`, `paineis/`, `static/` e `dist/` CPF, CNPJ, telefone, e-mail de terceiros e os termos da lista de proibidos, e lista o que ainda está pendente.

@@ -16,9 +16,8 @@ Cada opção tem três desenhos, em static/favicon/opcoes/<n>-<fonte>/:
   apple-touch-icon.svg  tela inicial do iPhone (fundo até a borda, monograma com folga)
 A pasta opcoes/ não vai para o site (o build pula).
 
-A opção em ESCOLHIDA é o favicon do site: o script grava também o favicon.svg dela em static/favicon/
-e os desenhos de 16 px e do iPhone em favicon/. Depois, node favicon/gerar.mjs <chrome> (sem pasta)
-refaz favicon-32.png, apple-touch-icon.png e favicon.ico em static/favicon/.
+ESCOLHIDA é a fonte escolhida. O favicon do site não sai mais daqui: sai de favicon/degrade.py, que usa
+o desenho desta fonte com as cores em degradê (variação escolhida em 25/11/2026).
 """
 
 from pathlib import Path
@@ -35,7 +34,7 @@ SAIDA = RAIZ / "static" / "favicon" / "opcoes"
 SITE = RAIZ / "static" / "favicon"  # favicon.svg do site
 CONFERENCIA = RAIZ / "favicon"  # 16 px e iPhone em SVG, lidos pelo gerar.mjs
 
-ESCOLHIDA = "3-jetbrains-mono"  # escolha do Pedro em 24/11/2026
+ESCOLHIDA = "3-jetbrains-mono"  # fonte escolhida pelo Pedro em 24/11/2026 (as cores vêm de degrade.py)
 
 MARINHO = "#0f1d3a"  # fundo da .capa em tema-vitrine.css
 BRANCO = "#ffffff"
@@ -172,11 +171,6 @@ def main():
             op, 32, 0, op["margem32"], op["reforco32"], False,
             base + " Tela inicial do iPhone. Gerado por favicon/opcoes.py.", fator=0.8), encoding="utf-8")
         print(f"ok: {pasta.relative_to(RAIZ)}")
-        if op["slug"] == ESCOLHIDA:
-            for nome, destino in (("favicon.svg", SITE), ("favicon-16.svg", CONFERENCIA),
-                                  ("apple-touch-icon.svg", CONFERENCIA)):
-                (destino / nome).write_text((pasta / nome).read_text(encoding="utf-8"), encoding="utf-8")
-            print(f"favicon do site: {op['nome']} em static/favicon/favicon.svg e favicon/*.svg")
 
 
 if __name__ == "__main__":

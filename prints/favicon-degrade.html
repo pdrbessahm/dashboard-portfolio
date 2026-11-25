@@ -1,0 +1,96 @@
+<!doctype html>
+<!-- Comparativo do favicon atual com as 3 variações em degradê (favicon/degrade.py), para print:
+     node prints/print.mjs <chrome> prints/favicon-degrade.html <saida.png> 1440 projeto
+     Servida da raiz do repositorio. O 16 e o 32 px sao o SVG desenhado num canvas desse tamanho e ampliado sem suavizar,
+     como o navegador faz na aba. -->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Favicon - variações em degradê</title>
+<style>
+  @font-face { font-family: Inter; src: url(/static/fonts/inter-latin-400-normal.woff2) format("woff2"); font-weight: 400; }
+  @font-face { font-family: Inter; src: url(/static/fonts/inter-latin-600-normal.woff2) format("woff2"); font-weight: 600; }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 48px 56px 56px; font: 400 14px/1.4 Inter, system-ui, sans-serif; color: #1c1c24; background: #f8f8fc; }
+  h1 { margin: 0 0 6px; font-size: 26px; font-weight: 600; letter-spacing: -.02em; }
+  .sub { margin: 0 0 32px; color: #4f505a; font-size: 15px; }
+  .opcoes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .opcao { background: #fff; border: 1px solid #e3e3ec; border-radius: 16px; padding: 22px; display: grid; gap: 20px; justify-items: start; align-content: start; }
+  .opcao.atual { background: #f1f1f6; border-style: dashed; }
+  .titulo { display: flex; align-items: center; gap: 12px; }
+  .numero { width: 40px; height: 40px; flex: none; border-radius: 50%; background: linear-gradient(90deg, #3d5af1, #7c4dff); color: #fff; font-size: 20px; font-weight: 600; display: grid; place-items: center; }
+  .atual .numero { background: #0f1d3a; font-size: 13px; }
+  .titulo h2 { margin: 0; font-size: 19px; font-weight: 600; }
+  .titulo small { display: block; color: #6a6b75; font-size: 12px; font-weight: 400; }
+  .grande { width: 200px; height: 200px; display: block; }
+  .pixels { display: flex; gap: 18px; align-items: flex-end; }
+  figure { margin: 0; display: grid; gap: 8px; }
+  figcaption { font-size: 12px; color: #4f505a; }
+  canvas { display: block; image-rendering: pixelated; }
+  /* xadrez atrás das ampliações: os cantos arredondados são transparentes */
+  .pixels canvas { background: repeating-conic-gradient(#e2e2ea 0 25%, #ffffff 0 50%) 0 0 / 16px 16px; }
+  .tira { width: 100%; display: flex; align-items: flex-end; height: 40px; padding: 0 8px; border-radius: 10px; gap: 2px; }
+  .tira.clara { background: #dee1e6; }
+  .tira.escura { background: #1f1f1f; }
+  .aba { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; height: 32px; padding: 0 10px; border-radius: 10px 10px 0 0; font-size: 12px; background: #fff; color: #1f1f1f; white-space: nowrap; overflow: hidden; }
+  .tira.escura .aba { background: #3c3c3c; color: #e8eaed; }
+  .aba span { overflow: hidden; text-overflow: ellipsis; }
+  .aba canvas { flex: none; }
+  .abas { width: 100%; display: grid; gap: 10px; }
+</style>
+</head>
+<body>
+<h1>Favicon "pb" em JetBrains Mono: variações em degradê</h1>
+<p class="sub">À esquerda, o favicon de hoje. As três variações usam o degradê dos botões do site (azul #3d5af1 ao lilás #7c4dff) e o azul-marinho da capa. Mesmo desenho de letra em todas.</p>
+<div class="opcoes" id="opcoes"></div>
+
+<script>
+  const BASE = '/static/favicon/opcoes/3-jetbrains-mono/';
+  const OPCOES = [
+    { n: 'hoje', pasta: BASE, nome: 'Atual', tipo: 'p branco, b em azul e lilás', atual: true },
+    { n: 'A', pasta: BASE + 'degrade/a-fundo/', nome: 'Degradê no fundo', tipo: 'diagonal azul → lilás, pb branco' },
+    { n: 'B', pasta: BASE + 'degrade/b-texto/', nome: 'Degradê no texto', tipo: 'fundo marinho, pb azul → lilás' },
+    { n: 'C', pasta: BASE + 'degrade/c-marinho/', nome: 'Marinho em degradê', tipo: 'marinho → índigo, letras de hoje' },
+  ];
+  // o SVG ganha largura e altura do tamanho final, para o Chromium rasterizar direto nele (como na aba)
+  async function carregar(src, lado) {
+    const texto = (await (await fetch(src)).text()).replace('<svg ', `<svg width="${lado}" height="${lado}" `);
+    return new Promise((ok, erro) => {
+      const i = new Image(); i.onload = () => ok(i); i.onerror = erro;
+      i.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(texto);
+    });
+  }
+  // desenha o SVG num canvas de "lado" px reais e mostra ampliado "zoom" vezes, sem suavizar
+  function pixel(img, lado, zoom) {
+    const c = document.createElement('canvas');
+    c.width = lado; c.height = lado;
+    c.getContext('2d').drawImage(img, 0, 0, lado, lado);
+    c.style.width = c.style.height = lado * zoom + 'px';
+    return c;
+  }
+  // a aba do print sai em tela 2x: o favicon de 16 px css ocupa 32 px reais, como num notebook com tela de alta densidade
+  window.pronto = (async () => {
+    const raiz = document.getElementById('opcoes');
+    for (const o of OPCOES) {
+      const [i32, i16] = await Promise.all([carregar(o.pasta + 'favicon.svg', 32), carregar(o.pasta + 'favicon-16.svg', 16)]);
+      const el = document.createElement('section');
+      el.className = 'opcao' + (o.atual ? ' atual' : '');
+      el.innerHTML = `<div class="titulo"><span class="numero">${o.n}</span><h2>${o.nome}<small>${o.tipo}</small></h2></div>
+        <img class="grande" src="${o.pasta}favicon.svg" alt="">
+        <div class="pixels"><figure class="f16"><figcaption>16 px, pixel a pixel</figcaption></figure>
+        <figure class="f32"><figcaption>32 px, pixel a pixel</figcaption></figure></div>
+        <div class="abas"><figcaption>Na aba, tamanho real (16 px e 32 px)</figcaption>
+        <div class="tira clara"><div class="aba c16"><span>16 px · Pedro</span></div><div class="aba c32"><span>32 px · Pedro</span></div></div>
+        <div class="tira escura"><div class="aba c16"><span>16 px · Pedro</span></div><div class="aba c32"><span>32 px · Pedro</span></div></div></div>`;
+      el.querySelector('.f16').prepend(pixel(i16, 16, 7));
+      el.querySelector('.f32').prepend(pixel(i32, 32, 3.5));
+      // tela comum: 16 px reais, mostrados em 16 css (que no print 2x viram 32 px, cada pixel dobrado)
+      el.querySelectorAll('.c16').forEach((a) => a.prepend(pixel(i16, 16, 1)));
+      // alta densidade: 32 px reais em 16 css
+      el.querySelectorAll('.c32').forEach((a) => a.prepend(pixel(i32, 32, 0.5)));
+      raiz.append(el);
+    }
+  })();
+</script>
+</body>
+</html>

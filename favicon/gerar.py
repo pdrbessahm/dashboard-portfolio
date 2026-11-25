@@ -1,7 +1,7 @@
 """Primeiro desenho do favicon (barras geométricas), substituído em 24/11/2026 pelo "pb" em JetBrains Mono.
 
 Não rode para o site atual: ele sobrescreve o favicon novo com este desenho antigo.
-O favicon do site hoje sai de favicon/opcoes.py (opção ESCOLHIDA) mais node favicon/gerar.mjs <chrome>.
+O favicon do site hoje sai de favicon/degrade.py (variação ESCOLHIDA) mais node favicon/gerar.mjs <chrome>.
 Fica guardado como referência do desenho anterior.
 
     python favicon/gerar.py

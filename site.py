@@ -12,6 +12,7 @@ O site só lê conteudo/ (texto), dados/ (JSON já anonimizado e agregado) e pai
 """
 
 import argparse
+import hashlib
 import inspect
 import json
 import os
@@ -366,7 +367,17 @@ def montar_graficos(projeto):
 def ambiente():
     env = Environment(loader=FileSystemLoader(TEMPLATES), autoescape=True,
                       undefined=StrictUndefined, trim_blocks=True, lstrip_blocks=True)
+    env.globals["versao_favicon"] = versao_favicon()
     return env
+
+
+def versao_favicon():
+    """Hash curto dos arquivos do favicon, que vai como ?v= nos links: o arquivo novo tem o mesmo nome,
+    e sem isso o navegador de quem já visitou o site segue mostrando o favicon antigo do cache."""
+    h = hashlib.sha256()
+    for arq in sorted((STATIC / "favicon").glob("*.*")):
+        h.update(arq.name.encode() + arq.read_bytes())
+    return h.hexdigest()[:10]
 
 
 def escrever(caminho, texto):
