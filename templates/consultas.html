@@ -1,0 +1,69 @@
+{% extends layout %}
+{% block titulo %}{{ consultas.titulo }} - {{ perfil.nome }}{% endblock %}
+{% block descricao %}{{ consultas.subtitulo }}{% endblock %}
+{% block conteudo %}
+    <section class="heroi heroi-projeto">
+      <div class="largura">
+        <p class="voltar"><a href="/#projetos"><span aria-hidden="true">←</span> Todos os projetos</a></p>
+        <h1>{{ consultas.titulo }}</h1>
+        <p class="subtitulo">{{ consultas.subtitulo }}</p>
+      </div>
+    </section>
+
+    <div class="largura estudo estudo-consultas">
+      <nav class="sumario" aria-label="Nesta página">
+        <p class="rotulo">Nesta página</p>
+        <ol>
+          {% for b in consultas.blocos %}
+          <li><a href="#{{ b.id }}">{{ b.pergunta }}</a></li>
+          {% endfor %}
+        </ol>
+      </nav>
+
+      <article class="estudo-texto">
+        <section class="bloco">
+          {% for par in consultas.paragrafos %}
+          <p>{{ par }}</p>
+          {% endfor %}
+        </section>
+
+        {% for b in consultas.blocos %}
+        <section class="bloco consulta" id="{{ b.id }}">
+          <h2><span class="bloco-indice">{{ "%02d" | format(loop.index) }}</span>{{ b.pergunta }}</h2>
+          <pre class="sql" tabindex="0"><code>{{ b.sql_html }}</code></pre>
+
+          <div class="consulta-resultado">
+            <p class="rotulo">Resultado</p>
+            <div class="rolagem" tabindex="0">
+              <table>
+                <thead><tr>{% for c in b.colunas %}<th scope="col">{{ c }}</th>{% endfor %}</tr></thead>
+                <tbody>
+                  {% for linha in b.linhas %}
+                  <tr>{% for v in linha %}<td>{{ v }}</td>{% endfor %}</tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            {% if b.nota is defined %}
+            <p class="nota">{{ b.nota }}</p>
+            {% endif %}
+          </div>
+
+          {# sem "mudou" o bloco sai sem a linha; o verificar lista o mudou_pendente #}
+          {% if b.mudou is defined %}
+          <p class="consulta-mudou"><strong>O que mudou:</strong> {{ b.mudou }}</p>
+          {% endif %}
+
+          <p class="consulta-acoes">
+            <a class="botao" href="{{ b.grafico.href }}">Ver o gráfico: {{ b.grafico.texto }}</a>
+            {% if consultas.notebook %}
+            <a class="botao botao-cheio" href="{{ consultas.notebook }}#{{ b.id }}" rel="noopener">Ver no notebook</a>
+            {% else %}
+            <span class="botao botao-desligado" aria-disabled="true">Ver no notebook (em breve)</span>
+            {% endif %}
+          </p>
+        </section>
+        {% endfor %}
+      </article>
+    </div>
+{% endblock %}

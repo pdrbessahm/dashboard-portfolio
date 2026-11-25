@@ -18,6 +18,7 @@ import json
 import os
 import re
 import shutil
+import sqlite3
 import sys
 import tomllib
 import unicodedata
@@ -28,6 +29,7 @@ from pathlib import Path
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
+from markupsafe import Markup, escape
 from plotly.offline import get_plotlyjs
 from pypdf import PdfReader
 from pypdf.errors import PdfReadError
@@ -38,6 +40,7 @@ DADOS = RAIZ / "dados"
 TEMPLATES = RAIZ / "templates"
 STATIC = RAIZ / "static"
 PAINEIS = RAIZ / "paineis"
+CONSULTAS = RAIZ / "consultas"
 DIST = RAIZ / "dist"
 
 # Pasta fora do repositório com o de-para da anonimização e a lista de termos proibidos.
@@ -333,7 +336,106 @@ def grafico_semana_pagamento(dados, estreito=False):
     return fig, tabela
 
 
+def efeitos_faturamento(variacao):
+    """Quebra a variação do faturamento (em pontos, mês anterior = 100) em efeito de pedidos e de ticket.
+
+    Faturamento = pedidos x ticket. Cada efeito usa a média do outro fator nos dois meses, então a ordem
+    não favorece nenhum dos dois e a soma dá exatamente a variação. Mesma conta de consultas/02-cascata.sql.
+    """
+    vp, vt = variacao["pedidos"] / 100, variacao["ticket"] / 100
+    return 100 * vp * (2 + vt) / 2, 100 * vt * (2 + vp) / 2
+
+
+def grafico_cascata(dados):
+    """Cascata do faturamento: mês anterior = 100, mais o efeito dos pedidos e do ticket, igual ao mês."""
+    opcoes = [(loja, m, ant) for loja in dados["lojas"]
+              for ant, m in zip(loja["meses"], loja["meses"][1:])]
+    ativo = next(i for i, (l, m, _) in enumerate(opcoes) if l["loja"] == "Loja B" and m["mes"] == "set")
+    fig = go.Figure()
+    tabela = []
+    for i, (loja, m, ant) in enumerate(opcoes):
+        ped, tic = efeitos_faturamento(m["variacao"])
+        final = 100 + ped + tic
+        fig.add_trace(go.Waterfall(
+            x=[f"{ant['mes']} = 100", "pedidos", "ticket médio", m["mes"]],
+            measure=["absolute", "relative", "relative", "total"], y=[100, ped, tic, 0],
+            base=0, visible=i == ativo, connector=dict(line=dict(color=GRADE, width=1)),
+            increasing=dict(marker=dict(color=COR_DESTAQUE)), decreasing=dict(marker=dict(color=COR_PAR)),
+            totals=dict(marker=dict(color=COR_SERIE)),
+            text=["100", sinal_br(ped).replace("%", ""), sinal_br(tic).replace("%", ""), decimal_br(final)],
+            textposition="outside", textfont=dict(color=TINTA), cliponaxis=False,
+            hovertemplate=f"{loja['loja']} · {m['mes']} contra {ant['mes']}<br>%{{x}}: %{{text}}<extra></extra>",
+        ))
+        tabela.append((f"{loja['loja']} · {m['mes']} contra {ant['mes']}",
+                       f"pedidos {sinal_br(ped)[:-1]}, ticket {sinal_br(tic)[:-1]}, faturamento {decimal_br(final)}"))
+    rotulos = [f"{l['loja']} · {m['mes']} contra {a['mes']}" for l, m, a in opcoes]
+    fig.update_layout(**layout_base(height=320, bargap=0.35, waterfallgap=0.35, margin=dict(l=8, r=16, t=24, b=36),
+                                    meta=seletor("Loja e mês", [(nome_loja(l), r) for (l, _, _), r in zip(opcoes, rotulos)],
+                                                 [[j == i for j in range(len(opcoes))] for i in range(len(opcoes))], ativo)))
+    eixos_discretos(fig)
+    # eixo começa abaixo de 100 para o degrau aparecer; o mês anterior é sempre 100
+    menor = min(min(100, 100 + efeitos_faturamento(m["variacao"])[0]) + min(0, efeitos_faturamento(m["variacao"])[1])
+                for _, m, _ in opcoes)
+    maior = max(100 + sum(max(0, e) for e in efeitos_faturamento(m["variacao"])) for _, m, _ in opcoes)
+    fig.update_yaxes(range=[max(0, menor - 15), maior + 15],
+                     title=dict(text="faturamento, índice", font=dict(color=TINTA_SECUNDARIA, size=12)))
+    return fig, tabela
+
+
+def grafico_abc(dados):
+    """Curva ABC: % do cardápio (do item que mais vende ao que não vende) contra % acumulado da receita."""
+    lojas = dados["lojas"]
+    ativo = next(i for i, l in enumerate(lojas) if l["loja"] == "Loja B")
+    fig = go.Figure()
+    tabela, visiveis = [], []
+    for i, loja in enumerate(lojas):
+        n = loja["itens_no_cardapio"]
+        acum, xs, ys, nomes = 0.0, [0.0], [0.0], [""]
+        k80 = None
+        for k, item in enumerate(loja["itens"], 1):
+            acum += item["pct"]
+            xs.append(100 * k / n)
+            ys.append(min(acum, 100.0))
+            nomes.append(item["item"])
+            if k80 is None and acum >= 80:
+                k80 = k
+        sem_venda = n - len(loja["itens"])
+        if sem_venda:
+            xs.append(100.0)
+            ys.append(100.0)
+            nomes.append(f"{sem_venda} itens sem venda")
+        x80 = 100 * k80 / n
+        fig.add_trace(go.Scatter(
+            x=xs, y=ys, mode="lines", visible=i == ativo, line=dict(color=COR_DESTAQUE, width=2, shape="linear"),
+            fill="tozeroy", fillcolor="rgba(29,78,216,.08)", customdata=nomes,
+            hovertemplate="%{x:.0f}% do cardápio · %{y:.1f}% da receita<br>%{customdata}<extra></extra>",
+        ))
+        fig.add_trace(go.Scatter(
+            x=[x80], y=[ys[k80]], mode="markers+text", visible=i == ativo,
+            marker=dict(size=10, color=COR_DESTAQUE, line=dict(color="#ffffff", width=2)),
+            text=[f"{k80} de {n} itens ({x80:.0f}%)<br>fazem 80% da receita"], textposition="bottom right",
+            textfont=dict(color=TINTA, size=12), cliponaxis=False, hoverinfo="skip",
+        ))
+        visiveis.append([j // 2 == i for j in range(2 * len(lojas))])
+        tabela.append((f"{loja['loja']} · {dados['mes']}",
+                       f"{k80} de {n} itens ({x80:.0f}% do cardápio) fazem 80% da receita; {sem_venda} sem venda"))
+    fig.add_hline(y=80, line=dict(color=TINTA_SECUNDARIA, width=1, dash="dash"), opacity=0.6)
+    # sem barra de ferramentas: no canto de cima ela cobria o fim da curva em 100%
+    fig.update_layout(**layout_base(height=320, margin=dict(l=8, r=16, t=16, b=40),
+                                    meta={**seletor("Loja", [(None, f"{l['loja']} · {dados['mes']}") for l in lojas],
+                                                    visiveis, ativo), "sem_barra": True}))
+    eixos_discretos(fig)
+    # os dois 0% se encontram no canto de baixo: afasta os rótulos de cada eixo
+    fig.update_xaxes(range=[0, 100], ticksuffix="%", dtick=20, ticklabelstandoff=8,
+                     title=dict(text="itens do cardápio, do que mais vende ao sem venda", font=dict(color=TINTA_SECUNDARIA, size=12)))
+    fig.update_yaxes(range=[0, 104], ticksuffix="%", dtick=20, ticklabelstandoff=10,
+                     title=dict(text="receita acumulada", font=dict(color=TINTA_SECUNDARIA, size=12)))
+    return fig, tabela
+
+
 GRAFICOS = {
+    "cascata": grafico_cascata,
+    "abc": grafico_abc,
     "evolucao": grafico_evolucao,
     "funil": grafico_funil_lojas,
     "variacao": grafico_variacao,
@@ -360,6 +462,90 @@ def montar_graficos(projeto):
                 item["figura_estreita"] = funcao(dados, estreito=True)[0].to_json().replace("</", "<\\/")
         saida.append(item)
     return saida
+
+
+# ---------------------------------------------------------------- consultas SQL
+
+def banco_consultas():
+    """SQLite em memória com as tabelas que as consultas da página /consultas-sql/ leem.
+
+    Vem dos mesmos JSON anonimizados dos gráficos. Os índices de venda são encadeados pela variação
+    mês cheio contra mês cheio (primeiro mês = 100), então o LAG devolve a mesma variação dos gráficos.
+    """
+    lojas = json.loads((DADOS / "lojas.json").read_text(encoding="utf-8"))
+    itens = json.loads((DADOS / "itens.json").read_text(encoding="utf-8"))
+    banco = sqlite3.connect(":memory:")
+    banco.executescript("""
+        CREATE TABLE lojas (loja TEXT PRIMARY KEY, segmento TEXT);
+        CREATE TABLE vendas_mes (loja TEXT REFERENCES lojas, mes_num INTEGER, mes TEXT,
+                                 idx_faturamento REAL, idx_pedidos REAL, idx_ticket REAL,
+                                 PRIMARY KEY (loja, mes_num));
+        CREATE TABLE pedidos_dia (loja TEXT, dia TEXT, indice REAL, PRIMARY KEY (loja, dia));
+        CREATE TABLE cardapio (loja TEXT PRIMARY KEY, itens_no_cardapio INTEGER);
+        CREATE TABLE itens_mes (loja TEXT REFERENCES cardapio, linha INTEGER, item TEXT, pct REAL,
+                                PRIMARY KEY (loja, linha));
+    """)
+    ordem = {"jun": 6, "jul": 7, "ago": 8, "set": 9, "out": 10}
+    for loja in lojas["lojas"]:
+        banco.execute("INSERT INTO lojas VALUES (?, ?)", (loja["loja"], loja.get("segmento")))
+        idx = {"faturamento": 100.0, "pedidos": 100.0, "ticket": 100.0}
+        for m in loja["meses"]:
+            if "variacao" in m:
+                idx = {k: v * (1 + m["variacao"][k] / 100) for k, v in idx.items()}
+            banco.execute("INSERT INTO vendas_mes VALUES (?, ?, ?, ?, ?, ?)",
+                          (loja["loja"], ordem[m["mes"]], m["mes"], idx["faturamento"], idx["pedidos"], idx["ticket"]))
+    caso = lojas["caso_loja_b"]
+    banco.executemany("INSERT INTO pedidos_dia VALUES (?, ?, ?)",
+                      [(caso["loja"], p["dia"], p["indice"]) for p in caso["pontos"]])
+    for loja in itens["lojas"]:
+        banco.execute("INSERT INTO cardapio VALUES (?, ?)", (loja["loja"], loja["itens_no_cardapio"]))
+        # chave pela linha do cardápio: o painel tem itens diferentes com o mesmo nome anonimizado
+        banco.executemany("INSERT INTO itens_mes VALUES (?, ?, ?, ?)",
+                          [(loja["loja"], n, i["item"], i["pct"]) for n, i in enumerate(loja["itens"], 1)])
+    return banco
+
+
+PALAVRAS_SQL = {
+    "select", "from", "where", "join", "on", "as", "and", "or", "not", "in", "is", "null", "group", "by",
+    "order", "with", "over", "partition", "window", "rows", "unbounded", "preceding", "case", "when", "then",
+    "else", "end", "between", "desc", "asc", "filter", "left", "inner", "having", "limit", "distinct",
+}
+FUNCOES_SQL = {"lag", "lead", "sum", "count", "avg", "round", "min", "max", "row_number", "rank"}
+TOKEN_SQL = re.compile(r"(?P<com>--[^\n]*)|(?P<str>'[^']*')|(?P<num>\b\d+(?:\.\d+)?\b)|(?P<pal>\b[A-Za-z_]\w*\b)")
+
+
+def destacar_sql(texto):
+    """HTML do SQL com uma classe por tipo de palavra, para a cor de sintaxe vir do CSS."""
+    saida, pos = [], 0
+    for t in TOKEN_SQL.finditer(texto):
+        saida.append(escape(texto[pos:t.start()]))
+        valor, tipo = t.group(), t.lastgroup
+        if tipo == "pal":
+            tipo = "kw" if valor.lower() in PALAVRAS_SQL else "fn" if valor.lower() in FUNCOES_SQL else None
+        saida.append(f'<span class="sql-{tipo}">{escape(valor)}</span>' if tipo else escape(valor))
+        pos = t.end()
+    saida.append(escape(texto[pos:]))
+    return Markup("".join(saida))
+
+
+def celula_br(valor):
+    if valor is None:
+        return "-"
+    if isinstance(valor, float):
+        return decimal_br(valor) if valor != int(valor) or abs(valor) < 1000 else str(int(valor))
+    return str(valor)
+
+
+def montar_consultas():
+    config = carregar_toml(CONSULTAS / "consultas.toml")
+    banco = banco_consultas()
+    for b in config["blocos"]:
+        sql = (CONSULTAS / b["arquivo"]).read_text(encoding="utf-8")
+        cursor = banco.execute(sql)
+        b["sql_html"] = destacar_sql(sql.strip())
+        b["colunas"] = [c[0] for c in cursor.description]
+        b["linhas"] = [[celula_br(v) for v in linha] for linha in cursor.fetchall()]
+    return config
 
 
 # ---------------------------------------------------------------- build
@@ -485,6 +671,8 @@ def build(tema=None):
         escrever(DIST / "projetos" / p["slug"] / "index.html", html)
         if "painel" in p:
             publicar_painel(p, perfil["nome"])
+    escrever(DIST / "consultas-sql" / "index.html",
+             env.get_template("consultas.html").render(**comum, consultas=montar_consultas(), pagina="consultas-sql"))
     escrever(DIST / "404.html", env.get_template("404.html").render(**comum, pagina="404"))
 
     print(f"Site gerado em {DIST}" + (f" (tema {tema})" if tema else ""))
@@ -503,7 +691,7 @@ PADROES = {
     "telefone": re.compile(r"\(?\b\d{2}\)?\s?9?\d{4}-\d{4}\b"),
     "e-mail": re.compile(r"[\w.+-]+@[\w-]+\.[\w.-]+"),
 }
-EXTENSOES_TEXTO = {".html", ".json", ".css", ".js", ".txt", ".toml", ".xml", ".svg"}
+EXTENSOES_TEXTO = {".html", ".json", ".css", ".js", ".txt", ".toml", ".xml", ".svg", ".sql"}
 
 
 def normalizar(texto):
@@ -523,7 +711,7 @@ def carregar_termos():
 
 
 def arquivos_para_verificar():
-    for pasta in (DADOS, DIST, CONTEUDO, STATIC, PAINEIS):
+    for pasta in (DADOS, DIST, CONTEUDO, STATIC, PAINEIS, CONSULTAS):
         if not pasta.exists():
             continue
         for arq in pasta.rglob("*"):
@@ -587,6 +775,9 @@ def listar_pendencias():
         for g in p.get("graficos", []):
             if "pendente" in g:
                 pendencias.append(f"{p['slug']}: gráfico '{g['titulo']}': {g['pendente']}")
+    for b in carregar_toml(CONSULTAS / "consultas.toml").get("blocos", []):
+        if "mudou_pendente" in b:
+            pendencias.append(f"consultas-sql: bloco '{b['id']}': {b['mudou_pendente']}")
     return pendencias
 
 

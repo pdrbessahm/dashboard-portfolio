@@ -1,0 +1,1118 @@
+{
+ "fonte": "painel anonimizado das lojas iFood, out de 2026; letras do painel",
+ "mes": "out",
+ "lojas": [
+  {
+   "loja": "Loja B",
+   "itens_no_cardapio": 90,
+   "itens": [
+    {
+     "item": "Combo 01",
+     "pct": 13.68
+    },
+    {
+     "item": "Hambúrguer 02",
+     "pct": 7.77
+    },
+    {
+     "item": "Hambúrguer 01",
+     "pct": 5.96
+    },
+    {
+     "item": "Combo 04",
+     "pct": 5.56
+    },
+    {
+     "item": "Combo 11",
+     "pct": 5.16
+    },
+    {
+     "item": "Combo 05",
+     "pct": 4.63
+    },
+    {
+     "item": "Combo 03",
+     "pct": 4.6
+    },
+    {
+     "item": "Combo 02",
+     "pct": 3.8
+    },
+    {
+     "item": "Combo 06",
+     "pct": 3.62
+    },
+    {
+     "item": "Combo 10",
+     "pct": 3.24
+    },
+    {
+     "item": "Hambúrguer 03",
+     "pct": 2.89
+    },
+    {
+     "item": "Combo 08",
+     "pct": 2.87
+    },
+    {
+     "item": "Hambúrguer 04",
+     "pct": 1.96
+    },
+    {
+     "item": "Hambúrguer 09",
+     "pct": 1.95
+    },
+    {
+     "item": "Combo 07",
+     "pct": 1.89
+    },
+    {
+     "item": "Hambúrguer 06",
+     "pct": 1.63
+    },
+    {
+     "item": "Combo 09",
+     "pct": 1.55
+    },
+    {
+     "item": "Hambúrguer 10",
+     "pct": 1.52
+    },
+    {
+     "item": "Hot dog 01",
+     "pct": 1.36
+    },
+    {
+     "item": "Combo 13",
+     "pct": 1.33
+    },
+    {
+     "item": "Hambúrguer 12",
+     "pct": 1.3
+    },
+    {
+     "item": "Combo 15",
+     "pct": 1.29
+    },
+    {
+     "item": "Combo 12",
+     "pct": 1.29
+    },
+    {
+     "item": "Hambúrguer 07",
+     "pct": 1.26
+    },
+    {
+     "item": "Combo 21",
+     "pct": 1.25
+    },
+    {
+     "item": "Hot dog 04",
+     "pct": 1.2
+    },
+    {
+     "item": "Combo 16",
+     "pct": 1.12
+    },
+    {
+     "item": "Hot dog 02",
+     "pct": 1.05
+    },
+    {
+     "item": "Combo 14",
+     "pct": 0.99
+    },
+    {
+     "item": "Hambúrguer 05",
+     "pct": 0.88
+    },
+    {
+     "item": "Hambúrguer 11",
+     "pct": 0.85
+    },
+    {
+     "item": "Hambúrguer 08",
+     "pct": 0.74
+    },
+    {
+     "item": "Hambúrguer 13",
+     "pct": 0.74
+    },
+    {
+     "item": "Hambúrguer 15",
+     "pct": 0.69
+    },
+    {
+     "item": "Hot dog 03",
+     "pct": 0.55
+    },
+    {
+     "item": "Hambúrguer 14",
+     "pct": 0.55
+    },
+    {
+     "item": "Hot dog 07",
+     "pct": 0.54
+    },
+    {
+     "item": "Hot dog 06",
+     "pct": 0.49
+    },
+    {
+     "item": "Hot dog 05",
+     "pct": 0.46
+    },
+    {
+     "item": "Combo 28",
+     "pct": 0.41
+    },
+    {
+     "item": "Combo 20",
+     "pct": 0.37
+    },
+    {
+     "item": "Combo 23",
+     "pct": 0.37
+    },
+    {
+     "item": "Combo 25",
+     "pct": 0.36
+    },
+    {
+     "item": "Combo 30",
+     "pct": 0.3
+    },
+    {
+     "item": "Bebida 01",
+     "pct": 0.29
+    },
+    {
+     "item": "Adicional 02",
+     "pct": 0.27
+    },
+    {
+     "item": "Hambúrguer 17",
+     "pct": 0.24
+    },
+    {
+     "item": "Bebida 03",
+     "pct": 0.23
+    },
+    {
+     "item": "Adicional 01",
+     "pct": 0.22
+    },
+    {
+     "item": "Combo 26",
+     "pct": 0.22
+    },
+    {
+     "item": "Combo 18",
+     "pct": 0.22
+    },
+    {
+     "item": "Combo 17",
+     "pct": 0.2
+    },
+    {
+     "item": "Combo 27",
+     "pct": 0.18
+    },
+    {
+     "item": "Combo 22",
+     "pct": 0.18
+    },
+    {
+     "item": "Bebida 04",
+     "pct": 0.17
+    },
+    {
+     "item": "Adicional 03",
+     "pct": 0.16
+    },
+    {
+     "item": "Bebida 07",
+     "pct": 0.15
+    },
+    {
+     "item": "Bebida 08",
+     "pct": 0.15
+    },
+    {
+     "item": "Bebida 02",
+     "pct": 0.15
+    },
+    {
+     "item": "Combo 29",
+     "pct": 0.13
+    },
+    {
+     "item": "Bebida 09",
+     "pct": 0.12
+    },
+    {
+     "item": "Hambúrguer 19",
+     "pct": 0.11
+    },
+    {
+     "item": "Hambúrguer 18",
+     "pct": 0.1
+    },
+    {
+     "item": "Doce 01",
+     "pct": 0.09
+    },
+    {
+     "item": "Bebida 12",
+     "pct": 0.08
+    },
+    {
+     "item": "Bebida 14",
+     "pct": 0.06
+    },
+    {
+     "item": "Hambúrguer 16",
+     "pct": 0.06
+    },
+    {
+     "item": "Bebida 15",
+     "pct": 0.05
+    },
+    {
+     "item": "Bebida 05",
+     "pct": 0.04
+    },
+    {
+     "item": "Bebida 16",
+     "pct": 0.03
+    },
+    {
+     "item": "Bebida 21",
+     "pct": 0.03
+    },
+    {
+     "item": "Bebida 11",
+     "pct": 0.03
+    },
+    {
+     "item": "Bebida 06",
+     "pct": 0.02
+    },
+    {
+     "item": "Bebida 22",
+     "pct": 0.02
+    },
+    {
+     "item": "Doce 03",
+     "pct": 0.01
+    },
+    {
+     "item": "Bebida 19",
+     "pct": 0.01
+    },
+    {
+     "item": "Bebida 10",
+     "pct": 0.01
+    }
+   ]
+  },
+  {
+   "loja": "Loja C",
+   "itens_no_cardapio": 57,
+   "itens": [
+    {
+     "item": "Hambúrguer 03",
+     "pct": 10.35
+    },
+    {
+     "item": "Hambúrguer 02",
+     "pct": 10.2
+    },
+    {
+     "item": "Hambúrguer 01",
+     "pct": 9.68
+    },
+    {
+     "item": "Combo 01",
+     "pct": 8.05
+    },
+    {
+     "item": "Hambúrguer 05",
+     "pct": 7.19
+    },
+    {
+     "item": "Hambúrguer 06",
+     "pct": 4.59
+    },
+    {
+     "item": "Combo 02",
+     "pct": 3.57
+    },
+    {
+     "item": "Combo 08",
+     "pct": 3.39
+    },
+    {
+     "item": "Combo 03",
+     "pct": 2.98
+    },
+    {
+     "item": "Hambúrguer 08",
+     "pct": 2.9
+    },
+    {
+     "item": "Hambúrguer 14",
+     "pct": 2.66
+    },
+    {
+     "item": "Combo 05",
+     "pct": 2.64
+    },
+    {
+     "item": "Hambúrguer 09",
+     "pct": 2.53
+    },
+    {
+     "item": "Porção 02",
+     "pct": 2.43
+    },
+    {
+     "item": "Porção 06",
+     "pct": 2.08
+    },
+    {
+     "item": "Hambúrguer 11",
+     "pct": 1.67
+    },
+    {
+     "item": "Porção 01",
+     "pct": 1.63
+    },
+    {
+     "item": "Hambúrguer 12",
+     "pct": 1.57
+    },
+    {
+     "item": "Porção 09",
+     "pct": 1.56
+    },
+    {
+     "item": "Combo 04",
+     "pct": 1.41
+    },
+    {
+     "item": "Hambúrguer 10",
+     "pct": 1.32
+    },
+    {
+     "item": "Combo 10",
+     "pct": 1.24
+    },
+    {
+     "item": "Hambúrguer 04",
+     "pct": 1.18
+    },
+    {
+     "item": "Hambúrguer 07",
+     "pct": 1.12
+    },
+    {
+     "item": "Hambúrguer 15",
+     "pct": 1.04
+    },
+    {
+     "item": "Bebida 01",
+     "pct": 0.97
+    },
+    {
+     "item": "Hambúrguer 13",
+     "pct": 0.97
+    },
+    {
+     "item": "Combo 12",
+     "pct": 0.95
+    },
+    {
+     "item": "Hambúrguer 17",
+     "pct": 0.94
+    },
+    {
+     "item": "Hambúrguer 20",
+     "pct": 0.94
+    },
+    {
+     "item": "Hambúrguer 16",
+     "pct": 0.83
+    },
+    {
+     "item": "Porção 05",
+     "pct": 0.82
+    },
+    {
+     "item": "Combo 07",
+     "pct": 0.54
+    },
+    {
+     "item": "Combo 06",
+     "pct": 0.53
+    },
+    {
+     "item": "Combo 09",
+     "pct": 0.51
+    },
+    {
+     "item": "Combo 11",
+     "pct": 0.5
+    },
+    {
+     "item": "Porção 04",
+     "pct": 0.44
+    },
+    {
+     "item": "Porção 07",
+     "pct": 0.43
+    },
+    {
+     "item": "Hambúrguer 18",
+     "pct": 0.39
+    },
+    {
+     "item": "Hambúrguer 19",
+     "pct": 0.33
+    },
+    {
+     "item": "Hambúrguer 22",
+     "pct": 0.31
+    },
+    {
+     "item": "Bebida 02",
+     "pct": 0.3
+    },
+    {
+     "item": "Bebida 06",
+     "pct": 0.15
+    },
+    {
+     "item": "Bebida 04",
+     "pct": 0.15
+    },
+    {
+     "item": "Adicional 01",
+     "pct": 0.04
+    }
+   ]
+  },
+  {
+   "loja": "Loja E",
+   "itens_no_cardapio": 53,
+   "itens": [
+    {
+     "item": "Açaí 01",
+     "pct": 15.44
+    },
+    {
+     "item": "Açaí 02",
+     "pct": 14.7
+    },
+    {
+     "item": "Açaí 03",
+     "pct": 11.41
+    },
+    {
+     "item": "Açaí 04",
+     "pct": 7.91
+    },
+    {
+     "item": "Combo 01",
+     "pct": 7.01
+    },
+    {
+     "item": "Açaí 08",
+     "pct": 5.05
+    },
+    {
+     "item": "Açaí 06",
+     "pct": 5.02
+    },
+    {
+     "item": "Açaí 05",
+     "pct": 3.85
+    },
+    {
+     "item": "Açaí 15",
+     "pct": 2.46
+    },
+    {
+     "item": "Açaí 09",
+     "pct": 2.38
+    },
+    {
+     "item": "Combo 03",
+     "pct": 2.36
+    },
+    {
+     "item": "Açaí 10",
+     "pct": 2.12
+    },
+    {
+     "item": "Açaí 07",
+     "pct": 2.1
+    },
+    {
+     "item": "Combo 05",
+     "pct": 1.95
+    },
+    {
+     "item": "Açaí 11",
+     "pct": 1.67
+    },
+    {
+     "item": "Combo 07",
+     "pct": 1.5
+    },
+    {
+     "item": "Açaí 18",
+     "pct": 1.29
+    },
+    {
+     "item": "Combo 06",
+     "pct": 1.27
+    },
+    {
+     "item": "Açaí 24",
+     "pct": 1.14
+    },
+    {
+     "item": "Açaí 13",
+     "pct": 1.12
+    },
+    {
+     "item": "Açaí 14",
+     "pct": 1.01
+    },
+    {
+     "item": "Combo 09",
+     "pct": 0.94
+    },
+    {
+     "item": "Açaí 30",
+     "pct": 0.86
+    },
+    {
+     "item": "Combo 02",
+     "pct": 0.84
+    },
+    {
+     "item": "Combo 04",
+     "pct": 0.75
+    },
+    {
+     "item": "Açaí 22",
+     "pct": 0.64
+    },
+    {
+     "item": "Açaí 29",
+     "pct": 0.58
+    },
+    {
+     "item": "Açaí 16",
+     "pct": 0.52
+    },
+    {
+     "item": "Açaí 25",
+     "pct": 0.51
+    },
+    {
+     "item": "Açaí 12",
+     "pct": 0.44
+    },
+    {
+     "item": "Açaí 07",
+     "pct": 0.42
+    },
+    {
+     "item": "Açaí 14",
+     "pct": 0.39
+    },
+    {
+     "item": "Açaí 17",
+     "pct": 0.36
+    }
+   ]
+  },
+  {
+   "loja": "Loja H",
+   "itens_no_cardapio": 54,
+   "itens": [
+    {
+     "item": "Prato 01",
+     "pct": 15.06
+    },
+    {
+     "item": "Prato 02",
+     "pct": 14.48
+    },
+    {
+     "item": "Prato 03",
+     "pct": 11.5
+    },
+    {
+     "item": "Prato 07",
+     "pct": 6.64
+    },
+    {
+     "item": "Açaí 01",
+     "pct": 6.24
+    },
+    {
+     "item": "Açaí 02",
+     "pct": 5.4
+    },
+    {
+     "item": "Prato 05",
+     "pct": 4.64
+    },
+    {
+     "item": "Prato 08",
+     "pct": 4.43
+    },
+    {
+     "item": "Prato 10",
+     "pct": 3.26
+    },
+    {
+     "item": "Bebida 02",
+     "pct": 2.56
+    },
+    {
+     "item": "Prato 12",
+     "pct": 2.49
+    },
+    {
+     "item": "Açaí 03",
+     "pct": 2.44
+    },
+    {
+     "item": "Doce 01",
+     "pct": 2.04
+    },
+    {
+     "item": "Prato 11",
+     "pct": 1.87
+    },
+    {
+     "item": "Bebida 04",
+     "pct": 1.72
+    },
+    {
+     "item": "Prato 14",
+     "pct": 1.51
+    },
+    {
+     "item": "Bebida 08",
+     "pct": 1.39
+    },
+    {
+     "item": "Açaí 04",
+     "pct": 1.22
+    },
+    {
+     "item": "Porção 01",
+     "pct": 0.98
+    },
+    {
+     "item": "Combo 02",
+     "pct": 0.97
+    },
+    {
+     "item": "Combo 04",
+     "pct": 0.78
+    },
+    {
+     "item": "Prato 13",
+     "pct": 0.75
+    },
+    {
+     "item": "Prato 21",
+     "pct": 0.65
+    },
+    {
+     "item": "Prato 16",
+     "pct": 0.64
+    },
+    {
+     "item": "Bebida 03",
+     "pct": 0.62
+    },
+    {
+     "item": "Bebida 09",
+     "pct": 0.58
+    },
+    {
+     "item": "Combo 06",
+     "pct": 0.56
+    },
+    {
+     "item": "Bebida 06",
+     "pct": 0.49
+    },
+    {
+     "item": "Bebida 01",
+     "pct": 0.47
+    },
+    {
+     "item": "Combo 03",
+     "pct": 0.43
+    },
+    {
+     "item": "Prato 20",
+     "pct": 0.41
+    },
+    {
+     "item": "Combo 05",
+     "pct": 0.4
+    },
+    {
+     "item": "Açaí 05",
+     "pct": 0.38
+    },
+    {
+     "item": "Prato 24",
+     "pct": 0.35
+    },
+    {
+     "item": "Porção 02",
+     "pct": 0.3
+    },
+    {
+     "item": "Bebida 05",
+     "pct": 0.23
+    },
+    {
+     "item": "Combo 01",
+     "pct": 0.23
+    },
+    {
+     "item": "Prato 18",
+     "pct": 0.22
+    },
+    {
+     "item": "Bebida 07",
+     "pct": 0.19
+    },
+    {
+     "item": "Porção 03",
+     "pct": 0.19
+    },
+    {
+     "item": "Prato 04",
+     "pct": 0.12
+    },
+    {
+     "item": "Bebida 11",
+     "pct": 0.09
+    },
+    {
+     "item": "Bebida 13",
+     "pct": 0.06
+    }
+   ]
+  },
+  {
+   "loja": "Loja J",
+   "itens_no_cardapio": 63,
+   "itens": [
+    {
+     "item": "Prato 01",
+     "pct": 46.76
+    },
+    {
+     "item": "Prato 02",
+     "pct": 18.75
+    },
+    {
+     "item": "Prato 03",
+     "pct": 13.9
+    },
+    {
+     "item": "Prato 04",
+     "pct": 7.99
+    },
+    {
+     "item": "Combo 01",
+     "pct": 2.52
+    },
+    {
+     "item": "Prato 07",
+     "pct": 1.6
+    },
+    {
+     "item": "Prato 05",
+     "pct": 1.3
+    },
+    {
+     "item": "Prato 06",
+     "pct": 1.23
+    },
+    {
+     "item": "Prato 08",
+     "pct": 0.73
+    },
+    {
+     "item": "Combo 04",
+     "pct": 0.68
+    },
+    {
+     "item": "Prato 12",
+     "pct": 0.58
+    },
+    {
+     "item": "Bebida 01",
+     "pct": 0.57
+    },
+    {
+     "item": "Combo 02",
+     "pct": 0.53
+    },
+    {
+     "item": "Prato 09",
+     "pct": 0.31
+    },
+    {
+     "item": "Bebida 07",
+     "pct": 0.3
+    },
+    {
+     "item": "Prato 13",
+     "pct": 0.25
+    },
+    {
+     "item": "Prato 17",
+     "pct": 0.22
+    },
+    {
+     "item": "Combo 03",
+     "pct": 0.21
+    },
+    {
+     "item": "Prato 19",
+     "pct": 0.2
+    },
+    {
+     "item": "Prato 11",
+     "pct": 0.19
+    },
+    {
+     "item": "Prato 15",
+     "pct": 0.19
+    },
+    {
+     "item": "Prato 10",
+     "pct": 0.17
+    },
+    {
+     "item": "Prato 20",
+     "pct": 0.16
+    },
+    {
+     "item": "Bebida 05",
+     "pct": 0.1
+    },
+    {
+     "item": "Bebida 14",
+     "pct": 0.08
+    },
+    {
+     "item": "Bebida 12",
+     "pct": 0.07
+    },
+    {
+     "item": "Bebida 11",
+     "pct": 0.07
+    },
+    {
+     "item": "Bebida 10",
+     "pct": 0.07
+    },
+    {
+     "item": "Bebida 03",
+     "pct": 0.07
+    },
+    {
+     "item": "Bebida 02",
+     "pct": 0.06
+    },
+    {
+     "item": "Bebida 09",
+     "pct": 0.06
+    },
+    {
+     "item": "Bebida 06",
+     "pct": 0.05
+    },
+    {
+     "item": "Bebida 13",
+     "pct": 0.02
+    }
+   ]
+  },
+  {
+   "loja": "Loja K",
+   "itens_no_cardapio": 50,
+   "itens": [
+    {
+     "item": "Prato 01",
+     "pct": 16.51
+    },
+    {
+     "item": "Prato 04",
+     "pct": 10.67
+    },
+    {
+     "item": "Prato 02",
+     "pct": 7.89
+    },
+    {
+     "item": "Prato 03",
+     "pct": 7.46
+    },
+    {
+     "item": "Prato 07",
+     "pct": 6.74
+    },
+    {
+     "item": "Combo 02",
+     "pct": 6.6
+    },
+    {
+     "item": "Prato 05",
+     "pct": 5.94
+    },
+    {
+     "item": "Prato 06",
+     "pct": 3.93
+    },
+    {
+     "item": "Prato 11",
+     "pct": 3.18
+    },
+    {
+     "item": "Doce 01",
+     "pct": 2.85
+    },
+    {
+     "item": "Prato 12",
+     "pct": 2.41
+    },
+    {
+     "item": "Combo 01",
+     "pct": 2.37
+    },
+    {
+     "item": "Açaí 01",
+     "pct": 2.33
+    },
+    {
+     "item": "Prato 09",
+     "pct": 2.18
+    },
+    {
+     "item": "Prato 10",
+     "pct": 1.9
+    },
+    {
+     "item": "Bebida 01",
+     "pct": 1.6
+    },
+    {
+     "item": "Prato 14",
+     "pct": 1.45
+    },
+    {
+     "item": "Combo 03",
+     "pct": 1.45
+    },
+    {
+     "item": "Prato 08",
+     "pct": 1.36
+    },
+    {
+     "item": "Prato 16",
+     "pct": 1.26
+    },
+    {
+     "item": "Prato 13",
+     "pct": 1.22
+    },
+    {
+     "item": "Porção 01",
+     "pct": 1.13
+    },
+    {
+     "item": "Açaí 02",
+     "pct": 1.03
+    },
+    {
+     "item": "Prato 18",
+     "pct": 0.93
+    },
+    {
+     "item": "Combo 05",
+     "pct": 0.73
+    },
+    {
+     "item": "Combo 06",
+     "pct": 0.71
+    },
+    {
+     "item": "Açaí 03",
+     "pct": 0.69
+    },
+    {
+     "item": "Combo 04",
+     "pct": 0.69
+    },
+    {
+     "item": "Prato 15",
+     "pct": 0.52
+    },
+    {
+     "item": "Bebida 03",
+     "pct": 0.38
+    },
+    {
+     "item": "Açaí 04",
+     "pct": 0.35
+    },
+    {
+     "item": "Bebida 04",
+     "pct": 0.32
+    },
+    {
+     "item": "Bebida 02",
+     "pct": 0.31
+    },
+    {
+     "item": "Porção 02",
+     "pct": 0.29
+    },
+    {
+     "item": "Doce 02",
+     "pct": 0.26
+    },
+    {
+     "item": "Bebida 08",
+     "pct": 0.14
+    },
+    {
+     "item": "Bebida 05",
+     "pct": 0.1
+    },
+    {
+     "item": "Bebida 10",
+     "pct": 0.1
+    }
+   ]
+  }
+ ]
+}

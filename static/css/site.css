@@ -388,6 +388,29 @@ p { margin: 0 0 1rem; }
 .tabela th, .tabela td { padding: .5rem 1rem .5rem 0; text-align: left; border-bottom: 1px solid var(--borda); font-weight: 400; }
 .tabela td { font-family: var(--mono); font-variant-numeric: tabular-nums; text-align: right; }
 
+/* ------------------------------------------------------------ consultas SQL */
+
+/* cor de sintaxe no fundo escuro do site; contraste de todas as cores acima de 4,5:1 contra --escuro */
+.sql { margin: 0 0 1.25rem; padding: 1.125rem 1.25rem; overflow-x: auto; border-radius: var(--raio-p); background: var(--escuro); color: #e6e8eb; font: 400 .8125rem/1.65 var(--mono); tab-size: 4; }
+.sql:focus-visible, .rolagem:focus-visible { outline: 2px solid var(--acento-escuro); outline-offset: 2px; }
+.sql-kw { color: #8ccaff; font-weight: 600; }
+.sql-fn { color: #f5b971; }
+.sql-str { color: #a8e6a1; }
+.sql-num { color: #f0a6c9; }
+.sql-com { color: #9aa3ad; font-style: italic; }
+.consulta-resultado { margin-bottom: 1.25rem; }
+.consulta-resultado .rotulo { margin: 0 0 .5rem; }
+.rolagem { overflow-x: auto; }
+.consulta-resultado table { border-collapse: collapse; width: 100%; font-size: .875rem; }
+.consulta-resultado th, .consulta-resultado td { padding: .5rem .875rem .5rem 0; border-bottom: 1px solid var(--borda); text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.consulta-resultado th { font: 600 .75rem/1.3 var(--mono); color: var(--tinta-3); }
+.consulta-resultado th:first-child, .consulta-resultado td:first-child { text-align: left; }
+.consulta-resultado td { font-family: var(--mono); }
+.consulta-mudou { padding: .875rem 1rem; border-left: 3px solid var(--acento-escuro); background: var(--superficie); border-radius: 0 var(--raio-p) var(--raio-p) 0; }
+.consulta-acoes { display: flex; flex-wrap: wrap; gap: .75rem; }
+.botao-desligado { color: var(--tinta-3); border-style: dashed; cursor: not-allowed; }
+.botao-desligado:hover { border-color: var(--borda); }
+
 /* ------------------------------------------------------------ rodapé */
 
 .rodape { margin-top: clamp(4rem, 8vw, 6.5rem); padding: clamp(3.5rem, 7vw, 5.5rem) 0 2rem; background: var(--escuro); color: var(--claro); }
@@ -403,7 +426,8 @@ main:has(> .heroi:last-child) + .rodape { margin-top: 0; border-top: 1px solid v
   .heroi-grade { grid-template-columns: 1fr; gap: 2.5rem; }
   .projeto, .projeto:nth-child(even) { grid-template-columns: 1fr; }
   .projeto:nth-child(even) .projeto-visual { order: 0; }
-  .estudo { grid-template-columns: 1fr; gap: 0; padding-top: 2.5rem; }
+  /* minmax(0, ...): bloco de código largo rola dentro dele em vez de alargar a página */
+  .estudo { grid-template-columns: minmax(0, 1fr); gap: 0; padding-top: 2.5rem; }
   .sumario { display: none; }
 }
 

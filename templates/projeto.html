@@ -32,6 +32,9 @@
           {% if projeto.graficos_montados %}
           <li><a href="#graficos">Gráficos</a></li>
           {% endif %}
+          {% if projeto.consultas is defined %}
+          <li><a href="#consultas">Consultas SQL</a></li>
+          {% endif %}
           <li><a href="#repositorio">Repositório</a></li>
         </ol>
       </nav>
@@ -116,6 +119,15 @@
             </figure>
             {% endfor %}
           </div>
+        </section>
+        {% endif %}
+
+        {% if projeto.consultas is defined %}
+        {% set indice.n = indice.n + 1 %}
+        <section class="bloco" id="consultas">
+          <h2><span class="bloco-indice">{{ "%02d" | format(indice.n) }}</span>Consultas SQL</h2>
+          <p>{{ projeto.consultas }}</p>
+          <p><a class="botao botao-cheio" href="/consultas-sql/">Ver as consultas <span aria-hidden="true">→</span></a></p>
         </section>
         {% endif %}
 

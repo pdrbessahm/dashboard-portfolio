@@ -11,6 +11,7 @@ subtitulo = "Painel web com vendas, pedidos, funil, itens e mudanças de cardáp
 
 repositorio = ""
 repositorio_nota = "Código privado: o pipeline e o painel interno têm nomes e identificadores das lojas. Aqui está a versão anonimizada do painel."
+consultas = "A curva ABC acima e as outras perguntas por trás dos gráficos das lojas, cada uma com a consulta SQL que responde e o resultado."
 
 [cartao]
 problema = "Acompanhar restaurantes no iFood é analisar muitos dados e traduzir tudo em insights para donos que não lidam com termos técnicos, sem um lugar que junte a evolução de cada loja ao que mudou no cardápio."
@@ -99,6 +100,12 @@ itens = [
   "Defini a comparação de antes e depois das mudanças no cardápio e o aviso de que ela não prova causa.",
   "Decidi as regras de anonimização: fator só nos valores em R$, itens por tipo e número e o aviso de que R$ não se compara entre lojas.",
 ]
+
+[[graficos]]
+id = "abc"
+titulo = "Curva ABC: poucos itens fazem 80% da receita"
+descricao = "Itens do cardápio em out de 2026, do que mais vende ao que não vendeu nenhuma vez, contra a receita acumulada. Participação na receita da própria loja, que o fator da anonimização não muda. Escolha a loja no seletor."
+dados = "itens.json"
 
 [painel]
 nome = "lojas-ifood"

@@ -12,6 +12,7 @@ subtitulo = "Acompanhamento mensal de lojas de restaurante no iFood: regras de n
 # Opcao A: o botao liga quando apontar para o repositorio que o Pedro recriar seguindo o guia.
 repositorio = ""
 repositorio_nota = "Código de produção privado: contém dado de cliente."
+consultas = "As perguntas por trás dos gráficos desta página, cada uma com a consulta SQL que responde, o resultado e o que ele mudou."
 
 [cartao]
 problema = "Donos de restaurante com loja no iFood sem uma leitura clara do que mudou de um período para o outro e do que fazer a seguir."
@@ -150,6 +151,12 @@ dados = "lojas.json"
 id = "variacao"
 titulo = "Variação contra o mês anterior"
 descricao = "Cada mês contra o mês anterior, calculado mês cheio contra mês cheio. Conversão em pontos percentuais. A escala de cor para em ±40% (±10 p.p. na conversão)."
+dados = "lojas.json"
+
+[[graficos]]
+id = "cascata"
+titulo = "De onde veio a variação do faturamento"
+descricao = "O mês anterior vale 100. A primeira barra é quanto mudou por causa do número de pedidos, a segunda por causa do ticket médio, e as duas somam a variação do mês. Escolha a loja e o mês no seletor."
 dados = "lojas.json"
 
 [[graficos]]

@@ -1,0 +1,42 @@
+# Pagina /consultas-sql/: cada bloco roda o .sql da mesma pasta no build (SQLite em memoria),
+# sobre as mesmas tabelas que os graficos usam, montadas de dados/lojas.json e dados/itens.json.
+# O resultado mostrado e o que a consulta devolve, nao um numero digitado.
+# notebook: endereco do .ipynb no GitHub; vazio deixa o botao desligado.
+
+titulo = "Consultas SQL"
+subtitulo = "As perguntas de negócio por trás dos gráficos das lojas, cada uma com a consulta que responde, o resultado e o que ele mudou."
+notebook = ""
+paragrafos = [
+  "As consultas rodam sobre os dados anonimizados do site: tudo em índice ou porcentagem, sem valor em R$ nem nome de loja.",
+  "Os índices de venda são encadeados a partir da variação mês cheio contra mês cheio, com o primeiro mês de cada loja valendo 100.",
+]
+
+[[blocos]]
+id = "variacao-lag"
+pergunta = "Quanto cada mês vendeu a mais ou a menos que o mês anterior?"
+arquivo = "01-variacao-lag.sql"
+mudou = "Essa conta, mês cheio contra mês cheio, substituiu a variação do painel, que compara com os dias imediatamente anteriores, e foi ela que mostrou os +27,2% da Loja B em set."
+grafico = { texto = "Variação contra o mês anterior", href = "/projetos/dados-delivery/#graficos" }
+
+[[blocos]]
+id = "cascata"
+pergunta = "A alta do faturamento veio de mais pedidos ou de ticket médio maior?"
+arquivo = "02-cascata.sql"
+mudou = "Mostrou que o salto da Loja B em set veio quase todo de pedidos, não de ticket, e por isso a análise segue na série diária de pedidos."
+grafico = { texto = "Cascata do faturamento", href = "/projetos/dados-delivery/#graficos" }
+
+[[blocos]]
+id = "curva-abc"
+pergunta = "Quantos itens do cardápio fazem 80% da receita de cada loja?"
+arquivo = "03-curva-abc.sql"
+nota = "Lojas com as letras do painel de BI, que não são as mesmas do caso Dados de lojas de delivery. Out de 2026, com os itens sem venda no cardápio."
+mudou_pendente = "o Pedro escreve o que essa leitura mudou no cardápio das lojas"
+grafico = { texto = "Curva ABC dos itens", href = "/projetos/bi-lojas-ifood/#graficos" }
+
+[[blocos]]
+id = "antes-depois"
+pergunta = "Os pedidos por dia subiram depois da reordenação da vitrine de 05/09, e por quanto tempo?"
+arquivo = "04-antes-depois.sql"
+nota = "Pedidos por dia aberto em índice: a média de ago por dia aberto vale 100."
+mudou = "Mostrou que o ganho de set ficou concentrado nos 9 dias seguintes à reordenação e que a segunda quinzena voltou ao ritmo de ago, então o resultado sai sempre com essa ressalva."
+grafico = { texto = "Loja B: pedidos por dia aberto", href = "/projetos/dados-delivery/#graficos" }

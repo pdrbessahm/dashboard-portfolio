@@ -1,6 +1,7 @@
 // Desenha as figuras montadas em Python (site.py) e gravadas como JSON na página.
 // Gráfico com versão estreita troca de versão quando a área cruza ESTREITO px.
 // layout.meta.seletor vira um <select> acima do gráfico; cada opção liga só os traços dela.
+// layout.meta.sem_barra esconde a barra de ferramentas do Plotly nesse gráfico.
 (function () {
   var ESTREITO = 560;
   var config = { responsive: true, displaylogo: false,
@@ -52,7 +53,9 @@
     if (seletor && !area.dataset.desenhada) montarSeletor(area, seletor);
     area.dataset.desenhada = id;
     // a versão trocada mantém a opção escolhida
-    Plotly.react(area, figura.data, figura.layout, config).then(function () { aplicar(area); });
+    var semBarra = figura.layout.meta && figura.layout.meta.sem_barra;
+    var conf = semBarra ? Object.assign({}, config, { displayModeBar: false }) : config;
+    Plotly.react(area, figura.data, figura.layout, conf).then(function () { aplicar(area); });
   }
 
   document.querySelectorAll("[data-figura]").forEach(function (area) {
