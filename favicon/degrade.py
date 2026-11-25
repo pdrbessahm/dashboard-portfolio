@@ -26,7 +26,8 @@ from opcoes import CONFERENCIA, ESCOLHIDA as FONTE, OPCOES, RAIZ, SAIDA, SITE, m
 OP = next(o for o in OPCOES if o["slug"] == FONTE)
 DESTINO = SAIDA / OP["slug"] / "degrade"
 
-ESCOLHIDA = "a-fundo"  # escolha do Pedro em 25/11/2026
+# escolha do Pedro em 25/11/2026: a variação a na intensidade forte (a3), no lugar da intenso (a4)
+ESCOLHIDA = "a3-forte"
 
 MARINHO = "#0f1d3a"
 INDIGO = "#2e2a7a"  # ponta escura do fundo da variação c: o marinho puxado para o lilás
@@ -38,6 +39,11 @@ BRANCO = "#ffffff"
 
 VARIACOES = {
     "a-fundo": dict(fundo=(AZUL, LILAS), p=BRANCO, b=BRANCO),
+    # a mesma variação a com a troca de cor mais perceptível: azul mais escuro e saturado numa ponta,
+    # lilás mais quente (puxando para o rosa) na outra. Contraste do branco sobre cada ponta entre parênteses.
+    "a2-acentuado": dict(fundo=("#2a44e8", "#9a4dff"), p=BRANCO, b=BRANCO),  # 6,8:1 e 4,3:1
+    "a3-forte": dict(fundo=("#1f35c9", "#b04ef5"), p=BRANCO, b=BRANCO),  # 8,7:1 e 4,0:1
+    "a4-intenso": dict(fundo=("#16249e", "#d94fd8"), p=BRANCO, b=BRANCO),  # 11,8:1 e 3,5:1
     "b-texto": dict(fundo=MARINHO, p="texto", b="texto"),
     "c-marinho": dict(fundo=(MARINHO, INDIGO), p=BRANCO, b="b"),
 }

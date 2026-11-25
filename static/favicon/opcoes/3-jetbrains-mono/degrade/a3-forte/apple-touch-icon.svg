@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Monograma "pb" em JetBrains Mono (SIL Open Font License), letras convertidas em contorno. Tela inicial do iPhone. Variação em degradê a3-forte. Gerado por favicon/degrade.py. -->
+  <defs>
+    <linearGradient id="f" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="32" y2="32">
+      <stop offset="0" stop-color="#1f35c9"/>
+      <stop offset="1" stop-color="#b04ef5"/>
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" fill="url(#f)"/>
+  <path d="M6.96 24.55V10.83H9.12V12.8H9.59L9.12 13.31Q9.12 12.07 9.88 11.36Q10.64 10.64 11.92 10.64Q13.48 10.64 14.41 11.71Q15.34 12.77 15.34 14.57V17.43Q15.34 18.61 14.92 19.51Q14.5 20.4 13.74 20.88Q12.97 21.36 11.92 21.36Q10.64 21.36 9.88 20.64Q9.12 19.93 9.12 18.69L9.59 19.2H9.1L9.16 21.62V24.55ZM11.15 19.46Q12.09 19.46 12.63 18.9Q13.16 18.35 13.16 17.33V14.67Q13.16 13.63 12.63 13.09Q12.09 12.54 11.15 12.54Q10.23 12.54 9.69 13.11Q9.16 13.67 9.16 14.67V17.33Q9.16 18.33 9.69 18.89Q10.23 19.46 11.15 19.46Z" fill="#ffffff" stroke="#ffffff" stroke-width="0.4" stroke-linejoin="round"/>
+  <path d="M21.6 21.36Q20.32 21.36 19.57 20.64Q18.82 19.93 18.82 18.69L19.29 19.2H18.82V21.17H16.66V7.45H18.86V10.38L18.8 12.8H19.29L18.82 13.31Q18.82 12.07 19.58 11.36Q20.34 10.64 21.6 10.64Q23.16 10.64 24.1 11.71Q25.04 12.77 25.04 14.57V17.43Q25.04 19.23 24.1 20.29Q23.16 21.36 21.6 21.36ZM20.83 19.46Q21.79 19.46 22.32 18.9Q22.86 18.35 22.86 17.33V14.67Q22.86 13.65 22.32 13.1Q21.79 12.54 20.83 12.54Q19.93 12.54 19.39 13.11Q18.86 13.67 18.86 14.67V17.33Q18.86 18.33 19.39 18.89Q19.93 19.46 20.83 19.46Z" fill="#ffffff" stroke="#ffffff" stroke-width="0.4" stroke-linejoin="round"/>
+</svg>

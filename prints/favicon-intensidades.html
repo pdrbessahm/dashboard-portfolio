@@ -1,0 +1,84 @@
+<!doctype html>
+<!-- Intensidades do degrade da variacao A do favicon, lado a lado, na aba do navegador em 16 e 32 px, tema claro e escuro:
+     node prints/print.mjs <chrome> prints/favicon-intensidades.html <saida.png> 1024 projeto 0 "body"
+     Servida da raiz do repositorio. Le os favicon.ico de static/favicon/opcoes/3-jetbrains-mono/degrade/<variacao>/
+     (gerados por favicon/degrade.py e favicon/rasterizar.py <pasta>). O print sai em tela 2x: na linha de 16 px
+     cada pixel aparece dobrado; na de 32 px, a imagem de 32 px no tamanho real. A faixa de abas e simulada. -->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Favicon - intensidades do degrade</title>
+<style>
+  @font-face { font-family: Inter; src: url(/static/fonts/inter-latin-400-normal.woff2) format("woff2"); font-weight: 400; }
+  @font-face { font-family: Inter; src: url(/static/fonts/inter-latin-600-normal.woff2) format("woff2"); font-weight: 600; }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 28px 32px 32px; font: 400 14px/1.4 Inter, system-ui, sans-serif; color: #1c1c24; background: #f8f8fc; }
+  h1 { margin: 0 0 4px; font-size: 22px; font-weight: 600; letter-spacing: -.02em; }
+  .sub { margin: 0 0 22px; color: #4f505a; }
+  .grade { display: grid; grid-template-columns: 64px repeat(4, minmax(0, 1fr)); gap: 10px 12px; align-items: center; }
+  .cab { font-size: 13px; color: #4f505a; }
+  .cab b { display: block; font-size: 15px; font-weight: 600; color: #1c1c24; }
+  .cab.escolhida b::after { content: " - no site"; color: #3d5af1; }
+  .rotulo { font-size: 13px; font-weight: 600; }
+  .rotulo small { display: block; font-weight: 400; color: #4f505a; }
+  .tira { display: flex; align-items: flex-end; height: 40px; padding: 0 6px; border-radius: 10px; }
+  .tira.clara { background: #dee1e6; }
+  .tira.escura { background: #1f1f1f; }
+  .aba { display: flex; align-items: center; gap: 8px; width: 100%; height: 32px; padding: 0 10px; border-radius: 10px 10px 0 0;
+    font-size: 12px; white-space: nowrap; overflow: hidden; background: #fff; color: #1f1f1f; }
+  .tira.escura .aba { background: #3c3c3c; color: #e8eaed; }
+  .aba span { overflow: hidden; text-overflow: ellipsis; }
+  .aba img { width: 16px; height: 16px; flex: none; image-rendering: pixelated; }
+  .zoom { display: flex; gap: 10px; }
+  .zoom img { display: block; width: 96px; height: 96px; image-rendering: pixelated;
+    background: repeating-conic-gradient(#e2e2ea 0 25%, #ffffff 0 50%) 0 0 / 12px 12px; }
+  .legenda { margin-top: 18px; font-size: 12px; color: #4f505a; }
+</style>
+</head>
+<body>
+<h1>Favicon: intensidade do degradê</h1>
+<p class="sub">Variação A ("pb" branco em JetBrains Mono). Atual à esquerda; à direita, a troca de cor cada vez mais forte.</p>
+<div class="grade" id="grade"></div>
+<p class="legenda">Ampliações: 16 px e 32 px do favicon.ico de cada variação. Contraste do branco sobre as pontas do degradê entre parênteses.</p>
+
+<script>
+  const BASE = '/static/favicon/opcoes/3-jetbrains-mono/degrade/';
+  const VARIACOES = [
+    { slug: 'a-fundo', nome: 'Atual', cores: '#3d5af1 → #7c4dff (5,3 e 4,8:1)' },
+    { slug: 'a2-acentuado', nome: 'Acentuado', cores: '#2a44e8 → #9a4dff (6,8 e 4,3:1)' },
+    { slug: 'a3-forte', nome: 'Forte', cores: '#1f35c9 → #b04ef5 (8,7 e 4,0:1)' },
+    { slug: 'a4-intenso', nome: 'Intenso', cores: '#16249e → #d94fd8 (11,8 e 3,5:1)' },
+  ];
+  const ESCOLHIDA = new URLSearchParams(location.search).get('escolhida');
+  // le as imagens PNG de dentro do ICO (cabecalho de 6 bytes, entradas de 16)
+  async function imagensDoIco(src) {
+    const buf = await (await fetch(src)).arrayBuffer();
+    const v = new DataView(buf);
+    const saida = {};
+    for (let i = 0; i < v.getUint16(4, true); i++) {
+      const e = 6 + 16 * i;
+      const lado = v.getUint8(e) || 256;
+      const tam = v.getUint32(e + 8, true), desl = v.getUint32(e + 12, true);
+      saida[lado] = URL.createObjectURL(new Blob([buf.slice(desl, desl + tam)], { type: 'image/png' }));
+    }
+    return saida;
+  }
+  window.pronto = (async () => {
+    const imgs = await Promise.all(VARIACOES.map((v) => imagensDoIco(BASE + v.slug + '/favicon.ico')));
+    const tira = (classe, src) => `<div class="tira ${classe}"><div class="aba"><img src="${src}" alt="">`
+      + '<span>Pedro Henrique Bessa Maia - Analista de Dados</span></div></div>';
+    let html = '<div></div>' + VARIACOES.map((v) =>
+      `<div class="cab${v.slug === ESCOLHIDA ? ' escolhida' : ''}"><b>${v.nome}</b>${v.cores}</div>`).join('');
+    for (const lado of [16, 32]) {
+      for (const tema of ['clara', 'escura']) {
+        html += `<div class="rotulo">${lado} px<small>${tema === 'clara' ? 'claro' : 'escuro'}</small></div>`
+          + imgs.map((img) => tira(tema, img[lado])).join('');
+      }
+    }
+    html += '<div class="rotulo">zoom</div>' + imgs.map((img) =>
+      `<div class="zoom"><img src="${img[16]}" alt=""><img src="${img[32]}" alt=""></div>`).join('');
+    document.getElementById('grade').innerHTML = html;
+  })();
+</script>
+</body>
+</html>

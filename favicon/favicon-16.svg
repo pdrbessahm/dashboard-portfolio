@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-  <!-- Monograma "pb" em JetBrains Mono (SIL Open Font License), letras convertidas em contorno. Desenho de 16 px. Variação em degradê a-fundo. Gerado por favicon/degrade.py. -->
+  <!-- Monograma "pb" em JetBrains Mono (SIL Open Font License), letras convertidas em contorno. Desenho de 16 px. Variação em degradê a3-forte. Gerado por favicon/degrade.py. -->
   <defs>
     <linearGradient id="f" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="16" y2="16">
-      <stop offset="0" stop-color="#3d5af1"/>
-      <stop offset="1" stop-color="#7c4dff"/>
+      <stop offset="0" stop-color="#1f35c9"/>
+      <stop offset="1" stop-color="#b04ef5"/>
     </linearGradient>
   </defs>
   <rect width="16" height="16" rx="3.5" fill="url(#f)"/>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <!-- Monograma "pb" em JetBrains Mono (SIL Open Font License), letras convertidas em contorno. Desenho de 16 px. Variação em degradê a4-intenso. Gerado por favicon/degrade.py. -->
+  <defs>
+    <linearGradient id="f" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="16" y2="16">
+      <stop offset="0" stop-color="#16249e"/>
+      <stop offset="1" stop-color="#d94fd8"/>
+    </linearGradient>
+  </defs>
+  <rect width="16" height="16" rx="3.5" fill="url(#f)"/>
+  <path d="M1.25 13.93V4.56H2.73V5.91H3.05L2.73 6.25Q2.73 5.41 3.24 4.92Q3.76 4.43 4.64 4.43Q5.7 4.43 6.34 5.16Q6.97 5.88 6.97 7.11V9.06Q6.97 9.87 6.68 10.48Q6.4 11.09 5.88 11.42Q5.36 11.75 4.64 11.75Q3.76 11.75 3.24 11.26Q2.73 10.77 2.73 9.92L3.05 10.27H2.71L2.75 11.93V13.93ZM4.11 10.45Q4.75 10.45 5.12 10.07Q5.48 9.69 5.48 9V7.18Q5.48 6.47 5.12 6.1Q4.75 5.73 4.11 5.73Q3.48 5.73 3.12 6.11Q2.75 6.5 2.75 7.18V9Q2.75 9.68 3.12 10.07Q3.48 10.45 4.11 10.45Z" fill="#ffffff" stroke="#ffffff" stroke-width="0.5" stroke-linejoin="round"/>
+  <path d="M12.62 11.75Q11.75 11.75 11.24 11.26Q10.73 10.77 10.73 9.92L11.05 10.27H10.73V11.62H9.25V2.25H10.75V4.25L10.71 5.91H11.05L10.73 6.25Q10.73 5.41 11.24 4.92Q11.76 4.43 12.62 4.43Q13.69 4.43 14.33 5.16Q14.97 5.88 14.97 7.11V9.06Q14.97 10.3 14.33 11.02Q13.69 11.75 12.62 11.75ZM12.1 10.45Q12.75 10.45 13.12 10.07Q13.48 9.69 13.48 9V7.18Q13.48 6.48 13.12 6.11Q12.75 5.73 12.1 5.73Q11.48 5.73 11.12 6.11Q10.75 6.5 10.75 7.18V9Q10.75 9.68 11.12 10.07Q11.48 10.45 12.1 10.45Z" fill="#ffffff" stroke="#ffffff" stroke-width="0.5" stroke-linejoin="round"/>
+</svg>
