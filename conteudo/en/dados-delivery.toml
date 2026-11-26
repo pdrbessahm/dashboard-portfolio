@@ -1,0 +1,152 @@
+# Versao em ingles de conteudo/dados-delivery.toml: so os campos de texto, na mesma ordem.
+# Mesmos fatos do portugues, nada alem deles. Listas de tabelas (secoes, fluxo, graficos) com o mesmo numero de itens.
+
+titulo = "Delivery store data, from collection to report"
+subtitulo = "Monthly monitoring of restaurant stores on iFood: business rules, quality rules, KPIs and action plan."
+
+repositorio_nota = "Production code is private: it contains client data."
+consultas = "The questions behind the charts on this page, each with the SQL query that answers it, the result and what it changed."
+
+[cartao]
+problema = "Restaurant owners with a store on iFood had no clear reading of what changed from one period to the next and what to do next."
+fiz = "I defined the business rules, KPIs and quality rules of a flow that collects the stores' data, stores it in a database and turns it into a dashboard and a report with an action plan."
+ferramentas = ["iFood dashboard", "KPIs", "Report", "Python", "pandas", "Plotly"]
+resultado_numero = "+27.2%"
+resultado = "Store B (meal boxes): +27.2% revenue in Sep vs. Aug, in a month with no ads, after the storefront was reordered."
+data = "Jun to Oct 2026"
+
+[cartao.visual]
+titulo = "Store B · revenue (index, Aug = 100)"
+barras = [
+  { rotulo = "Aug", texto = "100" },
+  { rotulo = "Sep", texto = "127.2" },
+]
+
+[[secoes]]
+titulo = "Problem"
+paragrafos = [
+  "Since Dec 2024, as a side activity, I have been monitoring restaurant stores on delivery platforms.",
+  "The owner sees many scattered numbers in the platform dashboard and needs an objective reading: what improved, what got worse and why.",
+]
+
+[[secoes]]
+titulo = "The flow"
+paragrafos = [
+  "Each store's numbers go through five stages before reaching the owner.",
+]
+fluxo = [
+  { nome = "Collection", entrega = "menu, sales, funnel and ads for each store" },
+  { nome = "Cleaning", entrega = "correct types and the quality rules below" },
+  { nome = "Database", entrega = "the numbers of all stores in one place" },
+  { nome = "Dashboard", entrega = "the charts on this page" },
+  { nome = "Report", entrega = "reading of the month and action plan for the owner" },
+]
+
+[[secoes]]
+titulo = "Data"
+paragrafos = [
+  "The data comes from the stores' own accounts, with access granted by the owner.",
+  "Monthly store indicators: revenue, orders, average ticket, new customers, conversion, funnel (visits, viewed an item, cart, checkout, orders), sales by day of week, payment methods, store availability and best-selling items.",
+  "Stores appear as Store A, Store B and so on, with the segment beside them.",
+  "No absolute value that could identify a store appears: everything is a percentage change, a share or an index (store's first month = 100).",
+  "The order of the letters does not follow the store's name or size.",
+  "Stores A and B share the same kitchen.",
+]
+itens = [
+  "Store A (restaurant and açaí): Jun to Oct 2026. Expanded ads from Sep.",
+  "Store B (meal boxes): Jun to Oct 2026. No ads in Sep.",
+  "Store C (meal boxes): Jun to Oct 2026. Expanded ads in Sep, in response to the drop in visits.",
+  "Store D (burgers): Jun to Oct 2026. Expanded ads in Sep; in Oct it was open 79% of its registered hours.",
+  "Store E (snacks): Jun to Oct 2026. In Sep the store itself changed its schedule (closed on Sundays).",
+  "Store F (burgers): Jun and Jul 2026.",
+  "Store G (burgers): Jun and Jul 2026, as support only: in Jun it had fewer than 50 orders, so it appears in the charts but does not support conclusions.",
+  "Store H (burgers): Jul and Aug 2026.",
+]
+nota = "Stores A to E form the long series (Jun to Oct 2026). F, G and H enter as a two-month slice, always with the period beside the name. Stores with fewer than 50 orders per month or with months without operation were left out."
+
+[[secoes]]
+titulo = "Quality rules"
+paragrafos = [
+  "These are the rules that decide whether a number can go into the report.",
+]
+itens = [
+  "Data that was not captured does not count as zero sales: no report goes out without the full capture for the period.",
+  "Conversion comes from the funnel, never from the best-sellers ranking, which only shows the top 12 items and counts units, not orders.",
+  "A paused item may show as available: what says whether the item is visible to the customer is its status in the catalog.",
+  "The comparison with the previous period is calculated full month against full month, not from the dashboard's change figure, which compares with the immediately preceding days.",
+  "No client's report reveals another client's numbers, not even by implicit comparison.",
+]
+
+[[secoes]]
+titulo = "What I did and decided"
+paragrafos = [
+  "I defined the business rules and I monitor the stores' sales and conversion KPIs.",
+]
+itens = [
+  "Report cycle: monthly on day 01, about the previous month, and biweekly on day 15, about the current month.",
+  "Every report compares with the previous period and ends in an action plan linked to competitors in the region.",
+  "The quality rules above.",
+  "The report goes to the owner in business language, without technical jargon.",
+]
+
+[[secoes]]
+titulo = "Result"
+destaque = "Store B (meal boxes): revenue 27.2% higher in Sep than in Aug, in a month with no ads at all."
+paragrafos = [
+  "Orders rose 24.7% and visits 27.4%, with stable conversion (17.0% to 16.9%).",
+  "The store was open practically the same amount of time and closed the same number of days in both months, so it is not a calendar effect.",
+  "The change that explains the jump is the storefront reordering on Sep 5, which put the best-selling categories and dishes at the top.",
+]
+
+[[secoes]]
+titulo = "Why the Sep 5 reordering"
+itens = [
+  "In the 9 days after the reordering, orders per open day were more than double the pace of the previous weeks.",
+  "That window alone produced, above the previous pace, more orders than the gain for the whole month.",
+  "The previous change, on Aug 6, was already in effect on 26 of the 31 days of Aug: it is inside the comparison base and, after it, orders per day did not rise.",
+  "Store A, which shares the kitchen and was also reordered on Sep 5, rose much less on the same days (+21% in orders per day), so Store B's jump was not a general kitchen movement.",
+  "The reordering affects what the Sep report measures: visits that open a dish went from 53.5% to 61.5%.",
+]
+
+[[secoes]]
+titulo = "Caveats"
+itens = [
+  "The effect was concentrated in the 9 days after the reordering and the second half of the month went back to the Aug pace. The month closed higher because of that window.",
+  "The daily series is of orders, not revenue; since the ticket rose only 2.0%, revenue follows orders.",
+  "This is a before-and-after reading, not a controlled experiment.",
+]
+
+[[secoes]]
+titulo = "Same kitchen, with and without ads"
+paragrafos = [
+  "Stores A and B share the kitchen and were open the same hours.",
+  "In Sep vs. Aug, Store A grew 66.7% with ads (BRL 3.70 in sales for every BRL 1 invested) and Store B grew 27.2% with no ads.",
+]
+
+[[graficos]]
+titulo = "Monthly revenue and orders by store"
+descricao = "As an index: each store's first month equals 100. A to E from Jun to Oct; F, G and H only in their two months."
+
+[[graficos]]
+titulo = "Conversion funnel by store"
+descricao = "Each stage as a percentage of visits. Choose the store and month in the selector."
+
+[[graficos]]
+titulo = "Change vs. previous month"
+descricao = "Each month against the previous one, calculated full month against full month. Conversion in percentage points. The color scale stops at ±40% (±10 p.p. for conversion)."
+
+[[graficos]]
+titulo = "Where the revenue change came from"
+descricao = "The previous month equals 100. The first bar is how much changed because of the number of orders, the second because of the average ticket, and the two add up to the month's change. Choose the store and month in the selector."
+
+[[graficos]]
+titulo = "Store B: orders per open day in Aug and Sep"
+descricao = "Orders on each open day as an index (Aug average per open day = 100), with the two storefront changes marked. A day without a bar is a closed day. In blue, the 9 days after the reordering."
+
+[[graficos]]
+titulo = "Stores A and B, same kitchen, in Sep"
+descricao = "Sep vs. Aug. Store A had expanded ads in the month; Store B had no ads."
+
+[[graficos]]
+titulo = "Sales by day of week and payment methods"
+descricao = "Percentage share in each store's last month. Choose the store in the selector."

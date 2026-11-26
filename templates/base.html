@@ -7,6 +7,8 @@
   <meta name="description" content="{% block descricao %}{{ perfil.resumo[0] }}{% endblock %}">
   <meta name="author" content="{{ perfil.nome }}">
   <meta name="theme-color" content="{{ tema.cor if tema else '#0d1014' }}">
+{% from "metadados.html" import metadados with context %}
+{{ metadados(self.titulo(), self.descricao()) }}
 {% include "favicon.html" %}
   <link rel="preload" href="/static/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/static/fonts/inter-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>

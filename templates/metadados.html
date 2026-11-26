@@ -1,0 +1,26 @@
+{# Endereço oficial no domínio (canonical), as versões em cada idioma (hreflang) e a prévia de link (Open Graph).
+   urls: endereço da página em cada idioma que a tem, sem o domínio; None na 404, que não deve ser indexada. #}
+{% macro metadados(titulo, descricao) %}
+{% if urls %}
+  <link rel="canonical" href="{{ perfil.endereco }}{{ urls[lingua] }}">
+{% if urls | length > 1 %}
+{% for l, u in urls.items() %}
+  <link rel="alternate" hreflang="{{ linguas[l].html }}" href="{{ perfil.endereco }}{{ u }}">
+{% endfor %}
+  <link rel="alternate" hreflang="x-default" href="{{ perfil.endereco }}{{ urls.pt }}">
+{% endif %}
+  <meta property="og:url" content="{{ perfil.endereco }}{{ urls[lingua] }}">
+{% else %}
+  <meta name="robots" content="noindex">
+{% endif %}
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ perfil.nome }}">
+  <meta property="og:title" content="{{ titulo | trim }}">
+  <meta property="og:description" content="{{ descricao | trim }}">
+  <meta property="og:locale" content="{{ linguas[lingua].og }}">
+{% if urls and urls | length > 1 %}
+{% for l in urls if l != lingua %}
+  <meta property="og:locale:alternate" content="{{ linguas[l].og }}">
+{% endfor %}
+{% endif %}
+{% endmacro %}

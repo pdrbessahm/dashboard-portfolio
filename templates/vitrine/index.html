@@ -7,7 +7,7 @@
         <h1>{{ v.saudacao }}</h1>
         <span class="traco" aria-hidden="true"></span>
         <p>{{ v.frase_heroi }}</p>
-        <a class="botao-rolar" href="#sobre">Sobre mim <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
+        <a class="botao-rolar" href="#sobre">{{ t.sobre_mim }} <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
       </div>
     </section>
 
@@ -15,16 +15,16 @@
       {# sem foto, o texto ocupa a seção sozinho: um espaço reservado vazio não vai para o ar #}
       <div class="largura sobre-grade{% if not v.foto %} sem-foto{% endif %}">
         <div class="sobre-texto">
-          <p class="sobre-eu">Eu sou</p>
+          <p class="sobre-eu">{{ t.eu_sou }}</p>
           <h2>{{ perfil.nome_curto }}</h2>
           <p class="sobre-cargo">{{ perfil.cargo }} · {{ perfil.local }}</p>
           {% for frase in perfil.resumo %}
           <p>{{ frase }}</p>
           {% endfor %}
-          <a class="botao botao-gradiente" href="#projetos">Meus projetos</a>
+          <a class="botao botao-gradiente" href="#projetos">{{ t.meus_projetos }}</a>
         </div>
         {% if v.foto %}
-        <img class="sobre-foto" src="{{ v.foto }}" alt="Foto de {{ perfil.nome_curto }}" width="760" height="880">
+        <img class="sobre-foto" src="{{ v.foto }}" alt="{{ t.foto_de }} {{ perfil.nome_curto }}" width="760" height="880">
         {% endif %}
       </div>
     </section>
@@ -56,11 +56,11 @@
         <div class="cartoes">
           {% for p in projetos %}
           <article class="cartao">
-            <a class="cartao-capa" href="/projetos/{{ p.slug }}/" tabindex="-1" aria-hidden="true">
+            <a class="cartao-capa" href="{{ raiz }}/projetos/{{ p.slug }}/" tabindex="-1" aria-hidden="true">
               <img src="{{ p.cartao.capa }}" alt="" loading="lazy">
             </a>
             <p class="cartao-data">{{ p.cartao.data }}</p>
-            <h3><a href="/projetos/{{ p.slug }}/">{{ p.titulo }}</a></h3>
+            <h3><a href="{{ raiz }}/projetos/{{ p.slug }}/">{{ p.titulo }}</a></h3>
             <p class="cartao-texto">{{ p.subtitulo }}</p>
           </article>
           {% endfor %}

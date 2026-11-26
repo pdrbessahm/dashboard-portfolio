@@ -1,0 +1,105 @@
+# Rotulos dos graficos em ingles, usados pelo tr() do site.py no build em ingles.
+# Chave: o texto em portugues exatamente como o site.py ou os dados de dados/ escrevem.
+# "Loja X" vira "Store X" sozinho, e item com numero ("Combo 01") traduz so o tipo.
+# Rotulo que faltar aqui faz o build em ingles falhar.
+
+[rotulos]
+# meses
+jun = "Jun"
+jul = "Jul"
+ago = "Aug"
+set = "Sep"
+out = "Oct"
+nov = "Nov"
+
+# dias da semana
+seg = "Mon"
+ter = "Tue"
+qua = "Wed"
+qui = "Thu"
+sex = "Fri"
+"sáb" = "Sat"
+dom = "Sun"
+
+# segmentos das lojas
+marmitaria = "meal boxes"
+hamburgueria = "burgers"
+lanches = "snacks"
+"restaurante e açaí" = "restaurant and açaí"
+
+# etapas do funil
+Visitas = "Visits"
+"Viram item" = "Viewed an item"
+Carrinho = "Cart"
+Checkout = "Checkout"
+
+# formas de pagamento
+Pix = "Pix"
+"Crédito" = "Credit card"
+"Débito" = "Debit card"
+"Carteira digital" = "Digital wallet"
+"Vale-refeição" = "Meal voucher"
+Dinheiro = "Cash"
+Outros = "Other"
+
+# tipos de item do cardapio (anonimizados como tipo e numero)
+Adicional = "Add-on"
+"Açaí" = "Açaí"
+Bebida = "Drink"
+Combo = "Combo"
+Doce = "Dessert"
+"Hambúrguer" = "Burger"
+"Hot dog" = "Hot dog"
+"Porção" = "Side"
+Prato = "Dish"
+
+# mudancas de vitrine da Loja B
+"mudança de 06/08" = "change on Aug 6"
+"reordenação de 05/09" = "reordering on Sep 5"
+
+# medidas e eixos
+Faturamento = "Revenue"
+Pedidos = "Orders"
+"Ticket médio" = "Average ticket"
+"Conversão" = "Conversion"
+" p.p." = " p.p."
+pedidos = "orders"
+"ticket médio" = "average ticket"
+Medida = "Measure"
+Loja = "Store"
+"Loja e mês" = "Store and month"
+"índice" = "index"
+"das visitas" = "of visits"
+"contra o mês anterior" = "vs. previous month"
+"em set contra ago" = "in Sep vs. Aug"
+"com anúncio" = "with ads"
+"sem anúncio" = "no ads"
+"ago = 100" = "Aug = 100"
+"média de ago = 100" = "Aug average = 100"
+"pedidos por dia, índice" = "orders per day, index"
+"faturamento, índice" = "revenue, index"
+"Por dia da semana" = "By day of week"
+"Por forma de pagamento" = "By payment method"
+"Pedidos por dia da semana" = "Orders by day of week"
+"Pedidos por forma de pagamento" = "Orders by payment method"
+"do cardápio" = "of the menu"
+"da receita" = "of revenue"
+"receita acumulada" = "cumulative revenue"
+"itens do cardápio, do que mais vende ao sem venda" = "menu items, from best seller to no sales"
+
+# periodos da tabela do caso da Loja B
+"01 a 05/08" = "Aug 1 to 5"
+"06/08 a 04/09" = "Aug 6 to Sep 4"
+"05 a 13/09, depois da reordenação" = "Sep 5 to 13, after the reordering"
+"15 a 30/09" = "Sep 15 to 30"
+
+# frases com campos (os nomes entre chaves ficam iguais)
+"{loja}, {ini} a {fim}" = "{loja}, {ini} to {fim}"
+"faturamento {fat}, pedidos {ped}" = "revenue {fat}, orders {ped}"
+"{pct} das visitas viraram pedido" = "{pct} of visits became orders"
+"dia mais forte {dia} ({pct}), Pix {pix}" = "strongest day {dia} ({pct}), Pix {pix}"
+"{loja} · {mes} contra {ant}" = "{loja} · {mes} vs. {ant}"
+"pedidos {ped}, ticket {tic}, faturamento {fat}" = "orders {ped}, ticket {tic}, revenue {fat}"
+"{n} itens sem venda" = "{n} items with no sales"
+"{k} de {n} itens ({pct}%)<br>fazem 80% da receita" = "{k} of {n} items ({pct}%)<br>make 80% of revenue"
+"{k} de {n} itens ({pct}% do cardápio) fazem 80% da receita; {s} sem venda" = "{k} of {n} items ({pct}% of the menu) make 80% of revenue; {s} with no sales"

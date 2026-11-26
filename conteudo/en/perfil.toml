@@ -1,0 +1,78 @@
+# Versao em ingles de conteudo/perfil.toml: so os campos de texto, na mesma ordem.
+# Os outros campos (e-mail, links, CV, imagens) vem do arquivo em portugues.
+# Mesmos fatos do portugues, nada alem deles; a frase de SQL e Python segue o REGRAS.md
+# ("knowledge of SQL queries and Python").
+
+cargo = "Data Analyst"
+frase = "End-to-end data, from collection to report."
+resumo = [
+  "Data analyst with over 1 year of experience in operational metrics and performance analysis in the food delivery sector.",
+  "I have knowledge of SQL queries and Python, used to collect, clean and load data from digital platforms into a database and turn it into dashboards and reports for decision-makers.",
+]
+local = "Natal, Brazil · remote"
+
+[[numeros]]
+valor = "10+"
+rotulo = "restaurant operations monitored"
+
+[[numeros]]
+valor = "4% → 0.83%"
+rotulo = "delays and cancellations across more than 8 restaurants"
+
+[[numeros]]
+valor = "+27.2%"
+rotulo = "revenue for one store in one month, with no ads"
+
+[[numeros]]
+valor = "400+"
+rotulo = "catalog products restructured"
+
+[experiencia]
+cargo = "Data Analyst"
+periodo = "Mar 2025 - Mar 2026"
+contexto = "Performance analysis and operational metrics for more than 10 restaurant operations on digital delivery platforms."
+itens = [
+  "Data extraction and loading routines (ETL) in Python to consolidate sales, catalog and conversion funnel data, with recurring loads into a database.",
+  "Restructured a catalog of more than 400 products based on platform data, increasing the bottom of the conversion funnel by 6% to 10%.",
+  "Tracked logistics KPIs, bringing delays and cancellations from above 4% to below 0.83% across more than 8 restaurants.",
+]
+
+[vitrine]
+saudacao = "Hi! I'm Pedro"
+frase_heroi = "I analyze business data to turn scattered numbers into decisions."
+areas_titulo = "Areas of interest"
+areas_frase = "What I like to do with data."
+projetos_titulo = "Recent projects"
+projetos_frase = "Real business problems, read through data."
+
+[[vitrine.areas]]
+nome = "Data analysis"
+texto = "Performance analysis and operational metrics for more than 10 restaurant operations in food delivery."
+
+[[vitrine.areas]]
+nome = "BI and dashboards"
+texto = "KPIs, dashboards and management reports in Power BI and in web dashboards, for decision-makers."
+
+[[vitrine.areas]]
+nome = "SQL"
+texto = "Knowledge of SQL queries in PostgreSQL, MySQL and SQLite to clean and validate the data."
+
+[[vitrine.areas]]
+nome = "Python and automation"
+texto = "Data extraction and loading routines (ETL) in Python, with recurring loads into a database."
+
+[[vitrine.areas]]
+nome = "iFood delivery with data"
+texto = "Catalog of more than 400 products restructured, with 6% to 10% more at the bottom of the funnel."
+
+[[vitrine.areas]]
+nome = "Data storytelling"
+texto = "Reports in business language, without technical jargon, that end in an action plan."
+
+[[competencias]]
+grupo = "Data engineering"
+itens = ["Python", "SQL", "ETL", "Data collection", "Automation", "Pipelines"]
+
+[[competencias]]
+grupo = "Analysis"
+itens = ["Power BI", "Dashboards", "KPIs", "Reports"]

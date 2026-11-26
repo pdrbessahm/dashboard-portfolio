@@ -4,14 +4,14 @@
 {% block conteudo %}
     <section class="heroi heroi-projeto">
       <div class="largura">
-        <p class="voltar"><a href="/#projetos"><span aria-hidden="true">←</span> Todos os projetos</a></p>
+        <p class="voltar"><a href="{{ raiz }}/#projetos"><span aria-hidden="true">←</span> {{ t.todos_projetos }}</a></p>
         <h1>{{ projeto.titulo }}</h1>
         <p class="subtitulo">{{ projeto.subtitulo }}</p>
         <div class="faixa-resultado">
           <p class="faixa-numero">{{ projeto.cartao.resultado_numero }}</p>
           <p>{{ projeto.cartao.resultado }}</p>
         </div>
-        <ul class="etiquetas etiquetas-escuras" aria-label="Ferramentas">
+        <ul class="etiquetas etiquetas-escuras" aria-label="{{ t.ferramentas }}">
           {% for f in projeto.cartao.ferramentas %}
           <li>{{ f }}</li>
           {% endfor %}
@@ -20,8 +20,8 @@
     </section>
 
     <div class="largura estudo">
-      <nav class="sumario" aria-label="Nesta página">
-        <p class="rotulo">Nesta página</p>
+      <nav class="sumario" aria-label="{{ t.nesta_pagina }}">
+        <p class="rotulo">{{ t.nesta_pagina }}</p>
         <ol>
           {% for s in projeto.secoes %}
           <li><a href="#s{{ loop.index }}">{{ s.titulo }}</a></li>
@@ -30,12 +30,12 @@
           <li><a href="#painel">{{ projeto.painel.titulo }}</a></li>
           {% endif %}
           {% if projeto.graficos_montados %}
-          <li><a href="#graficos">Gráficos</a></li>
+          <li><a href="#graficos">{{ t.graficos }}</a></li>
           {% endif %}
           {% if projeto.consultas is defined %}
-          <li><a href="#consultas">Consultas SQL</a></li>
+          <li><a href="#consultas">{{ t.consultas }}</a></li>
           {% endif %}
-          <li><a href="#repositorio">Repositório</a></li>
+          <li><a href="#repositorio">{{ t.repositorio }}</a></li>
         </ol>
       </nav>
 
@@ -72,13 +72,14 @@
 
         {% if projeto.painel is defined %}
         {% set indice.n = indice.n + 1 %}
+        {# o painel só existe em português: a versão em inglês aponta para ele e avisa no texto #}
         {% set painel_url = "/projetos/" ~ projeto.slug ~ "/painel/" %}
         <section class="bloco" id="painel">
           <h2><span class="bloco-indice">{{ "%02d" | format(indice.n) }}</span>{{ projeto.painel.titulo }}</h2>
           {% for par in projeto.painel.paragrafos %}
           <p>{{ par }}</p>
           {% endfor %}
-          <p><a class="botao botao-cheio" href="{{ painel_url }}">Abrir o painel interativo <span aria-hidden="true">→</span></a></p>
+          <p><a class="botao botao-cheio" href="{{ painel_url }}"{% if lingua != 'pt' %} hreflang="pt-BR"{% endif %}>{{ t.abrir_painel }} <span aria-hidden="true">→</span></a></p>
           <figure class="painel-print">
             <a href="{{ painel_url }}"><img src="{{ projeto.painel.print }}" alt="{{ projeto.painel.print_alt }}" width="{{ projeto.painel.print_largura }}" height="{{ projeto.painel.print_altura }}" loading="lazy"></a>
             <figcaption>{{ projeto.painel.print_legenda }}</figcaption>
@@ -89,7 +90,7 @@
         {% if projeto.graficos_montados %}
         {% set indice.n = indice.n + 1 %}
         <section class="bloco" id="graficos">
-          <h2><span class="bloco-indice">{{ "%02d" | format(indice.n) }}</span>Gráficos</h2>
+          <h2><span class="bloco-indice">{{ "%02d" | format(indice.n) }}</span>{{ t.graficos }}</h2>
           <div class="graficos">
             {% for g in projeto.graficos_montados %}
             <figure class="grafico">
@@ -104,7 +105,7 @@
               <script type="application/json" id="fig-{{ g.id }}-estreita">{{ g.figura_estreita | safe }}</script>
               {% endif %}
               <details class="tabela">
-                <summary>Ver os números em tabela</summary>
+                <summary>{{ t.ver_tabela }}</summary>
                 <table>
                   <tbody>
                     {% for nome, valor in g.tabela %}
@@ -114,7 +115,7 @@
                 </table>
               </details>
               {% else %}
-              <div class="pendente-bloco"><span>Pendente: {{ g.pendente }}</span></div>
+              <div class="pendente-bloco"><span>{{ t.pendente }}: {{ g.pendente }}</span></div>
               {% endif %}
             </figure>
             {% endfor %}
@@ -124,19 +125,20 @@
 
         {% if projeto.consultas is defined %}
         {% set indice.n = indice.n + 1 %}
+        {# a página de consultas só existe em português #}
         <section class="bloco" id="consultas">
-          <h2><span class="bloco-indice">{{ "%02d" | format(indice.n) }}</span>Consultas SQL</h2>
+          <h2><span class="bloco-indice">{{ "%02d" | format(indice.n) }}</span>{{ t.consultas }}</h2>
           <p>{{ projeto.consultas }}</p>
-          <p><a class="botao botao-cheio" href="/consultas-sql/">Ver as consultas <span aria-hidden="true">→</span></a></p>
+          <p><a class="botao botao-cheio" href="/consultas-sql/"{% if lingua != 'pt' %} hreflang="pt-BR"{% endif %}>{{ t.ver_consultas }} <span aria-hidden="true">→</span></a></p>
         </section>
         {% endif %}
 
         <section class="bloco" id="repositorio">
-          <h2><span class="bloco-indice">{{ "%02d" | format(indice.n + 1) }}</span>Repositório</h2>
+          <h2><span class="bloco-indice">{{ "%02d" | format(indice.n + 1) }}</span>{{ t.repositorio }}</h2>
           {% if projeto.repositorio %}
-          <p><a class="botao botao-cheio" href="{{ projeto.repositorio }}" rel="noopener">Ver código</a></p>
+          <p><a class="botao botao-cheio" href="{{ projeto.repositorio }}" rel="noopener">{{ t.ver_codigo }}</a></p>
           {% elif projeto.repositorio_pendente is defined %}
-          <p><span class="pendente">Pendente: {{ projeto.repositorio_pendente }}</span></p>
+          <p><span class="pendente">{{ t.pendente }}: {{ projeto.repositorio_pendente }}</span></p>
           {% else %}
           <p class="nota">{{ projeto.repositorio_nota }}</p>
           {% endif %}

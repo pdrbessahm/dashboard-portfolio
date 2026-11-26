@@ -1,13 +1,13 @@
 {% extends layout %}
-{% block titulo %}Página não encontrada - {{ perfil.nome }}{% endblock %}
+{% block titulo %}{{ t.nao_encontrada }} - {{ perfil.nome }}{% endblock %}
 {% block conteudo %}
     <section class="heroi heroi-projeto">
       <div class="largura">
-        <p class="rotulo rotulo-claro">Erro 404</p>
-        <h1>Página não encontrada</h1>
-        <p class="subtitulo">O endereço não existe ou mudou de lugar.</p>
+        <p class="rotulo rotulo-claro">{{ t.erro_404 }}</p>
+        <h1>{{ t.nao_encontrada }}</h1>
+        <p class="subtitulo">{{ t.nao_encontrada_frase }}</p>
         <ul class="links">
-          <li><a class="botao botao-acento" href="/">Voltar para o início</a></li>
+          <li><a class="botao botao-acento" href="{{ raiz }}/">{{ t.voltar_inicio }}</a></li>
         </ul>
       </div>
     </section>

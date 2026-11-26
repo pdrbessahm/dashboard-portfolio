@@ -33,7 +33,8 @@ Sem ela, o `build` avisa e o `verificar` falha.
 
 ```
 site.py        build, serve e verificar
-conteudo/      texto de cada página (um arquivo .toml por projeto, mais o perfil)
+conteudo/      texto de cada página (um arquivo .toml por projeto, mais o perfil e os textos fixos em interface.toml)
+conteudo/en/   versão em inglês: só os campos de texto de cada arquivo, mais os rótulos dos gráficos (graficos.toml)
 dados/         só JSON anonimizado e agregado
 paineis/       painéis HTML já anonimizados (um por pasta, com README)
 anonimizacao/  scripts que leem a origem e gravam em dados/
@@ -58,7 +59,8 @@ Para ligar o Cloudflare (uma vez):
    - Build command: `pip install -r requirements.txt && python site.py build` (sai o visual publicado, `TEMA_PUBLICADO` no `site.py`, hoje a vitrine)
    - Build output directory: `dist`
 3. Save and Deploy. O endereço sai como `<nome-do-projeto>.pages.dev`.
-4. Domínio próprio: em Custom domains no projeto do Pages.
+4. Domínio próprio: `pedrobessa.com.br`, em Custom domains no projeto do Pages.
+   O mesmo endereço está em `endereco` no `conteudo/perfil.toml` (canonical, hreflang, Open Graph e `sitemap.xml`); se o domínio mudar, troque lá também.
 
 O Python do build vem do `.python-version` (3.12).
 O Pages usa o `404.html` da raiz como página de erro sozinho, sem configuração.
@@ -68,5 +70,6 @@ O Pages usa o `404.html` da raiz como página de erro sozinho, sem configuraçã
 - Hospedagem de arquivos estáticos com HTTPS (por exemplo Cloudflare Pages).
 - Nenhum runtime, banco ou variável secreta.
 - Publicar é copiar o conteúdo de `dist/` para a raiz do site.
-  Configure `404.html` como página de erro.
+  Configure `404.html` como página de erro (a versão em inglês tem a sua em `en/404.html`).
+- O site sai em português na raiz e em inglês em `/en/`, com botão de idioma no topo.
 - Para gerar o `dist/`: Python 3.12 ou mais novo e `pip install -r requirements.txt`.

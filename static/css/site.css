@@ -104,6 +104,10 @@ p { margin: 0 0 1rem; }
 .menu a.menu-contato { margin-left: .5rem; color: var(--escuro); background: var(--acento); }
 .menu a.menu-contato:hover { background: var(--acento-forte); color: var(--escuro); }
 .menu-botao { display: none; }
+/* menu, botão de idioma e, no celular, o botão do menu, lado a lado à direita */
+.topo-acoes { display: flex; align-items: center; gap: .5rem; }
+.idioma { padding: .4375rem .625rem; border: 1px solid var(--escuro-borda); border-radius: 999px; text-decoration: none; color: var(--claro-2); font: 600 .8125rem/1 var(--mono); letter-spacing: .06em; }
+.idioma:hover { color: var(--claro); background: rgb(255 255 255 / .06); }
 
 /* ------------------------------------------------------------ botões e etiquetas */
 

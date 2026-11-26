@@ -16,6 +16,9 @@ email = "bessapedro500@gmail.com"
 linkedin = "https://www.linkedin.com/in/pedro-henrique-bessa-maia/"
 github = "https://github.com/pdrbessahm"
 
+# Dominio do site (decidido em 25/11/2026): base do canonical, do hreflang, do Open Graph e do sitemap.xml.
+endereco = "https://pedrobessa.com.br"
+
 # CV de Dados e BI (decidido em 04/11/2026), em versao para a web: sem telefone, como o resto do site.
 # Gerado do .docx do job-seeker trocando so a linha de contato; o original nao muda.
 cv = "/static/CV_Pedro-Bessa.pdf"
@@ -76,7 +79,7 @@ texto = "KPIs, dashboards e relatórios gerenciais em Power BI e em painel web, 
 
 [[vitrine.areas]]
 icone = "banco"
-nome = "SQL e NoSQL"
+nome = "SQL"
 texto = "Conhecimento em consultas SQL em PostgreSQL, MySQL e SQLite para limpar e validar a base."
 
 [[vitrine.areas]]

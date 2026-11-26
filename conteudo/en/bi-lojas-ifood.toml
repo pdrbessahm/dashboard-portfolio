@@ -1,0 +1,103 @@
+# Versao em ingles de conteudo/bi-lojas-ifood.toml: so os campos de texto, na mesma ordem.
+# Mesmos fatos do portugues, nada alem deles. O painel em si so existe em portugues, e o texto avisa.
+
+titulo = "BI dashboard for iFood stores"
+subtitulo = "Web dashboard with sales, orders, funnel, items and menu changes for 13 restaurant stores on iFood, in an anonymized version."
+
+repositorio_nota = "Private code: the pipeline and the internal dashboard contain store names and identifiers. This is the anonymized version of the dashboard."
+consultas = "The ABC curve above and the other questions behind the store charts, each with the SQL query that answers it and the result."
+
+[cartao]
+problema = "Monitoring restaurants on iFood means analyzing a lot of data and turning it into insights for owners who do not deal with technical terms, with no single place that puts each store's trend next to what changed on the menu."
+fiz = "I defined the KPIs, business rules and anonymization rules of a dashboard that brings the iFood captures of 13 stores into a single database, with each menu change next to the day's orders."
+ferramentas = ["Python", "DuckDB", "SQL", "Plotly", "Power BI", "KPIs"]
+resultado_numero = "13 stores"
+resultado = "13 stores, from Jun to Oct 2026 plus the first half of Nov, and 120 menu changes in a single dashboard, with store and period filters."
+data = "Jun to Nov 2026"
+
+[cartao.print]
+titulo = "Store B · Oct 2026 · anonymized version"
+
+[[secoes]]
+titulo = "Problem"
+paragrafos = [
+  "Whoever follows the daily performance of restaurants inside iFood has to analyze varied data, with a considerable number of possible readings, and translate it into insights for owners who will not deal with technical terms.",
+  "That created the need to bring everything into a single place to see each store's trend, compare it with the previous period and know what changed on the menu before a sharp drop or a period of strong menu conversion.",
+]
+
+[[secoes]]
+titulo = "The flow"
+paragrafos = [
+  "The numbers come from captures of the iFood dashboard and go through these stages before reaching decision-makers.",
+]
+fluxo = [
+  { nome = "Captures", entrega = "iFood dashboard data for each store, stored with the capture date" },
+  { nome = "Pipeline", entrega = "Python reads the captures, checks them and loads them into a DuckDB database" },
+  { nome = "Model", entrega = "stores, periods, performance, funnel, orders per day, items and menu changes" },
+  { nome = "Web dashboard", entrega = "the page with store and period filters shown below" },
+  { nome = "Power BI", entrega = "the same model exported for analysis in Power BI" },
+]
+
+[[secoes]]
+titulo = "Business rules"
+paragrafos = [
+  "These are the rules that decide what the dashboard adds up, compares and shows.",
+]
+itens = [
+  "Only windows already consolidated by iFood are included. The open window appears striped, with a partial number and no change figure until it closes.",
+  "Revenue, ticket, new customers, conversion, funnel and items only exist per calendar month or first half of the month, as iFood delivers them. In a free period, only orders are added up, from the daily series.",
+  "A day without data is a gap in the line, never zero. Zero is zero sales reported by the platform.",
+  "Average ticket is revenue divided by orders. Conversion is orders divided by visits from the same funnel.",
+  "The change compares with the same window of the previous period.",
+  "Before and after a menu change: average orders per day, 7 days on each side excluding the day of the change, only with weekdays that have data on both sides.",
+  "Changes made on the same day stay on a single line, because the effect of each one cannot be separated. The dashboard says it is a comparison, not a cause.",
+]
+
+[[secoes]]
+titulo = "What the dashboard shows"
+paragrafos = [
+  "The dashboard has four tabs, with the store, period and channel filters fixed at the top.",
+]
+itens = [
+  "Overview: revenue, orders, average ticket, new customers and conversion for the period, each against the same window of the previous month and with its history in mini bars; each store's trend in its own mini chart; and the funnel from visits to orders.",
+  "Stores: ranking, comparison of up to 4 stores and the table of all stores in the same period.",
+  "Menu: best-selling items and those that barely sell, orders per day with each menu change marked, and the before and after of each change.",
+  "Methodology: where the numbers come from, the calculation rules and what the anonymization changes.",
+]
+
+[[secoes]]
+titulo = "Anonymization"
+paragrafos = [
+  "This version was made for the portfolio and no data leaves without going through it.",
+]
+itens = [
+  "Stores become Store A to Store M, with the letter drawn once. The link to the real store stays outside the portfolio.",
+  "Values in BRL (revenue, average ticket and item revenue) are multiplied by a fixed, confidential factor per store. Trends and percentage changes remain the same as the real ones.",
+  "Orders, new customers, funnel and items sold stay real. Scaling the counts too distorted the small stores through rounding, so I decided to apply the factor only to BRL values.",
+  "Because of the factor, comparing BRL values between stores is not valid, and the dashboard footer warns about it.",
+  "Items become type and number (Combo 01, Burger 03) and menu changes are described without proper names or prices.",
+  "Before going out, the anonymized version goes through a search for CNPJ, CPF, phone numbers, postal codes and a list of sensitive terms.",
+]
+nota = "The letters in this dashboard are not the same as in the Delivery store data project: Store B here is not Store B there."
+
+[[secoes]]
+titulo = "What I did and decided"
+itens = [
+  "I defined the dashboard's KPIs and how each one is calculated.",
+  "I defined the business rules above: which windows are included, what a free period adds up and how to handle a day without data.",
+  "I defined the before-and-after comparison of menu changes and the warning that it does not prove cause.",
+  "I decided the anonymization rules: factor only on BRL values, items by type and number and the warning that BRL is not comparable between stores.",
+]
+
+[[graficos]]
+titulo = "ABC curve: few items make 80% of revenue"
+descricao = "Menu items in Oct 2026, from the best seller to those that never sold, against cumulative revenue. Share of the store's own revenue, which the anonymization factor does not change. Choose the store in the selector."
+
+[painel]
+titulo = "The dashboard"
+paragrafos = [
+  "The dashboard below is the anonymized version, with the same filters and charts as the internal version. Its interface is in Portuguese.",
+  "Choose the store, the period or a month and half-month shortcut, and browse the tabs.",
+]
+print_alt = "Overview tab of the dashboard, Store B in Oct 2026: five KPIs against Sep 2026 with history in mini bars, a revenue mini chart per store and the funnel from visits to orders."
+print_legenda = "Store B in Oct 2026, anonymized version. Click to open the dashboard (in Portuguese)."

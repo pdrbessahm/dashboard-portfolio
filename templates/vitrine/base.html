@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="pt-BR" class="tema-vitrine">
+{% from "metadados.html" import metadados with context %}
+<html lang="{{ linguas[lingua].html }}" class="tema-vitrine">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,6 +8,7 @@
   <meta name="description" content="{% block descricao %}{{ perfil.resumo[0] }}{% endblock %}">
   <meta name="author" content="{{ perfil.nome }}">
   <meta name="theme-color" content="{{ tema.cor }}">
+{{ metadados(self.titulo(), self.descricao()) }}
 {% include "favicon.html" %}
   <link rel="preload" href="/static/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/static/fonts/inter-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -18,17 +20,23 @@
   <script>document.documentElement.classList.add("js");</script>
 </head>
 <body class="pagina-{{ pagina }}">
-  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+  <a class="pular" href="#conteudo">{{ t.pular }}</a>
   <header class="topo{% if pagina == 'inicio' %} topo-heroi{% endif %}">
     <div class="largura topo-linha">
-      <a class="marca" href="/" aria-label="{{ perfil.nome_curto }}, início">{{ perfil.nome_curto }}</a>
-      <button class="menu-botao" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
-      <nav id="menu" class="menu" aria-label="Principal">
-        <a href="/#sobre">Sobre</a>
-        <a href="/#projetos">Projetos</a>
-        <a class="menu-cv" href="{{ perfil.cv }}">Currículo</a>
-        <a href="/#contato">Contato</a>
-      </nav>
+      <a class="marca" href="{{ raiz }}/" aria-label="{{ perfil.nome_curto }}, {{ t.inicio }}">{{ perfil.nome_curto }}</a>
+      <div class="topo-acoes">
+        <nav id="menu" class="menu" aria-label="{{ t.menu_rotulo }}">
+          <a href="{{ raiz }}/#sobre">{{ t.sobre }}</a>
+          <a href="{{ raiz }}/#projetos">{{ t.projetos }}</a>
+          <a class="menu-cv" href="{{ perfil.cv }}">{{ t.curriculo }}</a>
+          <a href="{{ raiz }}/#contato">{{ t.contato }}</a>
+        </nav>
+        {% if troca %}
+        {# leva à mesma página no outro idioma; o texto e o rótulo ficam no idioma de destino #}
+        <a class="idioma" href="{{ troca }}" hreflang="{{ linguas[outra].html }}" lang="{{ linguas[outra].html }}" aria-label="{{ t.troca_rotulo }}">{{ t.troca_sigla }}</a>
+        {% endif %}
+        <button class="menu-botao" type="button" aria-expanded="false" aria-controls="menu">{{ t.menu }}</button>
+      </div>
     </div>
   </header>
 
@@ -38,13 +46,13 @@
 
   <footer id="contato" class="rodape">
     <div class="largura">
-      <h2>Contato</h2>
-      <p class="secao-frase">Vamos conversar sobre a sua vaga ou o seu time de dados?</p>
+      <h2>{{ t.contato }}</h2>
+      <p class="secao-frase">{{ t.contato_frase }}</p>
       <ul class="links">
         <li><a class="botao botao-gradiente" href="mailto:{{ perfil.email }}">{{ perfil.email }}</a></li>
         <li><a class="botao" href="{{ perfil.linkedin }}" rel="noopener">LinkedIn</a></li>
         <li><a class="botao" href="{{ perfil.github }}" rel="noopener">GitHub</a></li>
-        <li><a class="botao" href="{{ perfil.cv }}">Currículo em PDF</a></li>
+        <li><a class="botao" href="{{ perfil.cv }}">{{ t.curriculo_pdf }}</a></li>
       </ul>
       <p class="rodape-nome">{{ perfil.nome }} · {{ perfil.cargo }} · {{ perfil.local }}</p>
     </div>
