@@ -13,8 +13,8 @@
   <link rel="preload" href="/static/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/static/fonts/inter-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/static/fonts/{{ tema.fonte }}" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/static/css/site.css">
-  <link rel="stylesheet" href="/static/css/tema-vitrine.css">
+  <link rel="stylesheet" href="{{ '/static/css/site.css' | versionado }}">
+  <link rel="stylesheet" href="{{ '/static/css/tema-vitrine.css' | versionado }}">
   {# com JavaScript, o topo da página inicial começa transparente sobre a foto e fica sólido ao rolar;
      sem ele, fica sólido o tempo todo para continuar legível #}
   <script>document.documentElement.classList.add("js");</script>
@@ -58,8 +58,8 @@
     </div>
   </footer>
 
-  <script src="/static/js/menu.js" defer></script>
-  <script src="/static/js/topo.js" defer></script>
+  <script src="{{ '/static/js/menu.js' | versionado }}" defer></script>
+  <script src="{{ '/static/js/topo.js' | versionado }}" defer></script>
 {% block scripts %}{% endblock %}
 </body>
 </html>

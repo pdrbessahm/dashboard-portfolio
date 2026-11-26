@@ -149,6 +149,6 @@
 {% block scripts %}
 {% if projeto.graficos_montados | selectattr("figura", "defined") | list %}
   <script src="/static/vendor/plotly.min.js" defer></script>
-  <script src="/static/js/graficos.js" defer></script>
+  <script src="{{ '/static/js/graficos.js' | versionado }}" defer></script>
 {% endif %}
 {% endblock %}

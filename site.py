@@ -741,7 +741,15 @@ def ambiente():
     env = Environment(loader=FileSystemLoader(TEMPLATES), autoescape=True,
                       undefined=StrictUndefined, trim_blocks=True, lstrip_blocks=True)
     env.globals["versao_favicon"] = versao_favicon()
+    env.filters["versionado"] = versionado
     return env
+
+
+def versionado(endereco):
+    """'/static/...' com ?v= do hash do arquivo: o Cloudflare deixa o navegador guardar CSS e JS por horas,
+    e sem isso quem já visitou o site recebe o HTML novo com o CSS antigo."""
+    arq = STATIC / endereco.removeprefix("/static/")
+    return f"{endereco}?v={hashlib.sha256(arq.read_bytes()).hexdigest()[:10]}"
 
 
 def versao_favicon():

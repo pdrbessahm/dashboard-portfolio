@@ -15,9 +15,9 @@
   {% if tema %}
   <link rel="preload" href="/static/fonts/{{ tema.fonte }}" as="font" type="font/woff2" crossorigin>
   {% endif %}
-  <link rel="stylesheet" href="/static/css/site.css">
+  <link rel="stylesheet" href="{{ '/static/css/site.css' | versionado }}">
   {% if tema %}
-  <link rel="stylesheet" href="/static/css/tema-{{ tema.nome }}.css">
+  <link rel="stylesheet" href="{{ ('/static/css/tema-' ~ tema.nome ~ '.css') | versionado }}">
   {% endif %}
 </head>
 <body class="pagina-{{ pagina }}">
@@ -53,7 +53,7 @@
     </div>
   </footer>
 
-  <script src="/static/js/menu.js" defer></script>
+  <script src="{{ '/static/js/menu.js' | versionado }}" defer></script>
 {% block scripts %}{% endblock %}
 </body>
 </html>
