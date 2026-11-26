@@ -1,7 +1,7 @@
 # Pagina /consultas-sql/: cada bloco roda o .sql da mesma pasta no build (SQLite em memoria),
 # sobre as mesmas tabelas que os graficos usam, montadas de dados/lojas.json e dados/itens.json.
 # O resultado mostrado e o que a consulta devolve, nao um numero digitado.
-# notebook: endereco do .ipynb no GitHub; vazio deixa o botao desligado.
+# notebook: endereco do .ipynb no GitHub; vazio esconde o botao.
 
 titulo = "Consultas SQL"
 subtitulo = "As perguntas de negócio por trás dos gráficos das lojas, cada uma com a consulta que responde, o resultado e o que ele mudou."

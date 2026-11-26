@@ -58,8 +58,6 @@
             <a class="botao" href="{{ b.grafico.href }}">Ver o gráfico: {{ b.grafico.texto }}</a>
             {% if consultas.notebook %}
             <a class="botao botao-cheio" href="{{ consultas.notebook }}#{{ b.id }}" rel="noopener">Ver no notebook</a>
-            {% else %}
-            <span class="botao botao-desligado" aria-disabled="true">Ver no notebook (em breve)</span>
             {% endif %}
           </p>
         </section>
