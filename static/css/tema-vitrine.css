@@ -48,9 +48,12 @@
 .tema-vitrine .menu a:hover { color: var(--tinta); background: var(--etiqueta); }
 .tema-vitrine .menu a.menu-cv { color: var(--lilas-escuro); border-color: var(--lilas); }
 .tema-vitrine .menu a.menu-cv:hover { color: #fff; background: var(--lilas-escuro); border-color: var(--lilas-escuro); }
-/* botão de idioma: sigla do outro idioma, discreto ao lado do menu */
-.tema-vitrine .idioma { border-radius: 3px; border-color: var(--borda); color: var(--tinta-2); }
-.tema-vitrine .idioma:hover { color: var(--tinta); background: var(--etiqueta); }
+/* PT / EN: mesma letra do menu, separado dele por um fio; o atual em cor cheia, o outro é o link */
+.tema-vitrine .idiomas { display: flex; align-items: center; margin: 0 0 0 .375rem; padding-left: .875rem; border-left: 1px solid var(--borda); font-size: .8125rem; font-weight: 600; letter-spacing: .06em; line-height: 1; }
+.tema-vitrine .idioma-atual { padding: .4375rem .25rem; color: var(--tinta); text-decoration: underline 2px var(--lilas); text-underline-offset: .45em; }
+.tema-vitrine .idiomas-sep { padding: 0 .125rem; color: var(--tinta-3); font-weight: 400; }
+.tema-vitrine .idioma { padding: .4375rem .25rem; border: 0; border-radius: 3px; font: inherit; letter-spacing: inherit; color: var(--tinta-3); text-decoration: none; }
+.tema-vitrine .idioma:hover { color: var(--lilas-escuro); background: none; }
 
 /* transparente sobre a foto: só no alto da página inicial, com JavaScript */
 .tema-vitrine.js .topo-heroi:not(.rolado):not(:has(.menu.aberto)) {
@@ -61,8 +64,9 @@
   -webkit-backdrop-filter: none;
 }
 .tema-vitrine.js .topo-heroi:not(.rolado):not(:has(.menu.aberto)) :is(.marca, .menu a, .menu-botao, .idioma) { color: #fff; }
-.tema-vitrine.js .topo-heroi:not(.rolado):not(:has(.menu.aberto)) .idioma { border-color: rgb(255 255 255 / .5); }
-.tema-vitrine.js .topo-heroi:not(.rolado):not(:has(.menu.aberto)) .idioma:hover { background: rgb(255 255 255 / .12); }
+.tema-vitrine.js .topo-heroi:not(.rolado):not(:has(.menu.aberto)) .idiomas { border-left-color: rgb(255 255 255 / .3); }
+.tema-vitrine.js .topo-heroi:not(.rolado):not(:has(.menu.aberto)) .idiomas :is(.idioma, .idiomas-sep) { color: rgb(255 255 255 / .55); }
+.tema-vitrine.js .topo-heroi:not(.rolado):not(:has(.menu.aberto)) .idiomas :is(.idioma-atual, .idioma:hover) { color: #fff; }
 .tema-vitrine.js .topo-heroi:not(.rolado):not(:has(.menu.aberto)) .menu a { color: rgb(255 255 255 / .9); }
 .tema-vitrine.js .topo-heroi:not(.rolado):not(:has(.menu.aberto)) .menu a:hover { color: #fff; background: rgb(255 255 255 / .12); }
 .tema-vitrine.js .topo-heroi:not(.rolado):not(:has(.menu.aberto)) .menu a.menu-cv { border-color: transparent; }
