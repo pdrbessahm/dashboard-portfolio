@@ -32,13 +32,8 @@
           <a href="{{ raiz }}/#contato">{{ t.contato }}</a>
         </nav>
         {% if troca %}
-        {# PT / EN sempre na mesma ordem: o idioma atual marcado, o outro leva à mesma página nele #}
-        <p class="idiomas">
-          {%- for l in linguas %}{% if not loop.first %}<span class="idiomas-sep" aria-hidden="true">/</span>{% endif %}
-          {%- if l == lingua %}<span class="idioma-atual" aria-current="true" lang="{{ linguas[l].html }}">{{ l | upper }}</span>
-          {%- else %}<a class="idioma" href="{{ troca }}" hreflang="{{ linguas[l].html }}" lang="{{ linguas[l].html }}" aria-label="{{ t.troca_rotulo }}">{{ l | upper }}</a>{% endif %}
-          {%- endfor -%}
-        </p>
+        {# mesmo estilo dos itens do menu; fica fora do <nav> para continuar visível no celular com o menu fechado #}
+        <a class="idioma" href="{{ troca }}" hreflang="{{ linguas[outra].html }}" lang="{{ linguas[outra].html }}" aria-label="{{ t.troca_rotulo }}">{{ t.troca_nome }}</a>
         {% endif %}
         <button class="menu-botao" type="button" aria-expanded="false" aria-controls="menu">{{ t.menu }}</button>
       </div>

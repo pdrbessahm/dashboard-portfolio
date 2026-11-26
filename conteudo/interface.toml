@@ -1,5 +1,5 @@
 # Textos fixos dos templates (menu, rotulos e botoes), um bloco por idioma, com as mesmas chaves nos dois.
-# troca_rotulo: o que o leitor de tela diz no link do outro idioma, escrito no idioma de destino.
+# troca_nome e troca_rotulo: o link do outro idioma, escritos no idioma de destino (na página em português leva ao inglês).
 
 [pt]
 pular = "Pular para o conteúdo"
@@ -12,6 +12,7 @@ curriculo = "Currículo"
 contato = "Contato"
 contato_frase = "Vamos conversar sobre a sua vaga ou o seu time de dados?"
 curriculo_pdf = "Currículo em PDF"
+troca_nome = "English"
 troca_rotulo = "Read this page in English"
 sobre_mim = "Sobre mim"
 eu_sou = "Eu sou"
@@ -45,6 +46,7 @@ curriculo = "Resume (PT)"
 contato = "Contact"
 contato_frase = "Shall we talk about your opening or your data team?"
 curriculo_pdf = "Resume in Portuguese (PDF)"
+troca_nome = "Português"
 troca_rotulo = "Ver esta página em português"
 sobre_mim = "About me"
 eu_sou = "I'm"
