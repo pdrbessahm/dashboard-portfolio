@@ -1,8 +1,9 @@
 # Versao em ingles de conteudo/perfil.toml: so os campos de texto, na mesma ordem.
-# Os outros campos (e-mail, links, CV, imagens) vem do arquivo em portugues.
+# Os outros campos (e-mail, links, imagens) vem do arquivo em portugues; o CV tem versao propria em ingles.
 # Mesmos fatos do portugues, nada alem deles; a frase de SQL e Python segue o REGRAS.md
 # ("knowledge of SQL queries and Python").
 
+cv = "/static/CV_Pedro-Bessa_EN.pdf"
 cargo = "Data Analyst"
 frase = "End-to-end data, from collection to report."
 resumo = [
