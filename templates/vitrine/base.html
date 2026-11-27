@@ -28,7 +28,7 @@
         <nav id="menu" class="menu" aria-label="{{ t.menu_rotulo }}">
           <a href="{{ raiz }}/#sobre">{{ t.sobre }}</a>
           <a href="{{ raiz }}/#projetos">{{ t.projetos }}</a>
-          <a class="menu-cv" href="{{ perfil.cv }}">{{ t.curriculo }}</a>
+          <a class="menu-cv" href="{{ perfil.cv | versionado }}">{{ t.curriculo }}</a>
           <a href="{{ raiz }}/#contato">{{ t.contato }}</a>
         </nav>
         {% if troca %}
@@ -52,7 +52,7 @@
         <li><a class="botao botao-gradiente" href="mailto:{{ perfil.email }}">{{ perfil.email }}</a></li>
         <li><a class="botao" href="{{ perfil.linkedin }}" rel="noopener">LinkedIn</a></li>
         <li><a class="botao" href="{{ perfil.github }}" rel="noopener">GitHub</a></li>
-        <li><a class="botao" href="{{ perfil.cv }}">{{ t.curriculo_pdf }}</a></li>
+        <li><a class="botao" href="{{ perfil.cv | versionado }}">{{ t.curriculo_pdf }}</a></li>
       </ul>
       <p class="rodape-nome">{{ perfil.nome }} · {{ perfil.cargo }} · {{ perfil.local }}</p>
     </div>
